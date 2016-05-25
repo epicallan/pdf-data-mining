@@ -1,36 +1,52 @@
-// import path from 'path';
 import fs from 'fs';
 import readline from 'readline';
 import verEx from 'verbal-expressions';
+import csv from 'fast-csv';
 
-const rl = readline.createInterface({
+const readFileLine = readline.createInterface({
   input: fs.createReadStream('/Users/allanlukwago/apps/budget-data/samples/2014-15.txt')
 });
 
+// configuring csv writableStream
+const csvStream = csv.createWriteStream({ headers: true });
+const writableStream = fs.createWriteStream('my.csv');
+csvStream.transform(row => ({
+  sector: row[0],
+  'Approved Budget': row[1],
+  released: row[2],
+  spent: row[3],
+  '% Budget realsed': row[4],
+  '% budget spent': row[5],
+  '% releases spent': row[6]
+}))
+.pipe(writableStream);
+
+
 const fileLines = [];
 let isTable = false;
-// let index = 0;
-rl.on('line', (line) => {
-  const tester = verEx().find('Releases and Expenditure by Vote Function');
-  const endTester = verEx().find('Excluding Taxes and Arrears');
-  const isEnd = endTester.test(line);
-  // const expression = verEx().find('Expenditures');
-  if (tester.test(line)) isTable = true;
+
+readFileLine.on('line', (line) => {
+  const startMining = verEx().find('Releases and Expenditure by Vote Function');
+  const endMining = verEx().find('Excluding Taxes and Arrears');
+  const isEnd = endMining.test(line);
   if (isTable) {
-    // index ++;
-    if (line && !isEnd) {
-      // const words = line.split(' ').map(word => { if (word.length > 2) return word })
-      // console.log(line);
-      fileLines.push(line);
-      // console.log('----------------------');
-    }
+    if (line.length > 1 && !isEnd) fileLines.push(line);
     if (isEnd) {
       isTable = false;
-      rl.close();
+      readFileLine.close();
     }
   }
+  if (startMining.test(line)) isTable = true;
 });
 
-rl.on('close', () => {
-  console.log(fileLines[6]);
+readFileLine.on('close', () => {
+  // console.log('first line', fileLines[0]);
+  const splicedFileLines = fileLines.splice(3, fileLines.length);
+  // console.log(splicedFileLines);
+  splicedFileLines.forEach(line => {
+    const csvLine = line.split('  ').filter(word => word.length > 1);
+    // console.log('line - ', csvLine);
+    csvStream.write(csvLine);
+  });
+  // csvStream.end();
 });
