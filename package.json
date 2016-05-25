@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf dist && webpack --progress --colors ",
     "build-watch": "webpack --watch",
-    "lint": "eslint src test --cache --cache-location /home/allan/.eslintcache/",
+    "lint": "eslint src --cache --cache-location /home/allan/.eslintcache/",
     "test": " NODE_ENV=test ./node_modules/mocha/bin/mocha $(find src -name '*-test.js')  --compilers js:babel-core/register",
     "test-watch": "NODE_ENV=test ./node_modules/mocha/bin/mocha $(find src -name '*-test.js') --compilers js:babel-core/register --watch",
     "start": "NODE_ENV=production node dist/app.js",
