@@ -3,3 +3,4 @@ coverage
 dist
 budgets
 budgets_py
+.DS_Store
