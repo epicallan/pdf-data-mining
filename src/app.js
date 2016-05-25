@@ -3,13 +3,14 @@ import readline from 'readline';
 import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
 
-const readFileLine = readline.createInterface({
+const readFileByLine = readline.createInterface({
   input: fs.createReadStream('/Users/allanlukwago/apps/budget-data/samples/2014-15.txt')
 });
 
 // configuring csv writableStream
 const csvStream = csv.createWriteStream({ headers: true });
 const writableStream = fs.createWriteStream('my.csv');
+
 csvStream.transform(row => ({
   sector: row[0],
   'Approved Budget': row[1],
@@ -25,7 +26,7 @@ csvStream.transform(row => ({
 const fileLines = [];
 let isTable = false;
 
-readFileLine.on('line', (line) => {
+readFileByLine.on('line', (line) => {
   const startMining = verEx().find('Releases and Expenditure by Vote Function');
   const endMining = verEx().find('Excluding Taxes and Arrears');
   const isEnd = endMining.test(line);
@@ -33,13 +34,13 @@ readFileLine.on('line', (line) => {
     if (line.length > 1 && !isEnd) fileLines.push(line);
     if (isEnd) {
       isTable = false;
-      readFileLine.close();
+      readFileByLine.close();
     }
   }
   if (startMining.test(line)) isTable = true;
 });
 
-readFileLine.on('close', () => {
+readFileByLine.on('close', () => {
   // console.log('first line', fileLines[0]);
   const splicedFileLines = fileLines.splice(3, fileLines.length);
   // console.log(splicedFileLines);
