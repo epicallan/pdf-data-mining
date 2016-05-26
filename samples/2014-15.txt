@@ -1,61 +1,133 @@
-Vote: 014                        Ministry of Health
+Vote: 014                       Ministry of Health
 QUARTER 4: Highlights of Vote Performance
-V1: Summary of Issues in Budget Execution
-This section provides an overview of Vote expenditure
-(i) Snapshot of Vote Releases and Expenditures
-Table V1.1 below summarises cumulative releases and expenditures by the end of the quarter:
-Table V1.1: Overview of Vote Expenditures (UShs Billion)
+Planned Actions:                               Actual Actions:                               Reasons for Variation
+The sector shall, continue Implementing        Continued Implementing the motivation NA
+the motivation and retention strategy for      and retention strategy for health
+health workers, the hard to reach              workers, the hard to reach incentive
+incentive scheme to all districts involved     scheme to all districts involved and build
+and build capacity for management              capacity for management functions for
+functions for health facilities                health facilities
+Vote: 014 Ministry of Health
+Vote Function: 08 03 Health Research
+Implement research health policy and the    The implementation of the health                 No Variance
+strategic plan                              reserch policy is on going by the
+                                            research institutions
+                                            including;UNHRO,UVRI and NCRI
+Vote Function: 08 04 Clinical and public health
+Implement the M&E strategy.                Development partners have been                    No variance
+                                           brought on board to support the
+                                           ministry officials in the support
+                                           supervision activities.
+Operationalise the VHT strategy in 36      The VHT strategy has been                         NA
+poorly performing districts                implemented in 36 poorly performing
+                                           districts. The MOH is looking at
+                                           revising the CHEWs to provide a
+                                           solution to the challenges faced by . The
+                                           VHTs.
+Vote Function: 08 49 Policy, Planning and Support Services
+National Health Information Strategy           National Health Information Strategy          consultancy is needed to complete the bill.
+(NHIS) implemented                             (NHIS) still under draft
+Vote: 014 Ministry of Health
+Vote Function: 08 05 Pharmaceutical and other Supplies
+Further continue implementing the              Procurement planning and distribution    The mandate of planning and distribution
+Government Policy on procurement of            of medicines and health supplies has    of medicines and supplies is for NMS
+medicines and medical supplies                 continued to be the mandate of National
+                                               Medical Stores (NMS).
 
+V3: Details of Releases and Expenditure
+This section provides a comprehensive summary of the outputs delivered by the Vote and further details of Vote
+expenditures by Vote Function and Expenditure Item.
 
-                                      Approved Cashlimits              Released      Spent by % Budget % Budget % Releases
-  (i) Excluding Arrears, Taxes          Budget    by End                by End        End Jun Released    Spent      Spent
-                      Wage                   6.494         6.308           7.120        6.967      109.6%         107.3%         97.9%
-   Recurrent                                             34.200
-                      Non Wage              29.665                        29.492       29.346        99.4%           98.9%       99.5%
-                      GoU                   12.975       11.101           10.871       10.585        83.8%           81.6%       97.4%
-   Development
-                      Ext Fin.           527.996            N/A          503.164      325.681        95.3%           61.7%       64.7%
-                       GoU Total            49.135       51.609           47.483       46.898       96.6%            95.4%       98.8%
-Total GoU+Ext Fin. (MTEF)                577.131            N/A          550.647      372.579       95.4%            64.6%       67.7%
-                      Arrears                0.372           N/A           0.372        0.372      100.0%         100.0%        100.0%
-  (ii) Arrears
-  and Taxes           Taxes                  4.238           N/A           2.329        2.305        55.0%           54.4%       99.0%
-                   Total Budget          581.741         51.609          553.349      375.256       95.1%            64.5%       67.8%
-
-
-* Donor expenditure information available                                               ** Non VAT on capital expenditure
-
-The table below shows cumulative releases and expenditures to the Vote by Vote Function :
-Table V1.2: Releases and Expenditure by Vote Function*
-Billion Uganda Shillings                                                 Approved Released      Spent     % Budget % Budget         %
-                                                                           Budget                         Released    Spent    Releases
-                                                                                                                                  Spent
-VF:0801 Sector Monitoring and Quality Assurance                               0.81      0.59      0.59       73.1%     73.0%     99.9%
-VF:0802 Health systems development                                          210.51    101.66    101.41       48.3%     48.2%     99.7%
-VF:0803 Health Research                                                       2.41      2.12      2.08       87.9%     86.3%     98.2%
-VF:0804 Clinical and public health                                           29.45     24.84     25.00       84.3%     84.9%    100.6%
-VF:0805 Pharmaceutical and other Supplies                                   312.30    405.44    227.74      129.8%     72.9%     56.2%
-VF:0849 Policy, Planning and Support Services                                21.65     16.00     15.76       73.9%     72.8%     98.5%
- Total For Vote                                                             577.13    550.65    372.58       95.4%     64.6%     67.7%
+Table V3.1: GoU Releases and Expenditure by Output*
+Billion Uganda Shillings                                                Approved Released         Spent     % GoU     % GoU       % GoU
+                                                                          Budget                            Budget    Budget     Releases
+                                                                                                           Released     Spent       Spent
+VF:0801 Sector Monitoring and Quality Assurance                              0.81     0.59         0.59      73.1%      73.0%      99.9%
+Class: Outputs Provided                                                      0.81     0.59         0.59      73.1%      73.0%      99.9%
+080101 Sector performance monitored and evaluated                            0.23     0.17         0.17      74.1%      73.8%      99.6%
+080102 Standards and guidelines disseminated                                 0.07     0.04         0.04      52.1%      52.1%     100.0%
+080103 Support supervision provided to Local Governments and referral        0.39     0.33         0.33      82.9%      82.9%     100.0%
+        hospitals
+080104 Standards and guidelines developed                                    0.11     0.06         0.06      50.3%      50.3%     100.0%
+VF:0802 Health systems development                                           4.46     3.41         3.15      76.4%      70.7%      92.5%
+Class: Outputs Provided                                                      2.30     1.94         1.91      84.6%      83.0%      98.1%
+080201 Monitoring, Supervision and Evaluation of Health Systems              2.30     1.94         1.91      84.6%      83.0%      98.1%
+Class: Capital Purchases                                                     2.16     1.46         1.24      67.6%      57.5%      85.0%
+080272 Government Buildings and Administrative Infrastructure                0.58     0.38         0.34      65.5%      59.0%      90.0%
+080275 Purchase of Motor Vehicles and Other Transport Equipment              0.46     0.36         0.36      78.4%      77.7%      99.1%
+080276 Purchase of Office and ICT Equipment, including Software              0.12     0.12         0.08     100.0%      64.0%      64.0%
+080280 Hospital Construction/rehabilitation                                  1.00     0.60         0.47      60.0%      46.6%      77.6%
+VF:0803 Health Research                                                      2.41     2.12         2.08      87.9%      86.3%      98.2%
+Class: Outputs Provided                                                      0.95     0.95         0.92     100.0%      96.2%      96.2%
+080303 Research coordination                                                 0.95     0.95         0.92     100.0%      96.2%      96.2%
+Class: Outputs Funded                                                        1.46     1.17         1.17      80.0%      79.8%      99.8%
+080351 Specialised Medical Research in HIV/AIDS and Clinical Care            0.24     0.24         0.24     100.0%     100.0%     100.0%
+        (JCRC)                                                               444
+Vote: 014                         Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Billion Uganda Shillings                                                     Approved Released            Spent       % GoU      % GoU        % GoU
+                                                                               Budget                                 Budget     Budget      Releases
+                                                                                                                     Released      Spent        Spent
+080352 Support to Uganda National Health Research                                 1.22      0.93           0.92        76.0%       75.8%       99.8%
+        Organisation(UNHRO)
+VF:0804 Clinical and public health                                               21.21     23.34          23.31       110.0%      109.9%       99.9%
+Class: Outputs Provided                                                          14.78     16.91          16.88       114.4%      114.2%       99.8%
+080401 Community health services provided (control of communicable                3.16      2.18           2.13        68.8%       67.4%       97.9%
+        and non communicable diseases)
+080402 Clinical health services provided (infrastructure, pharmaceutical,         1.86      1.52           1.52        82.0%       81.9%       99.8%
+        integrated curative)
+080403 National endemic and epidemic disease control services provided            2.84     10.23          10.22       360.5%      360.1%       99.9%
+080404 Technical support, monitoring and evaluation of service                    0.38      0.32           0.32        83.2%       83.0%       99.7%
+        providers and facilities
+080405 Immunisation services provided                                             0.86      0.49           0.49        56.4%       56.4%      100.0%
+080408 Photo-biological Control of Malaria                                        1.00      0.40           0.35        40.3%       35.3%       87.6%
+080409 Indoor Residual Spraying (IRS) services provided                           2.08      0.83           0.83        40.0%       40.0%      100.0%
+080410 Maintenance of medical and solar equipment                                 0.40      0.22           0.22        56.2%       56.2%      100.0%
+080411 Coordination of clinical and public health emergencies including           2.20      0.71           0.79        32.2%       36.1%      112.2%
+        the response to the nodding syndrome
+Class: Outputs Funded                                                             6.43      6.43           6.43       100.0%      100.0%      100.0%
+080451 Medical Intern Services                                                    6.43      6.43           6.43       100.0%      100.0%      100.0%
+VF:0805 Pharmaceutical and other Supplies                                         8.21      7.28           7.24        88.6%       88.2%       99.6%
+Class: Outputs Provided                                                           8.21      6.86           6.83        83.5%       83.2%       99.6%
+080501 Preventive and curative Medical Supplies (including                        3.20      3.53           3.53       110.3%      110.3%      100.0%
+        immuninisation)
+080503 Monitoring and Evaluation Capacity Improvement                             5.01      3.33           3.30        66.4%       65.8%       99.1%
+Class: Capital Purchases                                                          0.00      0.42           0.41          N/A         N/A       99.6%
+080580 Diagnostic and Other Equipment Procured                                    0.00      0.42           0.41          N/A         N/A       99.6%
+VF:0849 Policy, Planning and Support Services                                    12.03     10.76          10.52        89.4%       87.5%       97.8%
+Class: Outputs Provided                                                           9.63      8.87           8.69        92.2%       90.3%       98.0%
+084901 Policy, consultation, planning and monitoring services                     3.67      2.90           2.80        79.1%       76.4%       96.6%
+084902 Ministry Support Services                                                  3.93      4.48           4.42       114.0%      112.3%       98.5%
+084903 Ministerial and Top Management Services                                    1.32      1.14           1.14        86.5%       85.9%       99.4%
+084904 Health Sector reforms including financing and national health              0.71      0.35           0.34        48.9%       48.1%       98.5%
+        accounts
+Class: Outputs Funded                                                             2.40      1.88           1.83        78.4%       76.2%       97.2%
+084951 Transfers to International Health Organisation                             0.20      0.18           0.13        90.0%       65.0%       72.2%
+084952 Health Regulatory Councils                                                 0.30      0.18           0.18        58.3%       58.3%      100.0%
+084953 Support to Health Workers recruited at HC III and IV                       1.90      1.53           1.52        80.3%       80.2%       99.8%
+ Total For Vote                                                                  49.13     47.48          46.90        96.6%       95.4%       98.8%
 * Excluding Taxes and Arrears
-(ii) Matters to note in budget execution
-
-Vote 014 received a supplementary funding for wages and salaries thus a107% of the budget on the wage item .
-Budget cuts and re -allocations within Vote 014 in Quarter 4 hindred the implementation of some planned
-activites.Utility arrears for UVRI worth 4bn are affecting the implementation of the research activities.
-Table V1.3: High Unspent Balances and Over-Expenditure in the Domestic Budget (Ushs Bn)
-(i) Major unpsent balances
-
-(ii) Expenditures in excess of the original approved budget
-Programs and Projects
-VF: 0804 Clinical and public health
-        3.81 Bn Shs Programme/Project: 08     National Disease Control
-            Reason:
-Items
-        3.92 Bn Shs Item: 282181 Extra-Ordinary Items (Losses/Gains)
-            Reason:
-        1.90 Bn Shs Item: 224001 Medical and Agricultural supplies
-            Reason:
-                                                                              437
-* Excluding Taxes and Arrears
+Table V3.2: 2014/15 GoU Expenditure by Item
+Billion Uganda Shillings                                        Approved        Releases    Expend-         % Budged       % Budget        %Releases
+                                                                  Budget                       iture         Released         Spent           Spent
+Output Class: Outputs Provided                                       36.68         36.31       36.00              99.0%         98.1%         99.1%
+211101   General Staff Salaries                                       5.75         6.37            6.23           110.9%        108.4%        97.7%
+211102   Contract Staff Salaries (Incl. Casuals, Temporary)           3.22         2.87            2.84            89.1%         88.2%        98.9%
+211103   Allowances                                                   1.23         0.94            0.93            76.3%         76.1%        99.8%
+212101   Social Security Contributions                                0.17         0.14            0.14            83.9%         79.9%        95.3%
+212102   Pension for General Civil Service                            0.00         0.10            0.10              N/A           N/A       100.0%
+213001   Medical expenses (To employees)                              0.11         0.10            0.10            94.6%         94.6%       100.0%
+213002   Incapacity, death benefits and funeral expenses              0.03         0.03            0.03            95.3%         95.3%       100.0%
+213004   Gratuity Expenses                                            0.00         0.20            0.20              N/A           N/A       100.0%
+221001   Advertising and Public Relations                             0.36         0.13            0.13            35.0%         36.2%       103.3%
+221002   Workshops and Seminars                                       1.03         1.04            1.05           101.2%        101.5%       100.2%
+221003   Staff Training                                               1.37         0.97            0.88            70.8%         64.1%        90.6%
+221005   Hire of Venue (chairs, projector, etc)                       0.10         0.03            0.03            31.2%         31.2%       100.0%
+221007   Books, Periodicals & Newspapers                              0.05         0.03            0.03            70.2%         70.2%       100.0%
+221008   Computer supplies and Information Technology (IT             0.11         0.07            0.07            60.1%         60.1%       100.0%
+221009   Welfare and Entertainment                                    0.39         0.32            0.32            81.7%         81.7%       100.0%
+221010   Special Meals and Drinks                                     0.00         0.00            0.00            97.7%         97.7%       100.0%
+221011   Printing, Stationery, Photocopying and Binding               1.31        445
+                                                                                   0.96            0.95            73.5%         72.3%        98.4%
+221012   Small Office Equipment                                       0.05         0.03            0.03            62.1%         61.5%        99.0%
 

@@ -1,5 +1,5 @@
 {
-  "name": "uganda-budget-data-scrapping",
+  "name": "budget-data",
   "version": "0.0.1",
   "description": "pdf scrapping",
   "main": "dist/app.js",
@@ -12,7 +12,7 @@
     "start": "NODE_ENV=production node dist/app.js",
     "dev": "concurrently --kill-others \"npm run build-watch\" \"nodemon dist/app.js\""
   },
-  "repository": "epicallan/tv-engine",
+  "repository": "github.com/epicallan/budget-data",
   "keywords": [
     "data",
     "mining",
