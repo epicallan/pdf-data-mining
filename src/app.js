@@ -15,9 +15,10 @@ const csvLineTowrite = (line) => line.split('  ').filter(word => word.length > 1
 const writeLineToFile = (line, csvStream) => {
   const csvLine = csvLineTowrite(line);
   // check whether we have numbers after the first item in the array
-  const onlyValues = csvLine.slice(0, csvLine.length - 1);
-  const isValidLine = onlyValues.every(val => !isNaN(val));
-  if (csvLine.length === 7 && isValidLine) csvStream.write(csvLine);
+  const onlyValues = csvLine.slice(2, csvLine.length - 1);
+  const isNotValidLine = onlyValues.every(val => isNaN(val));
+  // console.log(`shallow copy : ${isNotValidLine}`, onlyValues);
+  if (csvLine.length === 7 && !isNotValidLine) csvStream.write(csvLine);
 };
 
 const csvStreamsAndSegments = (budgetSegments) =>
@@ -41,19 +42,22 @@ const csvStreamsAndSegments = (budgetSegments) =>
   });
 
 
-const readInFile = ({ segment, csvStream }) => {
+function readInFile({ segment, csvStream }) {
   let isTable = false;
+  let isTableTitle = false;
   const startMining = verEx().find(segment.startLine);
   const endMiningExpression = verEx().find(segment.endLine);
+  const isTableItem = verEx().find(segment.firstItem);
   readFileByLine.on('line', (line) => {
-    // if (isEnd) csvStream.end();
     const isEnd = endMiningExpression.test(line);
+    if (isEnd) console.log('finished writing table:', segment.startLine);
+    if (!isTableTitle) isTableTitle = startMining.test(line);
+    if (!isTable && isTableTitle) isTable = isTableItem.test(line); // start writing in new Table
     if (isTable && !isEnd) writeLineToFile(line, csvStream);
-    if (startMining.test(line)) isTable = true; // write in new Table
   });
-};
+}
 
-const closeCsvStreams = (csvStreams) => csvStreams.forEach(stream => stream.close);
+const closeCsvStreams = (csvStreams) => csvStreams.forEach(stream => stream.end());
 
 const main = (csvWriteStreamsAndSegments) => {
   const csvStreams = [];
