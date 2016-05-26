@@ -1,11 +1,20 @@
 export const budgetSegmentsToRead = [
   {
-    startLine: 'GoU Releases and Expenditure by Output*',
+    tableTitle: 'GoU Releases and Expenditure by Output*',
   },
   {
-    startLine: 'QUARTER 4: Highlights of Vote Performance',
+    tableTitle: 'QUARTER 4: Highlights of Vote Performance',
   },
   {
-    startLine: 'GoU Expenditure by Item',
+    tableTitle: 'GoU Expenditure by Item',
+  },
+  {
+    tableTitle: 'GoU Expenditure by Item',
+  },
+  {
+    tableTitle: 'GoU Releases and Expenditure by Project and Programme*'
+  },
+  {
+    tableTitle: 'External Financing Releases and Expenditure by Project and Programme*'
   }
 ];

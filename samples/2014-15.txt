@@ -130,4 +130,122 @@ Output Class: Outputs Provided                                       36.68      
 221011   Printing, Stationery, Photocopying and Binding               1.31        445
                                                                                    0.96            0.95            73.5%         72.3%        98.4%
 221012   Small Office Equipment                                       0.05         0.03            0.03            62.1%         61.5%        99.0%
+Vote: 014                         Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Billion Uganda Shillings                                       Approved      Releases    Expend-         % Budged       % Budget      %Releases
+                                                                 Budget                     iture         Released         Spent         Spent
+221016   IFMS Recurrent costs                                      0.05          0.05           0.05           100.0%        100.0%      100.0%
+221017   Subscriptions                                             0.00          0.00           0.00           100.0%        100.0%      100.0%
+221020   IPPS Recurrent Costs                                      0.03          0.01           0.01            41.0%         41.0%      100.0%
+222001   Telecommunications                                        0.13          0.13           0.13            96.9%         96.8%       99.9%
+222002   Postage and Courier                                       0.01          0.01           0.01            69.0%         69.0%      100.0%
+222003   Information and communications technology (ICT)           0.04          0.04           0.04            89.8%         89.8%      100.0%
+223001   Property Expenses                                         0.24          0.54           0.54           225.0%        225.0%      100.0%
+223005   Electricity                                               0.32          0.19           0.19            59.1%         59.1%      100.0%
+223006   Water                                                     0.14          0.09           0.09            65.1%         65.1%      100.0%
+223007   Other Utilities- (fuel, gas, firewood, charcoal)          0.28          0.15           0.15            55.1%         55.1%      100.0%
+224001   Medical and Agricultural supplies                         6.02          8.30           8.25           138.0%        137.1%       99.4%
+225001   Consultancy Services- Short term                          1.20          0.40           0.40            33.2%         33.2%      100.0%
+225002   Consultancy Services- Long-term                           0.16          0.04           0.04            25.0%         25.0%      100.0%
+225003   Taxes on (Professional) Services                          1.50          0.99           0.98            65.8%         65.1%       98.9%
+227001   Travel inland                                             4.97          3.25           3.25            65.3%         65.3%      100.0%
+227002   Travel abroad                                             0.83          0.79           0.78            95.1%         93.8%       98.6%
+227004   Fuel, Lubricants and Oils                                 1.60          1.37           1.37            85.3%         85.2%       99.8%
+228002   Maintenance - Vehicles                                    0.69          0.51           0.49            73.4%         70.3%       95.8%
+228003   Maintenance ­ Machinery, Equipment & Furniture            0.75          0.42           0.41            55.2%         54.6%       98.9%
+228004   Maintenance ­ Other                                       0.57          0.26           0.24            44.8%         43.0%       96.0%
+273101   Medical expenses (To general Public)                      1.85          0.52           0.60            27.9%         32.6%      116.8%
+282181   Extra-Ordinary Items (Losses/Gains)                       0.00          3.92           3.92              N/A           N/A      100.0%
+Output Class: Outputs Funded                                      10.29          9.48           9.42           92.1%         91.6%        99.4%
+262101   Contributions to International Organisations (Curre       0.20          0.18           0.13            90.0%         65.0%       72.2%
+263104   Transfers to other govt. Units (Current)                  3.12          2.45           2.45            78.6%         78.5%       99.8%
+263204   Transfers to other govt. Units (Capital)                  0.30          0.18           0.18            58.3%         58.3%      100.0%
+264101   Contributions to Autonomous Institutions                  6.43          6.43           6.43           100.0%        100.0%      100.0%
+264102   Contributions to Autonomous Institutions (Wage Su         0.24          0.24           0.24           100.0%        100.0%      100.0%
+Output Class: Capital Purchases                                    6.40          4.02           3.78           62.8%         59.0%        94.0%
+231001 Non Residential buildings (Depreciation)                    1.58          0.98           0.81            62.0%         51.1%       82.4%
+231004   Transport equipment                                       0.46          0.59           0.59           128.0%        127.3%       99.4%
+231005   Machinery and equipment                                   0.12          0.12           0.08           100.0%         64.0%       64.0%
+312105   Taxes on Buildings & Structures                           3.30          1.54           1.54            46.7%         46.7%      100.0%
+312204   Taxes on Machinery, Furniture & Vehicles                  0.94          0.79           0.76            84.0%         81.5%       97.0%
+Output Class: Arrears                                              0.37          0.37           0.37           100.0%        100.0%      100.0%
+321612 Water arrears(Budgeting)                                    0.07          0.07           0.07           100.0%        100.0%      100.0%
+321614 Electricity arrears (Budgeting)                             0.30          0.30           0.30           100.0%        100.0%      100.0%
+Grand Total:                                                      53.75         50.18       49.57              93.4%         92.2%        98.8%
+Total Excluding Taxes and Arrears:                                49.13         47.48       46.90              96.6%         95.4%        98.8%
+
+Table V3.3: GoU Releases and Expenditure by Project and Programme*
+Billion Uganda Shillings                                                  Approved Released            Spent       % GoU       % GoU      % GoU
+                                                                            Budget                                 Budget      Budget    Releases
+                                                                                                                  Released       Spent      Spent
+VF:0801 Sector Monitoring and Quality Assurance                                0.81      0.59           0.59        73.1%       73.0%      99.9%
+Recurrent Programmes
+03    Quality Assurance                                                        0.81      0.59           0.59        73.1%       73.0%      99.9%
+VF:0802 Health systems development                                             4.46      3.41           3.15        76.4%       70.7%      92.5%
+Development Projects
+0216 District Infrastructure Support Programme                                 1.40      0.66           0.63        47.3%       45.4%      95.9%
+1027 Insitutional Support to MoH                                               1.01      0.71           0.63        70.4%       62.4%      88.6%
+1123 Health Systems Strengthening                                              0.40      0.38           0.38        95.6%       95.6%     100.0%
+1187 Support to Mulago Hospital Rehabilitation                                 0.85      0.85           0.84       100.0%       99.1%      99.1%
+1315 Construction of Specialised Neonatal and Maternal Unit in                 0.80      0.80           0.66       100.0%       82.6%      82.6%
+      Mulago Hospital
+VF:0803 Health Research                                                        2.41      2.12           2.08        87.9%       86.3%      98.2%
+Recurrent Programmes
+04    Research Institutions                                                    2.17      1.88           1.84        86.5%       84.8%      98.0%
+05    JCRC                                                                     0.24      0.24           0.24       100.0%      100.0%     100.0%
+                                                                               446
+VF:0804 Clinical and public health                                            21.21     23.34          23.31       110.0%      109.9%      99.9%
+Vote: 014                        Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Billion Uganda Shillings                                                  Approved Released    Spent     % GoU     % GoU      % GoU
+                                                                            Budget                       Budget    Budget    Releases
+                                                                                                        Released     Spent      Spent
+Recurrent Programmes
+06     Community Health                                                        3.11     2.14     2.09     68.7%     67.3%      97.9%
+07     Clinical Services                                                       8.89     8.32     8.31     93.6%     93.6%      99.9%
+08     National Disease Control                                                8.73    12.51    12.54    143.3%    143.6%     100.2%
+11     Nursing Services                                                        0.18     0.18     0.18     97.3%     96.8%      99.6%
+Development Projects
+1148 Public Health Laboratory strengthening project                            0.25     0.15     0.15     60.0%     60.0%     100.0%
+1218 Uganda Sanitation Fund Project                                            0.05     0.04     0.04     75.0%     75.0%     100.0%
+VF:0805 Pharmaceutical and other Supplies                                      8.21     7.28     7.24     88.6%     88.2%      99.6%
+Development Projects
+0220 Global Fund for AIDS, TB and Malaria                                      5.01     3.75     3.71     74.7%     74.1%      99.2%
+1141 Gavi Vaccines and HSSP                                                    3.20     3.53     3.53    110.3%    110.3%     100.0%
+VF:0849 Policy, Planning and Support Services                                 12.03    10.76    10.52     89.4%     87.5%      97.8%
+Recurrent Programmes
+01     Headquarters                                                            7.24    7.14      7.02     98.6%     96.9%      98.3%
+02     Planning                                                                4.38    3.25      3.14     74.2%     71.8%      96.8%
+10     Internal Audit Department                                               0.42    0.37      0.36     89.1%     87.4%      98.1%
+ Total For Vote                                                               49.13    47.48    46.90     96.6%     95.4%      98.8%
+* Excluding Taxes and Arrears
+Table V3.4: External Financing Releases and Expenditure by Project and Programme*
+Billion Uganda Shillings                                                  Approved Released    Spent     % GoU     % GoU      % GoU
+                                                                            Budget                       Budget    Budget    Releases
+                                                                                                        Released     Spent      Spent
+VF:0802 Health systems development                                           206.05    98.26    98.26     47.7%     47.7%     100.0%
+Development Projects
+1123 Health Systems Strengthening                                             80.61    58.16    58.16     72.1%     72.1%     100.0%
+1187 Support to Mulago Hospital Rehabilitation                                55.83    38.73    38.73     69.4%     69.4%     100.0%
+1243 Rehabilitation and Construction of General Hospitals                     12.59     0.00     0.00      0.0%      0.0%        N/A
+1314 Rehabilitation and Equiping of Health Facilities in Western Region       43.58     0.00     0.00      0.0%      0.0%        N/A
+1315 Construction of Specialised Neonatal and Maternal Unit in                13.44     1.37     1.37     10.2%     10.2%     100.0%
+       Mulago Hospital
+VF:0804 Clinical and public health                                             8.24     1.50     1.69     18.3%     20.5%     112.6%
+Development Projects
+1148 Public Health Laboratory strengthening project                            5.11     1.34     1.34     26.2%     26.2%     100.0%
+1218 Uganda Sanitation Fund Project                                            3.13     0.16     0.35      5.2%     11.3%     215.6%
+VF:0805 Pharmaceutical and other Supplies                                    304.09   398.16   220.49    130.9%     72.5%      55.4%
+Development Projects
+0220 Global Fund for AIDS, TB and Malaria                                    255.80   315.09   212.57    123.2%     83.1%      67.5%
+1141 Gavi Vaccines and HSSP                                                   48.29    83.07     7.92    172.0%     16.4%       9.5%
+VF:0849 Policy, Planning and Support Services                                  9.62     5.24     5.24     54.5%     54.5%     100.0%
+Development Projects
+1145 Institutional Capacity Building                                           9.62     5.24     5.24     54.5%     54.5%     100.0%
+ Total For Vote                                                              528.00   503.16   325.68     95.3%     61.7%      64.7%
+
+
+
+
+                                                                               447
 
