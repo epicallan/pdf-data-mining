@@ -29,6 +29,7 @@ const csvStreamsAndSegments = (budgetSegments) =>
     const csvStream = csv.createWriteStream({ headers: true });
     // adding a transformation function that is responsible for the row title
     csvStream.transform(row => ({
+      segment: row[7],
       sector: row[0],
       'Approved Budget': row[1],
       released: row[2],
