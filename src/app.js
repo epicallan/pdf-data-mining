@@ -3,11 +3,12 @@ import readline from 'readline';
 import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
 import { budgetSegmentsToRead } from './config';
+
 const spawn = require('child_process').spawn;
 
 const pdfRootPath = '/Users/allanlukwago/apps/budget-data/samples';
 
-const pdftotext = spawn('pdftotext',
+const pdftoTextProcess = spawn('pdftotext',
 ['-layout', '-f', '444', '-l', '447', '2014-15.pdf'], {
   cwd: pdfRootPath,
   env: process.env
@@ -81,16 +82,17 @@ function main(segments) {
   readInFile(segments, readFileByLine);
   readFileByLine.on('close', () => {
     csvStream.end();
-    console.log('finished reading files closing');
+    console.log('*finished reading files closing*');
+    process.exit();
   });
 }
 
-pdftotext.stderr.on('data', (data) => {
+pdftoTextProcess.stderr.on('data', (data) => {
   console.log(`stderr : ${data}`);
   process.exit();
 });
 
-pdftotext.on('close', (code) => {
+pdftoTextProcess.on('close', (code) => {
   console.log(`child process exited with code  ${code}`);
   setTimeout(main(budgetSegmentsToRead), 3000);
 });
