@@ -4,21 +4,21 @@ import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
 import { budgetSegmentsToRead } from './config';
 
-// const spawn = require('child_process').spawn;
+const spawn = require('child_process').spawn;
 
 const pdfRootPath = '/Users/allanlukwago/apps/budget-data/samples';
-//
-// const pdftoTextProcess = spawn('pdftotext',
-// ['-layout', '-f', '444', '-l', '447', '2014-15.pdf'], {
-//   cwd: pdfRootPath,
-//   env: process.env
-// });
+
+const pdftoTextProcess = spawn('pdftotext',
+['-layout', '-f', '444', '-l', '447', '2014-15.pdf'], {
+  cwd: pdfRootPath,
+  env: process.env
+});
 
 // returns a file stream, which the csv stream pipes into
 const writableStream = (() => {
   const date = new Date();
   const csvFileName = date.getTime();
-  const stream = fs.createWriteStream(`${pdfRootPath}/healthN-${csvFileName}.csv`);
+  const stream = fs.createWriteStream(`${pdfRootPath}/healthB-${csvFileName}.csv`);
   return stream;
 })();
 
@@ -50,9 +50,6 @@ const writeLineToFile = (line, title) => {
   if (csvLine.length > 6 && !isNotValidLine) {
     if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
     csvLine.push(title);
-    if (title.includes('External Financing Releases and Expenditure')) {
-      console.log(`${line} -`, csvLine.length);
-    }
     csvStream.write(csvLine);
   }
 };
@@ -89,14 +86,12 @@ function main(segments) {
   });
 }
 
-// pdftoTextProcess.stderr.on('data', (data) => {
-//   console.log(`stderr : ${data}`);
-//   process.exit();
-// });
-//
-// pdftoTextProcess.on('close', (code) => {
-//   console.log(`child process exited with code  ${code}`);
-//   setTimeout(main(budgetSegmentsToRead), 3000);
-// });
+pdftoTextProcess.stderr.on('data', (data) => {
+  console.log(`stderr : ${data}`);
+  process.exit();
+});
 
-main(budgetSegmentsToRead);
+pdftoTextProcess.on('close', (code) => {
+  console.log(`child process exited with code  ${code}`);
+  setTimeout(main(budgetSegmentsToRead), 3000);
+});
