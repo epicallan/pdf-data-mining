@@ -10,66 +10,65 @@ const readFileByLine = readline.createInterface({
   input: fs.createReadStream(`${rootPath}/2014-15.txt`)
 });
 
+const date = new Date();
+const csvFileName = date.getTime();
+const writableStream = fs.createWriteStream(`${rootPath}/${csvFileName}.csv`);
+// configuring csv writableStream
+const csvStream = csv.createWriteStream({ headers: true });
+// adding a transformation function that is responsible for the row title
+csvStream.transform(row => ({
+  'Section Name': row[7],
+  Sector: row[0],
+  'Approved Budget': row[1],
+  released: row[2],
+  spent: row[3],
+  '% Budget realsed': row[4],
+  '% budget spent': row[5],
+  '% releases spent': row[6]
+}))
+.pipe(writableStream);
+
 const csvLineTowrite = (line) => line.split('  ').filter(word => word.length > 1);
 
-const writeLineToFile = (line, csvStream) => {
+const writeLineToFile = (line, title) => {
   const csvLine = csvLineTowrite(line);
   // check whether we have numbers after the first item in the array
   const onlyValues = csvLine.slice(2, csvLine.length - 1);
   const isNotValidLine = onlyValues.every(val => isNaN(val));
-  // console.log(`shallow copy : ${isNotValidLine}`, onlyValues);
-  if (csvLine.length === 7 && !isNotValidLine) csvStream.write(csvLine);
+  // if (title === 'Table V3.2: 2014/15 GoU Expenditure by Item') console.log(csvLine.length);
+  if (csvLine.length > 6 && !isNotValidLine) {
+    if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
+    csvLine.push(title);
+    csvStream.write(csvLine);
+  }
 };
 
-const csvStreamsAndSegments = (budgetSegments) =>
-  budgetSegments.map(segment => {
-    const tableName = segment.startLine;
-    const writableStream = fs.createWriteStream(`${rootPath}/${tableName}.csv`);
-    // configuring csv writableStream
-    const csvStream = csv.createWriteStream({ headers: true });
-    // adding a transformation function that is responsible for the row title
-    csvStream.transform(row => ({
-      segment: row[7],
-      sector: row[0],
-      'Approved Budget': row[1],
-      released: row[2],
-      spent: row[3],
-      '% Budget realsed': row[4],
-      '% budget spent': row[5],
-      '% releases spent': row[6]
-    }))
-    .pipe(writableStream);
-    return { segment, csvStream };
-  });
 
+const isNewTableExpressions =
+  (segments) => segments.map(segment => verEx().find(segment.startLine));
 
-function readInFile({ segment, csvStream }) {
-  let isTable = false;
+function readInFile(segments) {
+  let startMining = false;
   let isTableTitle = false;
-  const startMining = verEx().find(segment.startLine);
-  const endMiningExpression = verEx().find(segment.endLine);
-  const isTableItem = verEx().find(segment.firstItem);
+  let title = null;
+  const isTableExpressions = isNewTableExpressions(segments);
   readFileByLine.on('line', (line) => {
-    const isEnd = endMiningExpression.test(line);
-    if (isEnd) console.log('finished writing table:', segment.startLine);
-    if (!isTableTitle) isTableTitle = startMining.test(line);
-    if (!isTable && isTableTitle) isTable = isTableItem.test(line); // start writing in new Table
-    if (isTable && !isEnd) writeLineToFile(line, csvStream);
+    isTableTitle = isTableExpressions.some(expression => expression.test(line));
+    if (isTableTitle) {
+      title = line;
+      startMining = true;
+      console.log('currentTable-> ', title);
+    }
+    if (startMining) writeLineToFile(line, title);
   });
 }
 
-const closeCsvStreams = (csvStreams) => csvStreams.forEach(stream => stream.end());
-
-const main = (csvWriteStreamsAndSegments) => {
-  const csvStreams = [];
-  csvWriteStreamsAndSegments.forEach(obj => {
-    csvStreams.push(obj.csvStream);
-    readInFile(obj);
-  });
+const main = (segments) => {
+  readInFile(segments);
   readFileByLine.on('close', () => {
-    closeCsvStreams(csvStreams);
+    csvStream.end();
     console.log('finished reading files closing');
   });
 };
 
-main(csvStreamsAndSegments(budgetSegmentsToRead));
+main(budgetSegmentsToRead);
