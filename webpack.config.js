@@ -1,9 +1,12 @@
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js',
+    util: './src/util/index.js'
+  },
   target: 'node',
   output: {
     path: './dist',
-    filename: 'app.js'
+    filename: '[name].js'
   },
   progress: true,
   module: {

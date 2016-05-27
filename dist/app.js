@@ -165,14 +165,14 @@
 	}
 
 	function main(segments) {
+	  var minedTextFile = _cli2.default.args[0].split('.');
 	  var readFileByLine = _readline2.default.createInterface({
-	    input: _fs2.default.createReadStream('2014-15.txt')
+	    input: _fs2.default.createReadStream(minedTextFile + '.txt')
 	  });
 	  readInFile(segments, readFileByLine);
 	  readFileByLine.on('close', function () {
 	    csvStream.end();
 	    console.log('*finished reading files closing*');
-	    process.exit();
 	  });
 	}
 

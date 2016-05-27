@@ -88,14 +88,14 @@ function readInFile(segments, readFileByLine) {
 }
 
 function main(segments) {
+  const minedTextFile = program.args[0].split('.');
   const readFileByLine = readline.createInterface({
-    input: fs.createReadStream('2014-15.txt')
+    input: fs.createReadStream(`${minedTextFile}.txt`)
   });
   readInFile(segments, readFileByLine);
   readFileByLine.on('close', () => {
     csvStream.end();
     console.log('*finished reading files closing*');
-    process.exit();
   });
 }
 

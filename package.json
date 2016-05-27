@@ -4,9 +4,11 @@
   "description": "pdf scrapping",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && webpack --progress --colors ",
+    "build": "rimraf dist && webpack --progress --colors --optimize-minimize",
     "dev": "webpack --watch",
-    "lint": "eslint src --cache"
+    "lint": "eslint src --cache",
+    "util-watch": "nodemon dist/util",
+    "util": "node dist/util"
     },
   "repository": "github.com/epicallan/budget-data",
   "keywords": [
