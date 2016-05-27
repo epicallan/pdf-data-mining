@@ -2,16 +2,12 @@
   "name": "budget-data",
   "version": "0.0.1",
   "description": "pdf scrapping",
-  "main": "dist/app.js",
+  "main": "index.js",
   "scripts": {
     "build": "rimraf dist && webpack --progress --colors ",
-    "build-watch": "webpack --watch",
-    "lint": "eslint src --cache --cache-location /home/allan/.eslintcache/",
-    "test": " NODE_ENV=test ./node_modules/mocha/bin/mocha $(find src -name '*-test.js')  --compilers js:babel-core/register",
-    "test-watch": "NODE_ENV=test ./node_modules/mocha/bin/mocha $(find src -name '*-test.js') --compilers js:babel-core/register --watch",
-    "start": "NODE_ENV=production node dist/app.js",
-    "dev": "concurrently --kill-others \"npm run build-watch\" \"nodemon dist/app.js\""
-  },
+    "dev": "webpack --watch",
+    "lint": "eslint src --cache"
+    },
   "repository": "github.com/epicallan/budget-data",
   "keywords": [
     "data",
@@ -48,6 +44,9 @@
     "node": ">=5.6.0"
   },
   "license": "MIT",
+  "bin": {
+   "budget": "index.js"
+  },
   "dependencies": {
     "fast-csv": "^2.0.0",
     "verbal-expressions": "^0.2.1"

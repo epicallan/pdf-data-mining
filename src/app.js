@@ -3,22 +3,19 @@ import readline from 'readline';
 import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
 import { budgetSegmentsToRead } from './config';
+import program from './cli';
 
 const spawn = require('child_process').spawn;
 
-const pdfRootPath = '/Users/allanlukwago/apps/budget-data/samples';
-
 const pdftoTextProcess = spawn('pdftotext',
-['-layout', '-f', '444', '-l', '447', '2014-15.pdf'], {
-  cwd: pdfRootPath,
-  env: process.env
-});
+['-layout', '-f', program.first, '-l', program.last, program.args[0]]);
 
 // returns a file stream, which the csv stream pipes into
 const writableStream = (() => {
   const date = new Date();
-  const csvFileName = date.getTime();
-  const stream = fs.createWriteStream(`${pdfRootPath}/healthB-${csvFileName}.csv`);
+  const time = date.getTime();
+  const csvFileName = `${program.name}-${time}` || time;
+  const stream = fs.createWriteStream(`${csvFileName}.csv`);
   return stream;
 })();
 
@@ -76,7 +73,7 @@ function readInFile(segments, readFileByLine) {
 
 function main(segments) {
   const readFileByLine = readline.createInterface({
-    input: fs.createReadStream(`${pdfRootPath}/2014-15.txt`)
+    input: fs.createReadStream('2014-15.txt')
   });
   readInFile(segments, readFileByLine);
   readFileByLine.on('close', () => {

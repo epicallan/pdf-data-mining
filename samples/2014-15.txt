@@ -1,251 +1,411 @@
-Vote: 014                       Ministry of Health
+Vote: 114                       Uganda Cancer Institute
 QUARTER 4: Highlights of Vote Performance
-Planned Actions:                               Actual Actions:                               Reasons for Variation
-The sector shall, continue Implementing        Continued Implementing the motivation NA
-the motivation and retention strategy for      and retention strategy for health
-health workers, the hard to reach              workers, the hard to reach incentive
-incentive scheme to all districts involved     scheme to all districts involved and build
-and build capacity for management              capacity for management functions for
-functions for health facilities                health facilities
-Vote: 014 Ministry of Health
-Vote Function: 08 03 Health Research
-Implement research health policy and the    The implementation of the health                 No Variance
-strategic plan                              reserch policy is on going by the
-                                            research institutions
-                                            including;UNHRO,UVRI and NCRI
-Vote Function: 08 04 Clinical and public health
-Implement the M&E strategy.                Development partners have been                    No variance
-                                           brought on board to support the
-                                           ministry officials in the support
-                                           supervision activities.
-Operationalise the VHT strategy in 36      The VHT strategy has been                         NA
-poorly performing districts                implemented in 36 poorly performing
-                                           districts. The MOH is looking at
-                                           revising the CHEWs to provide a
-                                           solution to the challenges faced by . The
-                                           VHTs.
-Vote Function: 08 49 Policy, Planning and Support Services
-National Health Information Strategy           National Health Information Strategy          consultancy is needed to complete the bill.
-(NHIS) implemented                             (NHIS) still under draft
-Vote: 014 Ministry of Health
-Vote Function: 08 05 Pharmaceutical and other Supplies
-Further continue implementing the              Procurement planning and distribution    The mandate of planning and distribution
-Government Policy on procurement of            of medicines and health supplies has    of medicines and supplies is for NMS
-medicines and medical supplies                 continued to be the mandate of National
-                                               Medical Stores (NMS).
+V1: Summary of Issues in Budget Execution
+This section provides an overview of Vote expenditure
+(i) Snapshot of Vote Releases and Expenditures
+Table V1.1 below summarises cumulative releases and expenditures by the end of the quarter:
+Table V1.1: Overview of Vote Expenditures (UShs Billion)
+
+
+                                    Approved Cashlimits        Released     Spent by % Budget % Budget % Releases
+  (i) Excluding Arrears, Taxes        Budget    by End          by End       End Jun Released    Spent      Spent
+                    Wage                     2.199     1.713      1.787        1.723        81.2%           78.4%          96.5%
+   Recurrent
+                    Non Wage                 1.098     1.154      1.154        1.146       105.1%         104.4%           99.3%
+                    GoU                      7.100     7.904      8.708        8.262       122.6%         116.4%           94.9%
+   Development
+                    Donor*                   0.000      N/A       0.000        0.000            N/A           N/A             N/A
+                      GoU Total             10.397   10.771      11.649       11.131      112.0%         107.1%            95.6%
+ Total GoU+Donor (MTEF)                     10.397      N/A      11.649       11.131      112.0%         107.1%            95.6%
+
+                    Arrears                  0.000       N/A      0.000        0.000             N/A          N/A             N/A
+  (ii) Arrears
+  and Taxes         Taxes**                  1.608       N/A      0.000        0.000            0.0%         0.0%             N/A
+                   Total Budget             12.005   10.771      11.649       11.131        97.0%           92.7%          95.6%
+
+ (iii) Non Tax Revenue                       0.900       N/A      0.633        0.633        70.3%           70.3%         100.0%
+
+                    Grand Total             12.905   10.771      12.282       11.763        95.2%           91.2%          95.8%
+      Excluding Taxes, Arrears              11.297   10.771      12.282       11.763       108.7%         104.1%           95.8%
+
+* Donor expenditure information available                                      ** Non VAT taxes on capital expenditure
+
+The table below shows cumulative releases and expenditures to the Vote by Vote Function :
+Table V1.2: Releases and Expenditure by Vote Function*
+Billion Uganda Shillings                                        Approved Released      Spent      % Budget % Budget           %
+                                                                  Budget                          Released    Spent      Releases
+                                                                                                                            Spent
+VF:0857 Cancer Services                                             11.30     12.28     11.76      108.7%     104.1%       95.8%
+ Total For Vote                                                     11.30     12.28     11.76      108.7%     104.1%       95.8%
+* Excluding Taxes and Arrears
+
+(ii) Matters to note in budget execution
+The process of developing the structural designs involved wide consulations including International Atomic
+Energy Agency, National Energy Committee, Mulago Hospital, Ministry of Energy, and other other stakeholders
+which resulted into delays in getting the final designs approved to pave way for the construction. However, the
+final designs almost ready as are pending final discussions by the stakeholders. The observed expenditure above
+budgeted in capital budget was mainly due to transfer of funds from taxes to capital to buy vehicles and
+motorcycles to improve transport at the Institute and in field during awareness on cancer. This was not originally
+catered for in the budget for the Financial year.
+Table V1.3: High Unspent Balances and Over-Expenditure in the Domestic Budget (Ushs Bn)
+(i) Major unpsent balances
+
+(ii) Expenditures in excess of the original approved budget
+
+* Excluding Taxes and Arrears
+
+
+
+                                                                   459
+Vote: 114                    Uganda Cancer Institute
+QUARTER 4: Highlights of Vote Performance
+V2: Performance Highlights
+This section provides highlights of output performance, focusing on key outputs and actions impelemented to
+improve section performance.
+Table V2.1: Key Vote Output Indicators and Expenditures*
+Vote, Vote Function          Approved Budget and               Cumulative Expenditure               Status and Reasons for any
+Key Output                   Planned outputs                   and Performance                      Variation from Plans
+Vote Function: 0857 Cancer Services
+Output: 085701            Cancer Research
+Description of Performance: Operationalization and Support     Draft UCI research policy was        There is a problem of
+                            of the Established Institutional   developed and workshop to            insufficient funds and delayed
+                            Research Committees                introduce UCI senior                 provision of funds to enhance
+                            (IRB,SRB,CAB and CBF               management to the ethics             implementation of the
+                            Alignment and Defining the         principles to help them inform       workplans. There is still a
+                            Directorates mandate.              policy was held                      persistent problem of staff
+                                                               The physical location of the         shortage at the Institute which
+                             Development of Institutional      research and training directorate    continues to humper service
+                             training/Capacity building and    office was identified and has        delivery.
+                             Research agenda                   been staffed with; the Head,
+                                                               Administrator, research
+                             International and Regional        coordinator and Research Ethics
+                             trainings and orientations        Committee administrator
+                             Coordinated.                        Continued to support the
+                                                               research in progress meetings
+                             Establishment of Cancer data      every Wednesday
+                             and surveillance centers.         The IRB was set up currently
+                                                               awaiting final appointment letter
+                             Establishment of community        by UNCST
+                             based Cancer registries           The process of setting up the
+                             In house - cancer research        Scientific Review Board was
+                             capacity is built and Studies     started with consultations from
+                             conducted                         Key stakeholders like key
+                                                               mentors from Fred Hutch
+                                                               The Directorate has continued to
+                                                               smoothly coordinate all research
+                                                               activities at the UCI
+                                                               Two workshops to train UCI
+                                                               staff in research ethics were held
+                                                               Continued to support two UCI
+                                                               initiated researches; ACTG on
+                                                               Kaposi's sarcoma initiated in
+                                                               2014 and BL immunology study
+                                                               initiated in 2013
+                                                               A training plan with guidance
+                                                               from the PHRO's department to
+                                                               help guide training support was
+                                                               developed
+                                                               UCI policy for International
+                                                               trainees was developed and has
+                                                               already been uploaded onto the
+                                                               UCI website
+                                                               Loan disbursement conditions
+                                                               for the EAOI were fulfilled,
+                                                               special accounts were opened in
+                                                               Bank of Uganda, Project
+                                                               Monitoring Unit was
+                                                               established, Project Steering
+                                                               Committee was established,
+                                                               work plans and procurement
+                                                               plans for the project were
+
+
+                                                                      460
+Vote: 114                      Uganda Cancer Institute
+QUARTER 4: Highlights of Vote Performance
+Vote, Vote Function            Approved Budget and              Cumulative Expenditure               Status and Reasons for any
+Key Output                     Planned outputs                  and Performance                      Variation from Plans
+                                                                developed and advance
+                                                                procurement for the
+                                                                multipurpose EAOI building
+                                                                was started. All this is now
+                                                                pending parliamentary approval
+                                                                to set the project going.
+                                                                On a bid to establish a
+                                                                comprehensive community
+                                                                cancer control program in
+                                                                Mayuge, a program concept
+                                                                with a work plan was developed,
+                                                                introduction to the community
+                                                                was done and an initial
+                                                                awareness and screening
+                                                                exercise took place.
+                                                                Medical records team was
+                                                                trained on how to use the
+                                                                purchased electronic medical
+                                                                records software (clinical master)
+                                                                Thirty (30) staff members were
+                                                                trained in Conduct research
+                                                                Ethics and Regulations
+                                                                Physical structure for
+                                                                establishment of a cancer
+                                                                registry was finalized and plans
+                                                                to start the clinic are ongoing.
+                                                                Institute has access to an e-
+                                                                library in which various e-
+                                                                journals are accessible and has
+                                                                access to e-libraries like
+                                                                HINARI and UPTODATE
+                                                                The Information Management
+                                                                system (Clinical Master) was
+                                                                procured
+                Output Cost:      UShs Bn:                0.483      UShs Bn:                 0.474 % Budget Spent:            98.0%
+Output: 085702            Cancer Care Services
+Description of Performance: Patient Registration, diagnosis 17,029 Chemotherapy                    Limited finances and human
+                             and treatment                      reconstitutions were provided      resources to facilitate the
+                             Patient Counseling and reviews Conducted 1,260 intrathecal            activities have continued to
+                             Provision of Social Support and chemotherapies                        hinder service delivery and thus
+                             physiotherapy                      528 major ward rounds              achievement of targeted outputs.
+                             Provision of palliative care       conducted                          There is an evr increasing
+                             Patients fed                       1,440 routine ward rounds          number of cancer patients which
+                             Support drugs and oral             undertaken                         has overwhelmingly suppased
+                             chemotherapy dispensed to all 602 bone marrow aspirates and the available human resources
+                             patients                           biopsies safely performed.         thus impacting service delivery.
+                                                                80,439 days of meals were          The has continued to be many
+                                                                served to the patients             stockouts of drugs and key
+                                                                 44,352 inpatient days of          specialized sundries like bone
+                                                                clinical, palliative and nursing marrow needles and thus
+                                                                care were provided                 patients asked to buy from
+                                                                19,385 person days of outpatient outside.
+                                                                care provided
+                                                                3,476 Ultra sound scans were
+                                                                performed
+                                                                5,051 x-ray examinations were
+                                                                performed
+                                                                Offered Psychosocial Support to
+                                                                750 patients
+
+
+                                                                        461
+Vote: 114                      Uganda Cancer Institute
+QUARTER 4: Highlights of Vote Performance
+Vote, Vote Function            Approved Budget and                Cumulative Expenditure               Status and Reasons for any
+Key Output                     Planned outputs                    and Performance                      Variation from Plans
+                                                                  61,262 Laboratory
+                                                                  investigations (CBCs, Renal
+                                                                  function tests, Liver function
+                                                                  tests, Urinalysis, Stool analysis,
+                                                                  CSF analysis, Blood grouping,
+                                                                  Cross matching, Specialized
+                                                                  Tumour marker tests, SPEP)
+                                                                  were conducted
+                                                                  1,443 patient days of
+                                                                  Physiotherapy sessions
+                                                                  conducted
+                                                                  35 Pathology reviews conducted
+                                                                  Performed 44 major surgical
+                                                                  operations and 120 minor
+                                                                  surgical operations
+                                                                  24 In-service continuing
+                                                                  professional training provided to
+                                                                  clinical team to ensure high
+                                                                  quality care provision
+                                                                  3,990 new patient admissions
+                                                                  conducted
+Performance Indicators:
+No.of out-patients                                  32,000                                19385
+No.of investigations                                42,000                                61265
+undertaken
+No. of in-patients treated                          35,000                                44352
+                   Output Cost:      UShs Bn:               2.005      UShs Bn:                1.682 % Budget Spent:             83.9%
+Output: 085703               Cancer Outreach Service
+ Description of Performance: Static Cancer screening clinics Carried out 225,000 Education ·          Overwhelming patients with
+                                Patient follow ups                programs and awareness             limited staff who get outstretched
+                                Survivors' programs established campaigns which included radio ·      Limited space at UCI and
+                                Cancer awareness campaigns        and TV programs                    delayed provision of funds to
+                                established                        Screened 8540 clients for         facilitate the activities
+                                Information Education and         cancers and conducted 354
+                                Communication                     biopsy, FNAC and papsmears
+                                Materials produced                145303 people educated and
+                                TV and Radio Talk shows           sensitized during the Friday
+                                conducted                         Static cancer clinics, outreaches
+                                Community programs conducted and referrals of whom 7181
+                                Conduct Mobile cancer care and were screened for cancer; with
+                                continuity clinics                2980 screened for breast cancer,
+                                                                  1975 for cervical cancer, 573
+                                                                  prostate cancer,336 for other
+                                                                  cancers including hepatitis B
+                                                                  and other chronic illnesses while
+                                                                  337 were referred for further care
+                                                                  16 Visiting Nursing officers, 35
+                                                                  Students involved in screening
+                                                                  were enrolled for training in
+                                                                  cancer screening
+                                                                  36 static weekly-Friday cancer
+                                                                  screening clinics conducted at
+                                                                  UCI, 18 outreaches conducted
+                                                                  during which 5 schools were
+                                                                  reached
+                                                                  15000 IEC materials, 800 cancer
+                                                                  magazines and 25600 brochures
+                                                                  about cancer awareness were
+
+
+                                                                         462
+Vote: 114                       Uganda Cancer Institute
+QUARTER 4: Highlights of Vote Performance
+Vote, Vote Function             Approved Budget and          Cumulative Expenditure            Status and Reasons for any
+Key Output                      Planned outputs              and Performance                   Variation from Plans
+                                                             distributed.
+                                                             3 cancer radio talk shows and 1
+                                                             TV talk show were held to
+                                                             sensitize the public on cancer
+                                                             endemic
+                                                             Conducted 8 mobile cancer care
+                                                             and continuity clinics
+                                                             2 In-service cancer education
+                                                             and screening trainings were
+                                                             conducted
+                                                             Conducted 4 Regional
+                                                             community cancer awareness
+                                                             and screening outreaches in
+                                                             which 9000 clients were
+                                                             educated among whom 1638
+                                                             were screened for various
+                                                             cancers
+                                                             Conducted 7 short distance
+                                                             cancer awareness Campaigns in
+                                                             which 4500 people were
+                                                             educated on cancer with 914
+                                                             being screened for various
+                                                             cancers
+Performance Indicators:
+No. of outreach visits                           22                               29
+                  Output Cost:    UShs Bn:             0.516    UShs Bn:                 0.403 % Budget Spent:            78.0%
+Vote Function Cost             UShs Bn:               11.297 UShs Bn:                   11.763 % Budget Spent:           104.1%
+Cost of Vote Services:         UShs Bn:               11.297 UShs Bn:                   11.763 % Budget Spent:           104.1%
+* Excluding Taxes and Arrears
+
+Delays in delivery of sundries continue to affect service delivery at the Institute which at times forces the
+Institute to attend to only those who can fit within the available supplies. Constant stockouts in drugs and other
+key sundries affects service delivery at the Institute since are at times sent out to obtain the services from private
+practitioners especially laboratory and Imaging. The human resources gap is another challenge affecting service
+delivery despite the fact that there has been a step up in the number of staffs in the critical cadres (More are
+needed).
+Table V2.2: Implementing Actions to Improve Vote Performance
+Planned Actions:                           Actual Actions:                             Reasons for Variation
+Vote: 114 Uganda Cancer Institute
+Vote Function: 08 57 Cancer Services
+Continued dialogue with the development    The Uganda Cancer Institute Strategic N/A
+of the National Cancer policy.             plan was completed. The cancer policy is
+Development of a Strategic Investment      still being discussed by various
+plan.                                      stakeholders
 
 V3: Details of Releases and Expenditure
 This section provides a comprehensive summary of the outputs delivered by the Vote and further details of Vote
 expenditures by Vote Function and Expenditure Item.
 
 Table V3.1: GoU Releases and Expenditure by Output*
-Billion Uganda Shillings                                                Approved Released         Spent     % GoU     % GoU       % GoU
-                                                                          Budget                            Budget    Budget     Releases
-                                                                                                           Released     Spent       Spent
-VF:0801 Sector Monitoring and Quality Assurance                              0.81     0.59         0.59      73.1%      73.0%      99.9%
-Class: Outputs Provided                                                      0.81     0.59         0.59      73.1%      73.0%      99.9%
-080101 Sector performance monitored and evaluated                            0.23     0.17         0.17      74.1%      73.8%      99.6%
-080102 Standards and guidelines disseminated                                 0.07     0.04         0.04      52.1%      52.1%     100.0%
-080103 Support supervision provided to Local Governments and referral        0.39     0.33         0.33      82.9%      82.9%     100.0%
-        hospitals
-080104 Standards and guidelines developed                                    0.11     0.06         0.06      50.3%      50.3%     100.0%
-VF:0802 Health systems development                                           4.46     3.41         3.15      76.4%      70.7%      92.5%
-Class: Outputs Provided                                                      2.30     1.94         1.91      84.6%      83.0%      98.1%
-080201 Monitoring, Supervision and Evaluation of Health Systems              2.30     1.94         1.91      84.6%      83.0%      98.1%
-Class: Capital Purchases                                                     2.16     1.46         1.24      67.6%      57.5%      85.0%
-080272 Government Buildings and Administrative Infrastructure                0.58     0.38         0.34      65.5%      59.0%      90.0%
-080275 Purchase of Motor Vehicles and Other Transport Equipment              0.46     0.36         0.36      78.4%      77.7%      99.1%
-080276 Purchase of Office and ICT Equipment, including Software              0.12     0.12         0.08     100.0%      64.0%      64.0%
-080280 Hospital Construction/rehabilitation                                  1.00     0.60         0.47      60.0%      46.6%      77.6%
-VF:0803 Health Research                                                      2.41     2.12         2.08      87.9%      86.3%      98.2%
-Class: Outputs Provided                                                      0.95     0.95         0.92     100.0%      96.2%      96.2%
-080303 Research coordination                                                 0.95     0.95         0.92     100.0%      96.2%      96.2%
-Class: Outputs Funded                                                        1.46     1.17         1.17      80.0%      79.8%      99.8%
-080351 Specialised Medical Research in HIV/AIDS and Clinical Care            0.24     0.24         0.24     100.0%     100.0%     100.0%
-        (JCRC)                                                               444
-Vote: 014                         Ministry of Health
+Billion Uganda Shillings                                        Approved Released         Spent     % GoU      % GoU      % GoU
+                                                                  Budget                            Budget     Budget    Releases
+                                                                                                   Released      Spent      Spent
+VF:0857 Cancer Services                                              10.40     11.65       11.13     112.0%     107.1%      95.6%
+
+
+                                                                    463
+Vote: 114                         Uganda Cancer Institute
 QUARTER 4: Highlights of Vote Performance
-Billion Uganda Shillings                                                     Approved Released            Spent       % GoU      % GoU        % GoU
-                                                                               Budget                                 Budget     Budget      Releases
-                                                                                                                     Released      Spent        Spent
-080352 Support to Uganda National Health Research                                 1.22      0.93           0.92        76.0%       75.8%       99.8%
-        Organisation(UNHRO)
-VF:0804 Clinical and public health                                               21.21     23.34          23.31       110.0%      109.9%       99.9%
-Class: Outputs Provided                                                          14.78     16.91          16.88       114.4%      114.2%       99.8%
-080401 Community health services provided (control of communicable                3.16      2.18           2.13        68.8%       67.4%       97.9%
-        and non communicable diseases)
-080402 Clinical health services provided (infrastructure, pharmaceutical,         1.86      1.52           1.52        82.0%       81.9%       99.8%
-        integrated curative)
-080403 National endemic and epidemic disease control services provided            2.84     10.23          10.22       360.5%      360.1%       99.9%
-080404 Technical support, monitoring and evaluation of service                    0.38      0.32           0.32        83.2%       83.0%       99.7%
-        providers and facilities
-080405 Immunisation services provided                                             0.86      0.49           0.49        56.4%       56.4%      100.0%
-080408 Photo-biological Control of Malaria                                        1.00      0.40           0.35        40.3%       35.3%       87.6%
-080409 Indoor Residual Spraying (IRS) services provided                           2.08      0.83           0.83        40.0%       40.0%      100.0%
-080410 Maintenance of medical and solar equipment                                 0.40      0.22           0.22        56.2%       56.2%      100.0%
-080411 Coordination of clinical and public health emergencies including           2.20      0.71           0.79        32.2%       36.1%      112.2%
-        the response to the nodding syndrome
-Class: Outputs Funded                                                             6.43      6.43           6.43       100.0%      100.0%      100.0%
-080451 Medical Intern Services                                                    6.43      6.43           6.43       100.0%      100.0%      100.0%
-VF:0805 Pharmaceutical and other Supplies                                         8.21      7.28           7.24        88.6%       88.2%       99.6%
-Class: Outputs Provided                                                           8.21      6.86           6.83        83.5%       83.2%       99.6%
-080501 Preventive and curative Medical Supplies (including                        3.20      3.53           3.53       110.3%      110.3%      100.0%
-        immuninisation)
-080503 Monitoring and Evaluation Capacity Improvement                             5.01      3.33           3.30        66.4%       65.8%       99.1%
-Class: Capital Purchases                                                          0.00      0.42           0.41          N/A         N/A       99.6%
-080580 Diagnostic and Other Equipment Procured                                    0.00      0.42           0.41          N/A         N/A       99.6%
-VF:0849 Policy, Planning and Support Services                                    12.03     10.76          10.52        89.4%       87.5%       97.8%
-Class: Outputs Provided                                                           9.63      8.87           8.69        92.2%       90.3%       98.0%
-084901 Policy, consultation, planning and monitoring services                     3.67      2.90           2.80        79.1%       76.4%       96.6%
-084902 Ministry Support Services                                                  3.93      4.48           4.42       114.0%      112.3%       98.5%
-084903 Ministerial and Top Management Services                                    1.32      1.14           1.14        86.5%       85.9%       99.4%
-084904 Health Sector reforms including financing and national health              0.71      0.35           0.34        48.9%       48.1%       98.5%
-        accounts
-Class: Outputs Funded                                                             2.40      1.88           1.83        78.4%       76.2%       97.2%
-084951 Transfers to International Health Organisation                             0.20      0.18           0.13        90.0%       65.0%       72.2%
-084952 Health Regulatory Councils                                                 0.30      0.18           0.18        58.3%       58.3%      100.0%
-084953 Support to Health Workers recruited at HC III and IV                       1.90      1.53           1.52        80.3%       80.2%       99.8%
- Total For Vote                                                                  49.13     47.48          46.90        96.6%       95.4%       98.8%
+Billion Uganda Shillings                                                 Approved Released            Spent       % GoU      % GoU        % GoU
+                                                                           Budget                                 Budget     Budget      Releases
+                                                                                                                 Released      Spent        Spent
+Class: Outputs Provided                                                       3.30      2.94           2.87        89.2%       87.0%       97.6%
+085701 Cancer Research                                                        0.48      0.47           0.47        98.0%       98.0%      100.0%
+085702 Cancer Care Services                                                   1.10      1.05           1.05        94.9%       94.9%      100.0%
+085703 Cancer Outreach Service                                                0.52      0.42           0.40        80.6%       78.0%       96.8%
+085704 Cancer Institute Support Services                                      0.89      0.94           0.88       106.4%       99.7%       93.7%
+085705 Internal Audit                                                         0.03      0.02           0.02        60.7%       60.6%       99.9%
+085706 Radiotherapy Services                                                  0.28      0.04           0.04        15.9%       15.9%      100.0%
+Class: Capital Purchases                                                      7.10      8.71           8.26       122.6%      116.4%       94.9%
+085772 Government Buildings and Administrative Infrastructure                 5.30      5.30           4.93       100.0%       93.0%       93.0%
+085775 Purchase of Motor Vehicles and Other Transport Equipment               0.00      0.45           0.38          N/A         N/A       85.0%
+085777 Purchase of Specialised Machinery & Equipment                          1.80      2.96           2.95       164.3%      163.9%       99.8%
+ Total For Vote                                                              10.40     11.65          11.13       112.0%      107.1%       95.6%
 * Excluding Taxes and Arrears
+
 Table V3.2: 2014/15 GoU Expenditure by Item
-Billion Uganda Shillings                                        Approved        Releases    Expend-         % Budged       % Budget        %Releases
-                                                                  Budget                       iture         Released         Spent           Spent
-Output Class: Outputs Provided                                       36.68         36.31       36.00              99.0%         98.1%         99.1%
-211101   General Staff Salaries                                       5.75         6.37            6.23           110.9%        108.4%        97.7%
-211102   Contract Staff Salaries (Incl. Casuals, Temporary)           3.22         2.87            2.84            89.1%         88.2%        98.9%
-211103   Allowances                                                   1.23         0.94            0.93            76.3%         76.1%        99.8%
-212101   Social Security Contributions                                0.17         0.14            0.14            83.9%         79.9%        95.3%
-212102   Pension for General Civil Service                            0.00         0.10            0.10              N/A           N/A       100.0%
-213001   Medical expenses (To employees)                              0.11         0.10            0.10            94.6%         94.6%       100.0%
-213002   Incapacity, death benefits and funeral expenses              0.03         0.03            0.03            95.3%         95.3%       100.0%
-213004   Gratuity Expenses                                            0.00         0.20            0.20              N/A           N/A       100.0%
-221001   Advertising and Public Relations                             0.36         0.13            0.13            35.0%         36.2%       103.3%
-221002   Workshops and Seminars                                       1.03         1.04            1.05           101.2%        101.5%       100.2%
-221003   Staff Training                                               1.37         0.97            0.88            70.8%         64.1%        90.6%
-221005   Hire of Venue (chairs, projector, etc)                       0.10         0.03            0.03            31.2%         31.2%       100.0%
-221007   Books, Periodicals & Newspapers                              0.05         0.03            0.03            70.2%         70.2%       100.0%
-221008   Computer supplies and Information Technology (IT             0.11         0.07            0.07            60.1%         60.1%       100.0%
-221009   Welfare and Entertainment                                    0.39         0.32            0.32            81.7%         81.7%       100.0%
-221010   Special Meals and Drinks                                     0.00         0.00            0.00            97.7%         97.7%       100.0%
-221011   Printing, Stationery, Photocopying and Binding               1.31        445
-                                                                                   0.96            0.95            73.5%         72.3%        98.4%
-221012   Small Office Equipment                                       0.05         0.03            0.03            62.1%         61.5%        99.0%
-Vote: 014                         Ministry of Health
+Billion Uganda Shillings                                    Approved        Releases    Expend-         % Budged       % Budget        %Releases
+                                                              Budget                       iture         Released         Spent           Spent
+Output Class: Outputs Provided                                    3.30          2.94           2.87           89.2%         87.0%         97.6%
+211101   General Staff Salaries                                   2.20          1.79           1.72            81.2%         78.4%        96.5%
+211103   Allowances                                               0.11          0.11           0.11           100.0%         98.8%        98.8%
+212102   Pension for General Civil Service                        0.00          0.03           0.03              N/A           N/A       100.0%
+213001   Medical expenses (To employees)                          0.00          0.00           0.00           100.0%         98.1%        98.1%
+213002   Incapacity, death benefits and funeral expenses          0.00          0.00           0.00           100.0%         99.4%        99.4%
+213004   Gratuity Expenses                                        0.00          0.03           0.03              N/A           N/A       100.0%
+221001   Advertising and Public Relations                         0.03          0.03           0.03           100.0%        100.0%       100.0%
+221002   Workshops and Seminars                                   0.03          0.03           0.03           100.0%         99.8%        99.8%
+221003   Staff Training                                           0.04          0.04           0.04           100.0%         99.8%        99.8%
+221006   Commissions and related charges                          0.01          0.01           0.01           100.0%         99.9%        99.9%
+221007   Books, Periodicals & Newspapers                          0.01          0.01           0.01           100.0%        100.0%       100.0%
+221008   Computer supplies and Information Technology (IT         0.04          0.04           0.04           100.0%         99.9%        99.9%
+221009   Welfare and Entertainment                                0.02          0.02           0.02           100.0%         99.4%        99.4%
+221010   Special Meals and Drinks                                 0.08          0.08           0.08           100.0%        100.0%       100.0%
+221011   Printing, Stationery, Photocopying and Binding           0.07          0.07           0.07           100.0%        100.0%       100.0%
+221012   Small Office Equipment                                   0.03          0.03           0.02           100.0%         99.8%        99.8%
+221016   IFMS Recurrent costs                                     0.02          0.02           0.02           100.0%        100.0%       100.0%
+221017   Subscriptions                                            0.00          0.00           0.00           100.0%         99.8%        99.8%
+222001   Telecommunications                                       0.08          0.08           0.08           100.0%        100.0%       100.0%
+223004   Guard and Security services                              0.03          0.03           0.03           100.0%        100.0%       100.0%
+223005   Electricity                                              0.05          0.05           0.05           100.0%        100.0%       100.0%
+223006   Water                                                    0.04          0.04           0.04           100.0%        100.0%       100.0%
+223007   Other Utilities- (fuel, gas, firewood, charcoal)         0.01          0.01           0.01           100.0%        100.0%       100.0%
+224004   Cleaning and Sanitation                                  0.05          0.05           0.05           100.0%        100.0%       100.0%
+224005   Uniforms, Beddings and Protective Gear                   0.02          0.02           0.02           100.0%         99.6%        99.6%
+225001   Consultancy Services- Short term                         0.03          0.03           0.03           100.0%        100.0%       100.0%
+227001   Travel inland                                            0.09          0.09           0.09           100.0%        100.0%       100.0%
+227002   Travel abroad                                            0.04          0.04           0.04           100.0%        100.0%       100.0%
+227003   Carriage, Haulage, Freight and transport hire            0.00          0.00           0.00           100.0%         98.7%        98.7%
+227004   Fuel, Lubricants and Oils                                0.05          0.05           0.05           100.0%        100.0%       100.0%
+228001   Maintenance - Civil                                      0.01          0.01           0.01           100.0%        100.0%       100.0%
+228002   Maintenance - Vehicles                                   0.04          0.04           0.04           100.0%         84.2%        84.2%
+228003   Maintenance ­ Machinery, Equipment & Furniture           0.06          0.06           0.06           100.0%        100.0%       100.0%
+228004   Maintenance ­ Other                                      0.02          0.02           0.02           100.0%        100.0%       100.0%
+Output Class: Capital Purchases                                   8.71          8.71           8.26           100.0%        94.9%         94.9%
+
+
+
+                                                                            464
+Vote: 114                         Uganda Cancer Institute
 QUARTER 4: Highlights of Vote Performance
-Billion Uganda Shillings                                       Approved      Releases    Expend-         % Budged       % Budget      %Releases
-                                                                 Budget                     iture         Released         Spent         Spent
-221016   IFMS Recurrent costs                                      0.05          0.05           0.05           100.0%        100.0%      100.0%
-221017   Subscriptions                                             0.00          0.00           0.00           100.0%        100.0%      100.0%
-221020   IPPS Recurrent Costs                                      0.03          0.01           0.01            41.0%         41.0%      100.0%
-222001   Telecommunications                                        0.13          0.13           0.13            96.9%         96.8%       99.9%
-222002   Postage and Courier                                       0.01          0.01           0.01            69.0%         69.0%      100.0%
-222003   Information and communications technology (ICT)           0.04          0.04           0.04            89.8%         89.8%      100.0%
-223001   Property Expenses                                         0.24          0.54           0.54           225.0%        225.0%      100.0%
-223005   Electricity                                               0.32          0.19           0.19            59.1%         59.1%      100.0%
-223006   Water                                                     0.14          0.09           0.09            65.1%         65.1%      100.0%
-223007   Other Utilities- (fuel, gas, firewood, charcoal)          0.28          0.15           0.15            55.1%         55.1%      100.0%
-224001   Medical and Agricultural supplies                         6.02          8.30           8.25           138.0%        137.1%       99.4%
-225001   Consultancy Services- Short term                          1.20          0.40           0.40            33.2%         33.2%      100.0%
-225002   Consultancy Services- Long-term                           0.16          0.04           0.04            25.0%         25.0%      100.0%
-225003   Taxes on (Professional) Services                          1.50          0.99           0.98            65.8%         65.1%       98.9%
-227001   Travel inland                                             4.97          3.25           3.25            65.3%         65.3%      100.0%
-227002   Travel abroad                                             0.83          0.79           0.78            95.1%         93.8%       98.6%
-227004   Fuel, Lubricants and Oils                                 1.60          1.37           1.37            85.3%         85.2%       99.8%
-228002   Maintenance - Vehicles                                    0.69          0.51           0.49            73.4%         70.3%       95.8%
-228003   Maintenance ­ Machinery, Equipment & Furniture            0.75          0.42           0.41            55.2%         54.6%       98.9%
-228004   Maintenance ­ Other                                       0.57          0.26           0.24            44.8%         43.0%       96.0%
-273101   Medical expenses (To general Public)                      1.85          0.52           0.60            27.9%         32.6%      116.8%
-282181   Extra-Ordinary Items (Losses/Gains)                       0.00          3.92           3.92              N/A           N/A      100.0%
-Output Class: Outputs Funded                                      10.29          9.48           9.42           92.1%         91.6%        99.4%
-262101   Contributions to International Organisations (Curre       0.20          0.18           0.13            90.0%         65.0%       72.2%
-263104   Transfers to other govt. Units (Current)                  3.12          2.45           2.45            78.6%         78.5%       99.8%
-263204   Transfers to other govt. Units (Capital)                  0.30          0.18           0.18            58.3%         58.3%      100.0%
-264101   Contributions to Autonomous Institutions                  6.43          6.43           6.43           100.0%        100.0%      100.0%
-264102   Contributions to Autonomous Institutions (Wage Su         0.24          0.24           0.24           100.0%        100.0%      100.0%
-Output Class: Capital Purchases                                    6.40          4.02           3.78           62.8%         59.0%        94.0%
-231001 Non Residential buildings (Depreciation)                    1.58          0.98           0.81            62.0%         51.1%       82.4%
-231004   Transport equipment                                       0.46          0.59           0.59           128.0%        127.3%       99.4%
-231005   Machinery and equipment                                   0.12          0.12           0.08           100.0%         64.0%       64.0%
-312105   Taxes on Buildings & Structures                           3.30          1.54           1.54            46.7%         46.7%      100.0%
-312204   Taxes on Machinery, Furniture & Vehicles                  0.94          0.79           0.76            84.0%         81.5%       97.0%
-Output Class: Arrears                                              0.37          0.37           0.37           100.0%        100.0%      100.0%
-321612 Water arrears(Budgeting)                                    0.07          0.07           0.07           100.0%        100.0%      100.0%
-321614 Electricity arrears (Budgeting)                             0.30          0.30           0.30           100.0%        100.0%      100.0%
-Grand Total:                                                      53.75         50.18       49.57              93.4%         92.2%        98.8%
-Total Excluding Taxes and Arrears:                                49.13         47.48       46.90              96.6%         95.4%        98.8%
+Billion Uganda Shillings                                      Approved      Releases    Expend-         % Budged       % Budget      %Releases
+                                                                Budget                     iture         Released         Spent         Spent
+231001   Non Residential buildings (Depreciation)                 4.40          4.40           4.27           100.0%         97.1%       97.1%
+231004   Transport equipment                                      0.00          0.45           0.38              N/A           N/A       85.0%
+231005   Machinery and equipment                                  1.80          2.96           2.95           164.3%        163.9%       99.8%
+281503   Engineering and Design Studies & Plans for capital       0.80          0.80           0.56           100.0%         69.6%       69.6%
+281504   Monitoring, Supervision & Appraisal of capital wor       0.10          0.10           0.10           100.0%         98.2%       98.2%
+312204   Taxes on Machinery, Furniture & Vehicles                 1.61          0.00           0.00             0.0%          0.0%         N/A
+Grand Total:                                                     12.01         11.65       11.13              97.0%         92.7%        95.6%
+Total Excluding Taxes and Arrears:                               10.40         11.65       11.13              112.0%        107.1%       95.6%
 
 Table V3.3: GoU Releases and Expenditure by Project and Programme*
-Billion Uganda Shillings                                                  Approved Released            Spent       % GoU       % GoU      % GoU
-                                                                            Budget                                 Budget      Budget    Releases
-                                                                                                                  Released       Spent      Spent
-VF:0801 Sector Monitoring and Quality Assurance                                0.81      0.59           0.59        73.1%       73.0%      99.9%
+Billion Uganda Shillings                                                 Approved Released            Spent       % GoU       % GoU      % GoU
+                                                                           Budget                                 Budget      Budget    Releases
+                                                                                                                 Released       Spent      Spent
+VF:0857 Cancer Services                                                      10.40     11.65          11.13       112.0%      107.1%      95.6%
 Recurrent Programmes
-03    Quality Assurance                                                        0.81      0.59           0.59        73.1%       73.0%      99.9%
-VF:0802 Health systems development                                             4.46      3.41           3.15        76.4%       70.7%      92.5%
+01     Management                                                             0.89      0.94           0.88       106.4%       99.7%      93.7%
+02     Medical Services                                                       2.10      1.94           1.93        92.1%       91.5%      99.3%
+03     Internal Audit                                                         0.03      0.02           0.02        60.7%       60.6%      99.9%
+04     Radiotherapy                                                           0.28      0.04           0.04        15.9%       15.9%     100.0%
 Development Projects
-0216 District Infrastructure Support Programme                                 1.40      0.66           0.63        47.3%       45.4%      95.9%
-1027 Insitutional Support to MoH                                               1.01      0.71           0.63        70.4%       62.4%      88.6%
-1123 Health Systems Strengthening                                              0.40      0.38           0.38        95.6%       95.6%     100.0%
-1187 Support to Mulago Hospital Rehabilitation                                 0.85      0.85           0.84       100.0%       99.1%      99.1%
-1315 Construction of Specialised Neonatal and Maternal Unit in                 0.80      0.80           0.66       100.0%       82.6%      82.6%
-      Mulago Hospital
-VF:0803 Health Research                                                        2.41      2.12           2.08        87.9%       86.3%      98.2%
-Recurrent Programmes
-04    Research Institutions                                                    2.17      1.88           1.84        86.5%       84.8%      98.0%
-05    JCRC                                                                     0.24      0.24           0.24       100.0%      100.0%     100.0%
-                                                                               446
-VF:0804 Clinical and public health                                            21.21     23.34          23.31       110.0%      109.9%      99.9%
-Vote: 014                        Ministry of Health
-QUARTER 4: Highlights of Vote Performance
-Billion Uganda Shillings                                                  Approved Released    Spent     % GoU     % GoU      % GoU
-                                                                            Budget                       Budget    Budget    Releases
-                                                                                                        Released     Spent      Spent
-Recurrent Programmes
-06     Community Health                                                        3.11     2.14     2.09     68.7%     67.3%      97.9%
-07     Clinical Services                                                       8.89     8.32     8.31     93.6%     93.6%      99.9%
-08     National Disease Control                                                8.73    12.51    12.54    143.3%    143.6%     100.2%
-11     Nursing Services                                                        0.18     0.18     0.18     97.3%     96.8%      99.6%
-Development Projects
-1148 Public Health Laboratory strengthening project                            0.25     0.15     0.15     60.0%     60.0%     100.0%
-1218 Uganda Sanitation Fund Project                                            0.05     0.04     0.04     75.0%     75.0%     100.0%
-VF:0805 Pharmaceutical and other Supplies                                      8.21     7.28     7.24     88.6%     88.2%      99.6%
-Development Projects
-0220 Global Fund for AIDS, TB and Malaria                                      5.01     3.75     3.71     74.7%     74.1%      99.2%
-1141 Gavi Vaccines and HSSP                                                    3.20     3.53     3.53    110.3%    110.3%     100.0%
-VF:0849 Policy, Planning and Support Services                                 12.03    10.76    10.52     89.4%     87.5%      97.8%
-Recurrent Programmes
-01     Headquarters                                                            7.24    7.14      7.02     98.6%     96.9%      98.3%
-02     Planning                                                                4.38    3.25      3.14     74.2%     71.8%      96.8%
-10     Internal Audit Department                                               0.42    0.37      0.36     89.1%     87.4%      98.1%
- Total For Vote                                                               49.13    47.48    46.90     96.6%     95.4%      98.8%
+1120 Uganda Cancer Institute Project                                          7.10     8.71            8.26       122.6%      116.4%      94.9%
+ Total For Vote                                                              10.40     11.65          11.13       112.0%      107.1%      95.6%
 * Excluding Taxes and Arrears
-Table V3.4: External Financing Releases and Expenditure by Project and Programme*
-Billion Uganda Shillings                                                  Approved Released    Spent     % GoU     % GoU      % GoU
-                                                                            Budget                       Budget    Budget    Releases
-                                                                                                        Released     Spent      Spent
-VF:0802 Health systems development                                           206.05    98.26    98.26     47.7%     47.7%     100.0%
-Development Projects
-1123 Health Systems Strengthening                                             80.61    58.16    58.16     72.1%     72.1%     100.0%
-1187 Support to Mulago Hospital Rehabilitation                                55.83    38.73    38.73     69.4%     69.4%     100.0%
-1243 Rehabilitation and Construction of General Hospitals                     12.59     0.00     0.00      0.0%      0.0%        N/A
-1314 Rehabilitation and Equiping of Health Facilities in Western Region       43.58     0.00     0.00      0.0%      0.0%        N/A
-1315 Construction of Specialised Neonatal and Maternal Unit in                13.44     1.37     1.37     10.2%     10.2%     100.0%
-       Mulago Hospital
-VF:0804 Clinical and public health                                             8.24     1.50     1.69     18.3%     20.5%     112.6%
-Development Projects
-1148 Public Health Laboratory strengthening project                            5.11     1.34     1.34     26.2%     26.2%     100.0%
-1218 Uganda Sanitation Fund Project                                            3.13     0.16     0.35      5.2%     11.3%     215.6%
-VF:0805 Pharmaceutical and other Supplies                                    304.09   398.16   220.49    130.9%     72.5%      55.4%
-Development Projects
-0220 Global Fund for AIDS, TB and Malaria                                    255.80   315.09   212.57    123.2%     83.1%      67.5%
-1141 Gavi Vaccines and HSSP                                                   48.29    83.07     7.92    172.0%     16.4%       9.5%
-VF:0849 Policy, Planning and Support Services                                  9.62     5.24     5.24     54.5%     54.5%     100.0%
-Development Projects
-1145 Institutional Capacity Building                                           9.62     5.24     5.24     54.5%     54.5%     100.0%
- Total For Vote                                                              528.00   503.16   325.68     95.3%     61.7%      64.7%
+Table V3.4: Donor Releases and Expenditure by Project and Programme*
 
 
 
 
-                                                                               447
+                                                                            465
 

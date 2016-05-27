@@ -13,5 +13,8 @@ export const budgetSegmentsToRead = [
   },
   {
     tableTitle: 'External Financing Releases and Expenditure'
+  },
+  {
+    tableTitle: 'Releases and Expenditure by Vote Function'
   }
 ];
