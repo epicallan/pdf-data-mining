@@ -1,5 +1,3 @@
-budget -f NaN -l 137 -n AnnualBudgetPerformanceReport 2014-15.pdf 
-budget -o -f NaN -l NaN -n AnnualBudgetPerformanceReport-2 2014-15.pdf 
 budget -f 138 -l 171 -n MinistryofAgricultureAnimalIndustryFisheries 2014-15.pdf 
 budget -o -f 138 -l 139 -n MinistryofAgricultureAnimalIndustryFisheries-2 2014-15.pdf 
 budget -f 172 -l 175 -n DairyDevelopmentAuthority 2014-15.pdf 
@@ -56,10 +54,8 @@ budget -f 394 -l 399 -n KampalaCityCouncilAuthority 2014-15.pdf
 budget -o -f 394 -l 395 -n KampalaCityCouncilAuthority-2 2014-15.pdf 
 budget -f 400 -l 403 -n MuniUniversity 2014-15.pdf 
 budget -o -f 400 -l 401 -n MuniUniversity-2 2014-15.pdf 
-budget -f 404 -l NaN -n EducationServiceCommission 2014-15.pdf 
+budget -f 404 -l 407 -n EducationServiceCommission 2014-15.pdf 
 budget -o -f 404 -l 405 -n EducationServiceCommission-2 2014-15.pdf 
-budget -f NaN -l 407 -n AnnualBudgetPerformanceReport 2014-15.pdf 
-budget -o -f NaN -l NaN -n AnnualBudgetPerformanceReport-2 2014-15.pdf 
 budget -f 408 -l 412 -n MakerereUniversity 2014-15.pdf 
 budget -o -f 408 -l 409 -n MakerereUniversity-2 2014-15.pdf 
 budget -f 413 -l 417 -n MbararaUniversity 2014-15.pdf 
@@ -126,10 +122,8 @@ budget -f 711 -l 714 -n UgandaHumanRightsCommission 2014-15.pdf
 budget -o -f 711 -l 712 -n UgandaHumanRightsCommission-2 2014-15.pdf 
 budget -f 715 -l 717 -n LawDevelopmentCentre 2014-15.pdf 
 budget -o -f 715 -l 716 -n LawDevelopmentCentre-2 2014-15.pdf 
-budget -f 718 -l NaN -n UgandaRegistrationServicesBureau 2014-15.pdf 
+budget -f 718 -l 721 -n UgandaRegistrationServicesBureau 2014-15.pdf 
 budget -o -f 718 -l 719 -n UgandaRegistrationServicesBureau-2 2014-15.pdf 
-budget -f NaN -l 721 -n AnnualBudgetPerformanceReport 2014-15.pdf 
-budget -o -f NaN -l NaN -n AnnualBudgetPerformanceReport-2 2014-15.pdf 
 budget -f 722 -l 727 -n NationalCitizenshipandImmigrationControl 2014-15.pdf 
 budget -o -f 722 -l 723 -n NationalCitizenshipandImmigrationControl-2 2014-15.pdf 
 budget -f 728 -l 731 -n DirectorateofPublicProsecutions 2014-15.pdf 

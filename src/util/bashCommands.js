@@ -30,7 +30,7 @@ function readInFile(readFileByLine) {
       // console.log(chunkedLine);
     }
     if (!isNaN(chunkedLine[2] && chunkedLine.length === 3)) {
-      if (chunkedLine[1]) {
+      if (chunkedLine[1] && !chunkedLine[1].includes('Annual Budget Performance Report')) {
         const startPageNumber = parseInt(chunkedLine[2], 10);
         const name = chunkedLine[1].replace(/[^a-z]/gi, '');
         sections.push({
