@@ -3,10 +3,11 @@ import program from 'commander';
 program.version('0.0.1')
         .option('-f, --first <n>', 'Add first page')
         .option('-l, --last <n>', 'Add last page')
+        .option('-o, --overview', 'indicates we are mining from overview vote expenditure tables')
         .option('-n, --name [name]', 'Add resulting csv file name');
 
 program.on('--help', () => {
-  console.log('  Examples:');
+  console.log('  Example:');
   console.log('');
   console.log('   Pass in file location as last argument');
   console.log('');

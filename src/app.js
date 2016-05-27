@@ -2,7 +2,11 @@ import fs from 'fs';
 import readline from 'readline';
 import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
-import { budgetSegmentsToRead } from './config';
+import {
+  budgetSegmentsToRead,
+  transformRegular,
+  transformOverview
+} from './config';
 import program from './cli';
 
 const spawn = require('child_process').spawn;
@@ -19,38 +23,51 @@ const writableStream = (() => {
   return stream;
 })();
 
+
 // configuring csv stream object which feeds into the file stream
 const csvStream = (() => {
   const stream = csv.createWriteStream({ headers: true });
-  // adding a transformation function that is responsible for the row title
-  stream.transform(row => ({
-    'Section Name': row[7],
-    Sector: row[0],
-    'Approved Budget': row[1],
-    released: row[2],
-    spent: row[3],
-    '% Budget realsed': row[4],
-    '% budget spent': row[5],
-    '% releases spent': row[6]
-  }))
+  // adding a transformation function that is responsible for the row titles
+  const transform = program.overview ? transformOverview : transformRegular;
+  stream.transform(transform)
   .pipe(writableStream);
   return stream;
 })();
 
 const csvLineTowrite = (line) => line.split('  ').filter(word => word.length > 1);
 
-const writeLineToFile = (line, title) => {
+const writeLineToFileRegular = (line, title) => {
   const csvLine = csvLineTowrite(line);
   // check whether we have numbers after the first items in the array
   const onlyValues = csvLine.slice(2, csvLine.length - 1);
   const isNotValidLine = onlyValues.every(val => isNaN(val));
-  if (csvLine.length > 6 && !isNotValidLine) {
+  if (csvLine.length > 6 && !isNotValidLine && !title.includes('Overview of Vote Expenditures')) {
     if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
     csvLine.push(title);
     csvStream.write(csvLine);
   }
 };
 
+// looks bad global variable FIXME
+let missingValue = null;
+
+const writeLineToOverView = (line, title) => {
+  const csvLine = csvLineTowrite(line);
+  // check whether we have numbers after the first items in the array
+  const onlyValues = csvLine.slice(2, csvLine.length - 1);
+  const isNotValidLine = onlyValues.every(val => isNaN(val));
+  // table structure quacks
+  if (line.includes('Recurrent')) missingValue = csvLine[1];
+  if (line.includes('Non Wage')) csvLine.splice(2, 0, missingValue);
+  if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
+
+  if (csvLine.length > 6 && !isNotValidLine && title.includes('Overview of Vote Expenditures')) {
+    // console.log(csvLine, csvLine.length);
+    // if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
+    csvLine.push(title);
+    csvStream.write(csvLine);
+  }
+};
 
 const isNewTableTitleExpressions =
   (segments) => segments.map(segment => verEx().find(segment.tableTitle));
@@ -59,6 +76,7 @@ function readInFile(segments, readFileByLine) {
   let startMining = false;
   let isTableTitle = false;
   let title = null;
+  const writetoFile = program.overview ? writeLineToOverView : writeLineToFileRegular;
   const isTableExpressions = isNewTableTitleExpressions(segments);
   readFileByLine.on('line', (line) => {
     isTableTitle = isTableExpressions.some(expression => expression.test(line));
@@ -67,7 +85,7 @@ function readInFile(segments, readFileByLine) {
       startMining = true;
       console.log('currentTable: ', title);
     }
-    if (startMining) writeLineToFile(line, title);
+    if (startMining) writetoFile(line, title);
   });
 }
 
@@ -90,5 +108,6 @@ pdftoTextProcess.stderr.on('data', (data) => {
 
 pdftoTextProcess.on('close', (code) => {
   console.log(`child process exited with code  ${code}`);
+  // const segments = program.overview ? overviewVoteExpenditure : budgetSegmentsToRead;
   setTimeout(main(budgetSegmentsToRead), 3000);
 });

@@ -86,19 +86,9 @@
 	// configuring csv stream object which feeds into the file stream
 	var csvStream = function () {
 	  var stream = _fastCsv2.default.createWriteStream({ headers: true });
-	  // adding a transformation function that is responsible for the row title
-	  stream.transform(function (row) {
-	    return {
-	      'Section Name': row[7],
-	      Sector: row[0],
-	      'Approved Budget': row[1],
-	      released: row[2],
-	      spent: row[3],
-	      '% Budget realsed': row[4],
-	      '% budget spent': row[5],
-	      '% releases spent': row[6]
-	    };
-	  }).pipe(writableStream);
+	  // adding a transformation function that is responsible for the row titles
+	  var transform = _cli2.default.overview ? _config.transformOverview : _config.transformRegular;
+	  stream.transform(transform).pipe(writableStream);
 	  return stream;
 	}();
 
@@ -108,15 +98,38 @@
 	  });
 	};
 
-	var writeLineToFile = function writeLineToFile(line, title) {
+	var writeLineToFileRegular = function writeLineToFileRegular(line, title) {
 	  var csvLine = csvLineTowrite(line);
 	  // check whether we have numbers after the first items in the array
 	  var onlyValues = csvLine.slice(2, csvLine.length - 1);
 	  var isNotValidLine = onlyValues.every(function (val) {
 	    return isNaN(val);
 	  });
-	  if (csvLine.length > 6 && !isNotValidLine) {
+	  if (csvLine.length > 6 && !isNotValidLine && !title.includes('Overview of Vote Expenditures')) {
 	    if (csvLine.length !== 7) csvLine.splice(0, 2, csvLine[0] + ' ' + csvLine[1]);
+	    csvLine.push(title);
+	    csvStream.write(csvLine);
+	  }
+	};
+
+	// looks bad global variable FIXME
+	var missingValue = null;
+
+	var writeLineToOverView = function writeLineToOverView(line, title) {
+	  var csvLine = csvLineTowrite(line);
+	  // check whether we have numbers after the first items in the array
+	  var onlyValues = csvLine.slice(2, csvLine.length - 1);
+	  var isNotValidLine = onlyValues.every(function (val) {
+	    return isNaN(val);
+	  });
+	  // table structure quacks
+	  if (line.includes('Recurrent')) missingValue = csvLine[1];
+	  if (line.includes('Non Wage')) csvLine.splice(2, 0, missingValue);
+	  if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
+
+	  if (csvLine.length > 6 && !isNotValidLine && title.includes('Overview of Vote Expenditures')) {
+	    // console.log(csvLine, csvLine.length);
+	    // if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
 	    csvLine.push(title);
 	    csvStream.write(csvLine);
 	  }
@@ -132,6 +145,7 @@
 	  var startMining = false;
 	  var isTableTitle = false;
 	  var title = null;
+	  var writetoFile = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
 	  var isTableExpressions = isNewTableTitleExpressions(segments);
 	  readFileByLine.on('line', function (line) {
 	    isTableTitle = isTableExpressions.some(function (expression) {
@@ -144,7 +158,7 @@
 	      startMining = true;
 	      console.log('currentTable: ', title);
 	    }
-	    if (startMining) writeLineToFile(line, title);
+	    if (startMining) writetoFile(line, title);
 	  });
 	}
 
@@ -167,6 +181,7 @@
 
 	pdftoTextProcess.on('close', function (code) {
 	  console.log('child process exited with code  ' + code);
+	  // const segments = program.overview ? overviewVoteExpenditure : budgetSegmentsToRead;
 	  setTimeout(main(_config.budgetSegmentsToRead), 3000);
 	});
 
@@ -6366,7 +6381,40 @@
 	  tableTitle: 'External Financing Releases and Expenditure'
 	}, {
 	  tableTitle: 'Releases and Expenditure by Vote Function'
+	}, {
+	  tableTitle: 'Overview of Vote Expenditures'
+	}, {
+	  tableTitle: 'Overview of Vote Expenditures'
 	}];
+
+	// responsible for table titles
+	// this is for all the tables that are alike
+	var transformRegular = exports.transformRegular = function transformRegular(row) {
+	  return {
+	    'Table Name': row[7],
+	    Sector: row[0],
+	    'Approved Budget': row[1],
+	    released: row[2],
+	    spent: row[3],
+	    '% Budget released': row[4],
+	    '% budget spent': row[5],
+	    '% releases spent': row[6]
+	  };
+	};
+	// overviewVoteExpenditure tables have different table names and structure
+	var transformOverview = exports.transformOverview = function transformOverview(row) {
+	  return {
+	    'Table Name': row[8],
+	    Category: row[0],
+	    'Approved Budget': row[1],
+	    'Cashlimits by End': row[2],
+	    'Released by End': row[3],
+	    'Spent by End Jun': row[4],
+	    '% Budget Released': row[5],
+	    '% Budget spent': row[6],
+	    '% Releases spent': row[7]
+	  };
+	};
 
 /***/ },
 /* 29 */
@@ -6384,10 +6432,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_commander2.default.version('0.0.1').option('-f, --first <n>', 'Add first page').option('-l, --last <n>', 'Add last page').option('-n, --name [name]', 'Add resulting csv file name');
+	_commander2.default.version('0.0.1').option('-f, --first <n>', 'Add first page').option('-l, --last <n>', 'Add last page').option('-o, --overview', 'indicates we are mining from overview vote expenditure tables').option('-n, --name [name]', 'Add resulting csv file name');
 
 	_commander2.default.on('--help', function () {
-	  console.log('  Examples:');
+	  console.log('  Example:');
 	  console.log('');
 	  console.log('   Pass in file location as last argument');
 	  console.log('');

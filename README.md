@@ -3,6 +3,16 @@
   Mines Budget data from uganda's budget PDF documents by first turning them
   to text using poppler's pdftotext utility.
 
+> Since the mining is per vote or section, you can write a bash script to run multiple
+  data mining scripts one after the other see [bash script](https://github.com/epicallan/uganda-budget-data/blob/master/samples/bash)
+
+> All the tables with data as listed in the [config file](https://github.com/epicallan/uganda-budget-data/blob/master/src/config.js)
+  have the same table structure save for the overview vote Expenditure table.
+  For that particular table pass an overview option
+  with in the budget command so as to mine it Eg.
+  ```
+  budget --overview -f 437 -l 438 -n health-over-views-expenditure 2014-15.pdf
+  ```
 > A global install of the module will expose the budget command which can be used for
   the data mining.
   ```
@@ -13,6 +23,7 @@
    -V, --version      output the version number
    -f, --first <n>    Add first page
    -l, --last <n>     Add last page
+   -o, --overview     indicates we are mining from overview vote expenditure table
    -n, --name [name]  Add resulting csv file name
   ```
 
@@ -61,10 +72,14 @@ Adds the module's main script to your systems path(See the bin key in package.js
 ```
 $  npm install -g
 ```
-run the budget command
+
 ```
-$ budget -f 444 -l 447 2014-15.pdf
+$  npm run build
+```
+
+run the budget data mining command
+```
+$ budget -f 444 -l 447 -n health 2014-15.pdf
   ```
-budget -f 444 -l 447 2014-15.pdf
 ## License
 MIT © [Allan](http://github.com/epicallan)
