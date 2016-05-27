@@ -1,4 +1,4 @@
-Vote: 107                       Uganda AIDS Commission
+Vote: 014                        Ministry of Health
 QUARTER 4: Highlights of Vote Performance
 V1: Summary of Issues in Budget Execution
 This section provides an overview of Vote expenditure
@@ -7,127 +7,712 @@ Table V1.1 below summarises cumulative releases and expenditures by the end of t
 Table V1.1: Overview of Vote Expenditures (UShs Billion)
 
 
-                                    Approved Cashlimits             Released      Spent by % Budget % Budget % Releases
-  (i) Excluding Arrears, Taxes        Budget    by End               by End        End Jun Released    Spent      Spent
-                    Wage                    1.381           1.290       1.290        1.268        93.4%             91.8%       98.3%
-   Recurrent                                                5.439
-                    Non Wage                5.439                       5.439        5.333      100.0%              98.1%       98.1%
-                    GoU                     0.128           0.178       0.128        0.102      100.0%              79.8%       79.8%
+                                      Approved Cashlimits              Released      Spent by % Budget % Budget % Releases
+  (i) Excluding Arrears, Taxes          Budget    by End                by End        End Jun Released    Spent      Spent
+                      Wage                   6.494         6.308           7.120        6.967      109.6%         107.3%         97.9%
+   Recurrent                                             34.200
+                      Non Wage              29.665                        29.492       29.346        99.4%           98.9%       99.5%
+                      GoU                   12.975       11.101           10.871       10.585        83.8%           81.6%       97.4%
    Development
-                    Ext Fin.                0.000            N/A        0.000        0.000            N/A            N/A          N/A
-                      GoU Total             6.948           6.907       6.857        6.703       98.7%              96.5%       97.8%
-Total GoU+Ext Fin. (MTEF)                   6.948            N/A        6.857        6.703       98.7%              96.5%       97.8%
-                    Arrears                 0.000            N/A        0.000        0.000            N/A             N/A          N/A
+                      Ext Fin.           527.996            N/A          503.164      325.681        95.3%           61.7%       64.7%
+                       GoU Total            49.135       51.609           47.483       46.898       96.6%            95.4%       98.8%
+Total GoU+Ext Fin. (MTEF)                577.131            N/A          550.647      372.579       95.4%            64.6%       67.7%
+                      Arrears                0.372           N/A           0.372        0.372      100.0%         100.0%        100.0%
   (ii) Arrears
-  and Taxes         Taxes                   0.100            N/A        0.100        0.100      100.0%          100.0%         100.0%
-                   Total Budget             7.048           6.907       6.957        6.803       98.7%              96.5%       97.8%
+  and Taxes           Taxes                  4.238           N/A           2.329        2.305        55.0%           54.4%       99.0%
+                   Total Budget          581.741         51.609          553.349      375.256       95.1%            64.5%       67.8%
 
 
-* Donor expenditure information available                                            ** Non VAT on capital expenditure
+* Donor expenditure information available                                               ** Non VAT on capital expenditure
 
 The table below shows cumulative releases and expenditures to the Vote by Vote Function :
 Table V1.2: Releases and Expenditure by Vote Function*
-Billion Uganda Shillings                                              Approved Released      Spent     % Budget % Budget           %
-                                                                        Budget                         Released    Spent      Releases
-                                                                                                                                 Spent
-VF:0851 Coordination of multi-sector response to HIV/AIDS                  6.95      6.86      6.70         98.7%     96.5%     97.8%
- Total For Vote                                                            6.95      6.86      6.70         98.7%     96.5%     97.8%
+Billion Uganda Shillings                                                 Approved Released      Spent     % Budget % Budget         %
+                                                                           Budget                         Released    Spent    Releases
+                                                                                                                                  Spent
+VF:0801 Sector Monitoring and Quality Assurance                               0.81      0.59      0.59       73.1%     73.0%     99.9%
+VF:0802 Health systems development                                          210.51    101.66    101.41       48.3%     48.2%     99.7%
+VF:0803 Health Research                                                       2.41      2.12      2.08       87.9%     86.3%     98.2%
+VF:0804 Clinical and public health                                           29.45     24.84     25.00       84.3%     84.9%    100.6%
+VF:0805 Pharmaceutical and other Supplies                                   312.30    405.44    227.74      129.8%     72.9%     56.2%
+VF:0849 Policy, Planning and Support Services                                21.65     16.00     15.76       73.9%     72.8%     98.5%
+ Total For Vote                                                             577.13    550.65    372.58       95.4%     64.6%     67.7%
 * Excluding Taxes and Arrears
 (ii) Matters to note in budget execution
-Staff exits and long recruitment process delayed the filling of vacant positions. This led to untimely execution of
-some interventions due to shortage of staff.
+
+Vote 014 received a supplementary funding for wages and salaries thus a107% of the budget on the wage item .
+Budget cuts and re -allocations within Vote 014 in Quarter 4 hindred the implementation of some planned
+activites.Utility arrears for UVRI worth 4bn are affecting the implementation of the research activities.
 Table V1.3: High Unspent Balances and Over-Expenditure in the Domestic Budget (Ushs Bn)
 (i) Major unpsent balances
 
 (ii) Expenditures in excess of the original approved budget
-
+Programs and Projects
+VF: 0804 Clinical and public health
+        3.81 Bn Shs Programme/Project: 08     National Disease Control
+            Reason:
+Items
+        3.92 Bn Shs Item: 282181 Extra-Ordinary Items (Losses/Gains)
+            Reason:
+        1.90 Bn Shs Item: 224001 Medical and Agricultural supplies
+            Reason:
+                                                                              437
 * Excluding Taxes and Arrears
-
+Vote: 014                     Ministry of Health
+QUARTER 4: Highlights of Vote Performance
 V2: Performance Highlights
 This section provides highlights of output performance, focusing on key outputs and actions impelemented to
 improve section performance.
 Table V2.1: Key Vote Output Indicators and Expenditures*
- Vote, Vote Function            Approved Budget and                 Cumulative Expenditure        Status and Reasons for any
- Key Output                     Planned outputs                     and Performance               Variation from Plans
-Vote Function: 0851 Coordination of multi-sector response to HIV/AIDS
-Output: 085102            Advocacy, Strategic Information and Knowlegde management
-Description of Performance: HIV IEC Advocacy materials       In the period July 2014 to June      The HCT indicator performed at
-                            for 10 advocacy events prepared 2015, all in post staff motivated     97 % where as positive women
-                            and disseminated on World        and regularly paid salary in the     who are on HAART performed
-                            Advocacy Days (1500 T/shirts, last 12 months. However, The            at 113.4 %, which is above the
-                            1500 cloth caps, 5000 paper      position of Director Planning        target by 13.4 %. This is
-                            caps, 50 banners, 10000 car                448
-                                                             and Strategic Information was        attributed to the roll out of
-Vote: 107             Uganda AIDS Commission
+Vote, Vote Function           Approved Budget and               Cumulative Expenditure           Status and Reasons for any
+Key Output                    Planned outputs                   and Performance                  Variation from Plans
+Vote Function: 0801 Sector Monitoring and Quality Assurance
+Output: 080103            Support supervision provided to Local Governments and referral hospitals
+Description of Performance: 2 Support supervision visits per Two Area Team support          Area Team support supervision
+                            district conducted               supervision field visits to    are not regular due to lack of
+                                                             Regional Referral Hospitals,   funds.
+                                                             General Hospitals and HC IVs
+                                                             for all the 112 districts were
+                                                             conducted.
+
+                                                                Pre-JRM field visits to 16
+                                                                districts was conducted
+                Output Cost:      UShs Bn:               0.392     UShs Bn:                  0.325 % Budget Spent:            82.9%
+Output: 080104            Standards and guidelines developed
+Description of Performance: Develop and Print 10,000 copies Rolled out Client Charter to 14 The Support supervision
+                             of the support supervision        Regional Referral Hospitals.       strategy not printed due to
+                             strategy.                         Disseminated Client Charter key inadequate funds.
+                                                               messages to 112 district General
+                             Update and translate patient      Hospitals and HC IVs.
+                             charter into local language       Disseminated Uganda Clinical
+                                                               Guidelines to 21 districts in
+                                                               Eastern and Central region,
+                                                               Disseminated Health Sector
+                                                               Quality Improvement
+                                                               Framework and Strategic plan to
+                                                               35 districts.
+                Output Cost:     UShs Bn:               0.112       UShs Bn:                0.056 % Budget Spent:           50.3%
+Vote Function Cost           UShs Bn:                   0.805 UShs Bn:                      0.588 % Budget Spent:           73.0%
+Vote Function: 0802 Health systems development
+Output: 080280            Hospital Construction/rehabilitation
+Description of Performance: Construction works will be         The progress of construction      Most of the funds used for
+                             undertaken in kawolo,             work for Kawempe Hospital is construction of the hospitals
+                             kawempe and kiruddu and           at 52%. The structure is          were from donor funding.
+                             Moroto..22hospitals rehabilitated complete and the contractor is
+                                                               doing block walling and internal
+                                                               plastering, tile work and Terazo
+                                                               . While the construction work at
+                                                               Kirrudu Hospital is at 64%. The
+                                                               structure is complete and the
+                                                               contractor is doing block
+                                                               walling, internal plastering and
+                                                               electromechanical first fix.
+                                                               The contractor for the
+                                                               renovation work of Lower
+                                                               Mulago commenced work
+                                                               during the second quarter and to
+                                                               date 29% of the work has been
+                                                               completed.
+                Output Cost:      UShs Bn:              192.550       UShs Bn:               6.735 % Budget Spent:             3.5%
+Vote Function Cost           UShs Bn:                   210.511 UShs Bn:                  101.410 % Budget Spent:             48.2%
+Vote Function: 0803 Health Research
+Output: 080303            Research coordination
+Description of Performance: Implement the strategic Plan for Strategic plan for research          The drafting team is still
+                             research Institutions. This        institutions not yet completed    consulting the research
+                             includes identification of                                           institutions on how best to draft
+                             research priorities, production of                                   the strategy
+                             research policies and guidelines             438
+                             and carrying out health research
+Vote: 014                   Ministry of Health
 QUARTER 4: Highlights of Vote Performance
-Vote, Vote Function   Approved Budget and                   Cumulative Expenditure                Status and Reasons for any
-Key Output            Planned outputs                       and Performance                       Variation from Plans
-                      stickers and 30000 fliers) ,56        filled at the beginning of            Option B+ through out the
-                      staff trained in short term           September 2014. The                   country. Data source is Health
-                      courses and perfomance oriented       recruitment process other vacant      Management Information
-                      trainings relevant to their skills,   positions are to be filled in the     System (DHIS 2) as of 14th July
-                      Annual dialogues for 100 media        first quarter of the financial year   2015.
-                      managers organised, new               2015/2016. UAC equipments
-                      HIV/AIDS Mainstreaming                maintained and utility expenses
-                      guidelines and Policy prepared,       cleared. General goods and
-                      2000 copies printed and               supplies acquired for effective
-                      disseminated, All 40 MDAs             service delivery.
-                      supported in integration of HIV
-                      issues in plans,work place            Office premises cleaned and
-                      policies for UAC and 30 LGs           general sanitation and
-                      developed                             environment were maintained
-                      &operationalised,UAC                  mainstreamed at UAC.
-                      Ministerial Policy Statement and
-                      BFP for FY 2015/16 prepared, 4        HIV IEC advocacy materials
-                      Consensus building meetings on        and disseminated in particular
-                      AIDS Trust Fund held with key         4000 pastoral letters, 4000
-                      policy makers, 10 Selef               fliers, 10000HIV prevention
-                      Coordinating Entities action          message booklets in English,
-                      plans developed, HIV                  luganda and runyakitara. And
-                      prevention activities among           other HIV prevention messages
-                      MARPS coordinated and 4               in print and electronic media.
-                      reports prepared, one Annual          This includes lauch of eMTCT
-                      Joint AIDS Review & End term          at Hoima by the First Lady in
-                      review of National HIV                March.
-                      Startegic Plan Conducted, 40
-                      MDAS and 112 LGs monitored            All staff members trained in the
-                      & technical support provided on       new PPDA Act and guidelines.
-                      HIV coordination and                  The training was conducted by
-                      mainstreaming ( multi-sectoral        PPDA. Staff capacity building
-                      approach), Annual Partnership         assessment was conducted and
-                      Forum for 500 stakeholders            draft Report and Capacity
-                      held, 4 Quarterly and one             Building Plan under review by
-                      annual performance reports            Top Management. Thirteen staff
-                      prepared, 4 quarterly review          members were trained in
-                      meetings conducted, 15 LGs            different short courses.
-                      trained in HIV M&E and 40
-                      LGs supported in the                  Follow up meetings held with
-                      development of HIV Strategic          13 cultural institutions to
-                      Plans                                 enhance HIV prevention
-                                                            messages.
+Vote, Vote Function         Approved Budget and            Cumulative Expenditure             Status and Reasons for any
+Key Output                  Planned outputs                and Performance                    Variation from Plans
+                Output Cost:      UShs Bn:                  0.952      UShs Bn:                0.916 % Budget Spent: 96.2%
+Vote Function Cost           UShs Bn:                       2.413 UShs Bn:                     2.082 % Budget Spent: 86.3%
+Vote Function: 0804 Clinical and public health
+Output: 080401            Community health services provided (control of communicable and non communicable diseases)
+Description of Performance: Empower the communities               Ten (12) health education         NA
+                             countrywide to take charge of        meetings on Non communicable
+                             their own health through             diseases and their risk factors
+                             strengthening VHTs and               were held .
+                             increased awareness on disease A school drama competition to
+                             prevention and health                create awareness on NCDs was
+                             promotion. This will be done by held at Kazo Primary school in
+                             undertaking 5 community              Wakiso district.
+                             awareness campaigns,
+                             establishing VHTs in 10              A school sports competition was
+                             additional districts and carrying held in Mukono district to create
+                             out health awareness and             awareness on NCDs and their
+                             sensitisation in 85 districts.       risk factors .
 
-                                                            HIV advocacy events organised
-                                                            (Philly Lutaaya Day, and World
-                                                            AIDS Day). World AIDS Day
-                                                            was attended by H.E The
-                                                            President, Cabinet Ministers,
-                                                            MPs, AIDS Development
-                                                            Partners, CSOs and other key
-                                                            stakeholders in Fortportal,
-                                                            Kabarole District.
+                                                           Screening for NCDs and their
+                                                           risk factors was done in Kazo
+                                                           Mixed primary school. NCDs
+                                                           Health education talks in
+                                                           schools were conducted in three
+                                                           schools: Africa Children's'
+                                                           Choir, Entebbe, Kazo Mixed
+                                                           Primary school, Wakiso and
+                                                           Bishop West primary school,
+                                                           Mukono.
 
-                                                            HIV messages developed,
-                                                            cleared and disseminated
-                                                            through electronic & print mass
-                                                            media to the general population
-                                                            (Posters, television and radio
-                                                            stations, and UAC website).
+                                                           Support supervision on NCD
+                                                           was done in Rwekubo,
+                                                           Nyamiyanja, Kabuyanda HCIVs
+                                                           in Isingiro district.
 
-                                                            Four HIV National Prevention
-                                                            Committee meetings held. Mid
-                                                            Term Review of the National
-                                                            Prevention component
-                                                            completed 449
-                                                                       and new HIV
-                                                            Strategic component completed.
+                                                           Drafted information and
+                                                           Education materials for Non
+                                                           communicable diseases.
+
+                                                           Organised school health
+                                                           education talks on non
+                                                           communicable diseases for six
+                                                           nominated schools in Kamuli
+                                                           and Mbale district. Community
+                                                           awareness sports event
+                                                           conducted in Mityana district to
+                                                           sensitize the population in
+                                                           regular physical activity to
+                                                           prevent non communicable
+                                                           diseases. Screening for NCDs
+                                                           and their risk factors was done
+                                                           in Mityana district.
+
+                                                           Conducted support supervision
+                                                           of NCD activities in Kitagata
+                                                           Hospital and in Kinoni and
+                                                           Bwizibwera
+                                                           HC IVs.
+                                                           Trained 55 service providers in
+                                                           family planning long term and
+                                                           permanent methods in Kaliro
+                                                           and Iganga
+                                                           Districts.
+
+                                                           Trained 600 Village health
+                                                                    439in Sayana press
+                                                           teams (VHTs)
+                                                           as Community based FP
+Vote: 014                     Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Vote, Vote Function           Approved Budget and              Cumulative Expenditure             Status and Reasons for any
+Key Output                    Planned outputs                  and Performance                    Variation from Plans
+                                                               method in Katakwi, Kumi,
+                                                               Iganga, Amuria, Mubende, Gulu
+                                                               Districts
+
+                                                               Participatory Village planning
+                                                               and VHT mappings done in
+                                                               Kayunga and Sheema districts.
+
+                                                               Mobilised communities using
+                                                               the film van to promote good
+                                                               health in the districts of
+                                                               Katakwi, Buikwe,
+                                                               Hoima, Amolator, Kamwenge
+                                                               and Kayunga Village Health
+                                                               teams
+
+                                                               Held two consultative meetings
+                                                               with key stakeholders to review
+                                                               the VHT national assessment
+                                                               report.
+
+                                                               Conducted sensitization of
+                                                               district Health officials (DHTs)
+                                                               in 5 regions on Demand creation
+                                                               for Family Planning using the
+                                                               VHT strategy (Southwestern,
+                                                               western, mid-west, northern and
+                                                               eastern).
+                Output Cost:      UShs Bn:                6.702      UShs Bn:                2.632 % Budget Spent:           39.3%
+Output: 080402            Clinical health services provided (infrastructure, pharmaceutical, integrated curative)
+Description of Performance: Components of the roadmap for Undertook Mentoring of Health Funds for scholarships and
+                             maternal health implemented        workers in                        bussaries for health workers
+                             countrywide. Policies,             emergency maternal and            were inadequate to meet the
+                             guidelines and standards for       newborn obstetric care            planned annual target.
+                             health infrastructure,             (EMnOC) in Kabale, Buhweju,
+                             pharmaceutical and curative        Sheema and Rubirizi districts. A
+                             services implemented and           package on re-integration of
+                             monitored countrywide.             fistula repaired clients was
+                             Quarterly reports on the status developed. Fistula repair
+                             and performance of health          camps in 13
+                             infrastructure and quality of      RRHs Mulago, Jinja, Mbale,
+                             pharmaceutical and curative        Mbarara, Gulu. Moroto, Lira,
+                             services in the country            Mubende, Hoima Mulago,
+                             produced. Health workers           Kabale, Gulu, Soroti, Virika,
+                             trained in different health        Masaka , Mbale, Kitovu Hoima,
+                             service modalities countrywide. Arua and Virika Hospital were
+                             Public health emergencies          undertaken. Developed Final
+                             responded to. Pharmaceutical       Draft of the
+                             supply chain management and Guideline for Positive Deviance
+                             curative services implementation Hearth (PDH) for Management
+                                                                of Community Based
+                                                                Malnutrition at Mpigi.
+
+                                                               Trained health
+                                                               workers on the PDHearth
+                                                               guidelines and training
+                                                               manuals. Finalised the
+                                                               Micronutrient Powder M&E
+                                                               framework and piloting was
+                                                               pretested in the districts of
+                                                               Amuria and Kanungu. Held one
+                                                               Micro Nutrient
+                                                               Powders Training of Trainers
+                                                               Workshop. Support
+                                                               supervision
+                                                                         440
+                                                               on NCD was done in Rwekubo,
+Vote: 014                      Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Vote, Vote Function            Approved Budget and              Cumulative Expenditure              Status and Reasons for any
+Key Output                     Planned outputs                  and Performance                     Variation from Plans
+                                                                Nyamiyanja, Kabuyanda HCIVs
+                                                                in Isingiro district.
+
+                                                                Procured equipment and
+                                                                supplies to strengthen diabetic
+                                                                clinics in two regional referral
+                                                                Hospitals and Health centre
+                                                                IV. Carried out regional
+                                                                training of
+                                                                Health workers in Masaka and
+                                                                Hoima regions.      Maintenance
+                                                                of solar systems in
+                                                                519 health centres carried out in
+                                                                23 Districts
+Performance Indicators:
+No. of health students                                100                                  100
+accessing distance education
+courses
+No. and proportion of health                          200                                  170
+workers given
+scholarships/bursaries for
+further training**
+No of support supervision                             14                                   14
+visits to Regional Referral
+Hospitals conducted
+Couple Years of Protection**                          3,640,000                            1200
+                   Output Cost:      UShs Bn:                1.856      UShs Bn:                1.519 % Budget Spent:       81.9%
+Output: 080403               National endemic and epidemic disease control services provided
+ Description of Performance: Endemic and epidemic diseases The National Disease Control              NA
+                                prevented and controlled           Department continued to
+                                wherever they arise, Epidemic carryout disease Surveillance
+                                preparedness enhanced              activity which led to the
+                                nationwide, compliance with        detection, investigation and
+                                International Health Regulations confirmation of; Marburg VHF
+                                ensured, programs targeting        outbreak in Kampala, Mpigi and
+                                diseases for eradication and       Kasese, the cause of confirmed
+                                elimination strengthened           Polio cases in Kamuli and
+                                countrywide.                       Kween.
+
+                                                                Weekly bulletins on disease
+                                                                surveillance were also produced
+                                                                for the 13 weeks in the quarter.
+                                                                Detected and investigated the
+                                                                typhoid outbreak in Kampala
+                                                                and provided the technical
+                                                                support in disease surveillance
+                                                                at community and health facility
+                                                                level.
+
+                                                                Supported the re-activation of
+                                                                the National Task Force on
+                                                                epidemic preparedness,
+                                                                prevention and control and
+                                                                Kampala District Task Force.
+Performance Indicators:
+No. of weekly surveillance                         52                                  52
+reports released
+                 Output Cost:      UShs Bn:                3.359       UShs Bn:            2.253 % Budget Spent:            67.1%
+Output: 080404             Technical support, monitoring and evaluation of service providers and facilities
+ Description of Performance: Integrated and technical support Support supervision visits for    NA
+                              supervision conducted in all       Malaria, TB, HIV and
+                              regional referral hospitals and    onchocerciasis
+                                                                            441 were conducted
+                              districts                          in all districts
+Vote: 014                     Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Vote, Vote Function           Approved Budget and              Cumulative Expenditure             Status and Reasons for any
+Key Output                    Planned outputs                  and Performance                    Variation from Plans
+                Output Cost:      UShs Bn:                 0.382     UShs Bn:               0.317 % Budget Spent:           83.0%
+Output: 080405            Immunisation services provided
+Description of Performance: The population countrywide is Immunization program has been The measles campaign is
+                             protected against life threatening able to reach 101% DPT3          planned for late september 2015.
+                             immunisable diseases as             coverage and 96% measles
+                             indicated below                     coverage of targeted infants in
+                                                                 2014 calendar year.
+
+                                                               Continued to conduct Support
+                                                               supervision on immunization
+                                                               services to 28 districts of
+                                                               Uganda.
+
+                                                               Carried out Effective Vaccine
+                                                               Management Assessment
+                                                               (EVMA) through training of
+                                                               field assessors and actual
+                                                               assessment through
+                                                               administration of a
+                                                               questionnaire in selected
+                                                               districts.
+
+                                                               Implemented Country wide Cold
+                                                               chain maintenance and regional
+                                                               feedback meeting.
+
+                                                               Conducted 3rd round Periodic
+                                                               Intensified Routine National and
+                                                               regional micro planning
+                                                               workshops were held in
+                                                               preparation for the Polio
+                                                               campaign to be undertaken in
+                                                               January 2015.
+
+                                                               Conducted two (2) rounds of
+                                                               polio campaign, where the 1st
+                                                               Round covered the whole
+                                                               country (targeted under five
+                                                               children were 7,378,760 using
+                                                               the 2014 census preliminary
+                                                               results and of these 7,834,957
+                                                               (106%) children below five
+                                                               years of age were vaccinated
+                                                               );and 2nd Round covered 41
+                                                               districts. Routine continues to
+                                                               be carried out in all health
+                                                               facilities across the country.
+Performance Indicators:
+No. of mass measles                            1                                     0
+campains carried
+out**(rounds made)
+                 Output Cost:    UShs Bn:              0.860    UShs Bn:                   0.485 % Budget Spent:          56.4%
+Output: 080408             Photo-biological Control of Malaria
+ Description of Performance:                                 NA                                   NA
+                Output Cost:    UShs Bn:             1.000     UShs Bn:                    0.353 % Budget Spent:          35.3%
+Output: 080409            Indoor Residual Spraying (IRS) services provided
+Description of Performance:                                NA                                     NA
+                Output Cost:    UShs Bn:               2.082    UShs Bn:            0.832 % Budget Spent:                 40.0%
+Vote Function Cost           UShs Bn:                 29.451 UShs Bn:              25.000 % Budget Spent:                 84.9%
+Vote Function: 0805 Pharmaceutical and other Supplies
+Output: 080501            Preventive and curative Medical Supplies (including immuninisation)
+Description of Performance: Pentavalent vaccines (DONOR - The following
+                                                                    442doses of Vaccines NA
+                             GAVI Support) and traditional were procured by GAVI funds
+Vote: 014                       Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Vote, Vote Function             Approved Budget and            Cumulative Expenditure             Status and Reasons for any
+Key Output                      Planned outputs                and Performance                    Variation from Plans
+                                vaccines procured and          Penta: 4,370,500
+                                distributed                    PCV: 2,004,400
+
+                                                               The following doses and
+                                                               syringes were procured using
+                                                               GoU funds
+                                                               BCG: 5,262,000
+                                                               Measles: 10,817,00
+                                                               tOPV: 19,372,000
+                                                               TT:         2,333,020
+
+
+                                                               Syringes 0.5ml: 8,405,400
+                                                               Syringes 5ml: 13,943,700
+
+                                                               All regions received funds from
+                                                               UNICEF to support cold chain
+                                                               Maintenance
+Performance Indicators:
+No. of EPI technical                               4                                4
+quarterly support supervision
+visits conducted to districts
+                Output Cost:    UShs Bn:          275.658      UShs Bn:                 216.221 % Budget Spent:           78.4%
+Output: 080502            Strengthening Capacity of Health Facility Managers
+Description of Performance:                               NA                                      NA
+                Output Cost:   UShs Bn:             3.698    UShs Bn:                      0.330 % Budget Spent:           8.9%
+Output: 080580            Diagnostic and Other Equipment Procured
+Description of Performance:                               NA                                      NA
+                Output Cost:     UShs Bn:             0.221   UShs Bn:                    0.000 % Budget Spent:            0.0%
+Vote Function Cost           UShs Bn:              312.304 UShs Bn:                     227.737 % Budget Spent:           72.9%
+Vote Function: 0849 Policy, Planning and Support Services
+Vote Function Cost              UShs Bn:                 21.646 UShs Bn:                 15.762 % Budget Spent:           72.8%
+Cost of Vote Services:          UShs Bn:                577.131 UShs Bn:                372.579 % Budget Spent:           64.6%
+* Excluding Taxes and Arrears
+
+Drafting of the HSDP is ongoing.
+NHIS bill is awaiting a certificate of financial implication/clearance from the ministry of finance.
+End of financial year (2014/15) review meeting held and report submitted to OPM and MoFPED
+Regularization of the contracts of health workers was undertaken country wide.
+Traditional Medicine Bill prepared and disseminated through local newspaper (BUKEDE Newspaper)
+Continued providing anticonvulsant medicines on bimonthly basis for case management of nodding disease
+syndrome from NMS ,60% of scheduled construction works under the UHSSP have been completed and most
+of the 9 Hospitals are at finishing stage. Works to be completed by February 2016. The Hospitals include:
+Moroto, Moyo, Nebbi, Anaka, Kiryandongo, Nakaseke, Mityana and Entebbe.
+Table V2.2: Implementing Actions to Improve Vote Performance
+Planned Actions:                            Actual Actions:                             Reasons for Variation
+Vote: 014 Ministry of Health
+Vote Function: 08 01 Sector Monitoring and Quality Assurance
+Client Charter disseminated to all districts. Rolled out Client Charter to 14 Regional On track
+Client satisfaction survey disseminated       Referral Hospitals. Disseminated Client
+                                              Charter key messages to 112 district
+                                              General Hospitals and HC IVs.
+                                              Disseminated Uganda Clinical
+                                              Guidelines to 21 districts in Eastern and
+                                              Central region, Disseminated Health
+                                              Sector Quality Improvement
+                                              Framework and Strategic plan to 35
+                                              districts.
+Vote Function: 08 49 Policy, Planning and Support Services
+                                                                            443
+Vote: 014                       Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Planned Actions:                               Actual Actions:                               Reasons for Variation
+The sector shall, continue Implementing        Continued Implementing the motivation NA
+the motivation and retention strategy for      and retention strategy for health
+health workers, the hard to reach              workers, the hard to reach incentive
+incentive scheme to all districts involved     scheme to all districts involved and build
+and build capacity for management              capacity for management functions for
+functions for health facilities                health facilities
+Vote: 014 Ministry of Health
+Vote Function: 08 03 Health Research
+Implement research health policy and the    The implementation of the health                 No Variance
+strategic plan                              reserch policy is on going by the
+                                            research institutions
+                                            including;UNHRO,UVRI and NCRI
+Vote Function: 08 04 Clinical and public health
+Implement the M&E strategy.                Development partners have been                    No variance
+                                           brought on board to support the
+                                           ministry officials in the support
+                                           supervision activities.
+Operationalise the VHT strategy in 36      The VHT strategy has been                         NA
+poorly performing districts                implemented in 36 poorly performing
+                                           districts. The MOH is looking at
+                                           revising the CHEWs to provide a
+                                           solution to the challenges faced by . The
+                                           VHTs.
+Vote Function: 08 49 Policy, Planning and Support Services
+National Health Information Strategy           National Health Information Strategy          consultancy is needed to complete the bill.
+(NHIS) implemented                             (NHIS) still under draft
+Vote: 014 Ministry of Health
+Vote Function: 08 05 Pharmaceutical and other Supplies
+Further continue implementing the              Procurement planning and distribution    The mandate of planning and distribution
+Government Policy on procurement of            of medicines and health supplies has    of medicines and supplies is for NMS
+medicines and medical supplies                 continued to be the mandate of National
+                                               Medical Stores (NMS).
+
+V3: Details of Releases and Expenditure
+This section provides a comprehensive summary of the outputs delivered by the Vote and further details of Vote
+expenditures by Vote Function and Expenditure Item.
+
+Table V3.1: GoU Releases and Expenditure by Output*
+Billion Uganda Shillings                                                Approved Released         Spent     % GoU     % GoU       % GoU
+                                                                          Budget                            Budget    Budget     Releases
+                                                                                                           Released     Spent       Spent
+VF:0801 Sector Monitoring and Quality Assurance                              0.81     0.59         0.59      73.1%      73.0%      99.9%
+Class: Outputs Provided                                                      0.81     0.59         0.59      73.1%      73.0%      99.9%
+080101 Sector performance monitored and evaluated                            0.23     0.17         0.17      74.1%      73.8%      99.6%
+080102 Standards and guidelines disseminated                                 0.07     0.04         0.04      52.1%      52.1%     100.0%
+080103 Support supervision provided to Local Governments and referral        0.39     0.33         0.33      82.9%      82.9%     100.0%
+        hospitals
+080104 Standards and guidelines developed                                    0.11     0.06         0.06      50.3%      50.3%     100.0%
+VF:0802 Health systems development                                           4.46     3.41         3.15      76.4%      70.7%      92.5%
+Class: Outputs Provided                                                      2.30     1.94         1.91      84.6%      83.0%      98.1%
+080201 Monitoring, Supervision and Evaluation of Health Systems              2.30     1.94         1.91      84.6%      83.0%      98.1%
+Class: Capital Purchases                                                     2.16     1.46         1.24      67.6%      57.5%      85.0%
+080272 Government Buildings and Administrative Infrastructure                0.58     0.38         0.34      65.5%      59.0%      90.0%
+080275 Purchase of Motor Vehicles and Other Transport Equipment              0.46     0.36         0.36      78.4%      77.7%      99.1%
+080276 Purchase of Office and ICT Equipment, including Software              0.12     0.12         0.08     100.0%      64.0%      64.0%
+080280 Hospital Construction/rehabilitation                                  1.00     0.60         0.47      60.0%      46.6%      77.6%
+VF:0803 Health Research                                                      2.41     2.12         2.08      87.9%      86.3%      98.2%
+Class: Outputs Provided                                                      0.95     0.95         0.92     100.0%      96.2%      96.2%
+080303 Research coordination                                                 0.95     0.95         0.92     100.0%      96.2%      96.2%
+Class: Outputs Funded                                                        1.46     1.17         1.17      80.0%      79.8%      99.8%
+080351 Specialised Medical Research in HIV/AIDS and Clinical Care            0.24     0.24         0.24     100.0%     100.0%     100.0%
+        (JCRC)                                                               444
+Vote: 014                         Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Billion Uganda Shillings                                                     Approved Released            Spent       % GoU      % GoU        % GoU
+                                                                               Budget                                 Budget     Budget      Releases
+                                                                                                                     Released      Spent        Spent
+080352 Support to Uganda National Health Research                                 1.22      0.93           0.92        76.0%       75.8%       99.8%
+        Organisation(UNHRO)
+VF:0804 Clinical and public health                                               21.21     23.34          23.31       110.0%      109.9%       99.9%
+Class: Outputs Provided                                                          14.78     16.91          16.88       114.4%      114.2%       99.8%
+080401 Community health services provided (control of communicable                3.16      2.18           2.13        68.8%       67.4%       97.9%
+        and non communicable diseases)
+080402 Clinical health services provided (infrastructure, pharmaceutical,         1.86      1.52           1.52        82.0%       81.9%       99.8%
+        integrated curative)
+080403 National endemic and epidemic disease control services provided            2.84     10.23          10.22       360.5%      360.1%       99.9%
+080404 Technical support, monitoring and evaluation of service                    0.38      0.32           0.32        83.2%       83.0%       99.7%
+        providers and facilities
+080405 Immunisation services provided                                             0.86      0.49           0.49        56.4%       56.4%      100.0%
+080408 Photo-biological Control of Malaria                                        1.00      0.40           0.35        40.3%       35.3%       87.6%
+080409 Indoor Residual Spraying (IRS) services provided                           2.08      0.83           0.83        40.0%       40.0%      100.0%
+080410 Maintenance of medical and solar equipment                                 0.40      0.22           0.22        56.2%       56.2%      100.0%
+080411 Coordination of clinical and public health emergencies including           2.20      0.71           0.79        32.2%       36.1%      112.2%
+        the response to the nodding syndrome
+Class: Outputs Funded                                                             6.43      6.43           6.43       100.0%      100.0%      100.0%
+080451 Medical Intern Services                                                    6.43      6.43           6.43       100.0%      100.0%      100.0%
+VF:0805 Pharmaceutical and other Supplies                                         8.21      7.28           7.24        88.6%       88.2%       99.6%
+Class: Outputs Provided                                                           8.21      6.86           6.83        83.5%       83.2%       99.6%
+080501 Preventive and curative Medical Supplies (including                        3.20      3.53           3.53       110.3%      110.3%      100.0%
+        immuninisation)
+080503 Monitoring and Evaluation Capacity Improvement                             5.01      3.33           3.30        66.4%       65.8%       99.1%
+Class: Capital Purchases                                                          0.00      0.42           0.41          N/A         N/A       99.6%
+080580 Diagnostic and Other Equipment Procured                                    0.00      0.42           0.41          N/A         N/A       99.6%
+VF:0849 Policy, Planning and Support Services                                    12.03     10.76          10.52        89.4%       87.5%       97.8%
+Class: Outputs Provided                                                           9.63      8.87           8.69        92.2%       90.3%       98.0%
+084901 Policy, consultation, planning and monitoring services                     3.67      2.90           2.80        79.1%       76.4%       96.6%
+084902 Ministry Support Services                                                  3.93      4.48           4.42       114.0%      112.3%       98.5%
+084903 Ministerial and Top Management Services                                    1.32      1.14           1.14        86.5%       85.9%       99.4%
+084904 Health Sector reforms including financing and national health              0.71      0.35           0.34        48.9%       48.1%       98.5%
+        accounts
+Class: Outputs Funded                                                             2.40      1.88           1.83        78.4%       76.2%       97.2%
+084951 Transfers to International Health Organisation                             0.20      0.18           0.13        90.0%       65.0%       72.2%
+084952 Health Regulatory Councils                                                 0.30      0.18           0.18        58.3%       58.3%      100.0%
+084953 Support to Health Workers recruited at HC III and IV                       1.90      1.53           1.52        80.3%       80.2%       99.8%
+ Total For Vote                                                                  49.13     47.48          46.90        96.6%       95.4%       98.8%
+* Excluding Taxes and Arrears
+Table V3.2: 2014/15 GoU Expenditure by Item
+Billion Uganda Shillings                                        Approved        Releases    Expend-         % Budged       % Budget        %Releases
+                                                                  Budget                       iture         Released         Spent           Spent
+Output Class: Outputs Provided                                       36.68         36.31       36.00              99.0%         98.1%         99.1%
+211101   General Staff Salaries                                       5.75         6.37            6.23           110.9%        108.4%        97.7%
+211102   Contract Staff Salaries (Incl. Casuals, Temporary)           3.22         2.87            2.84            89.1%         88.2%        98.9%
+211103   Allowances                                                   1.23         0.94            0.93            76.3%         76.1%        99.8%
+212101   Social Security Contributions                                0.17         0.14            0.14            83.9%         79.9%        95.3%
+212102   Pension for General Civil Service                            0.00         0.10            0.10              N/A           N/A       100.0%
+213001   Medical expenses (To employees)                              0.11         0.10            0.10            94.6%         94.6%       100.0%
+213002   Incapacity, death benefits and funeral expenses              0.03         0.03            0.03            95.3%         95.3%       100.0%
+213004   Gratuity Expenses                                            0.00         0.20            0.20              N/A           N/A       100.0%
+221001   Advertising and Public Relations                             0.36         0.13            0.13            35.0%         36.2%       103.3%
+221002   Workshops and Seminars                                       1.03         1.04            1.05           101.2%        101.5%       100.2%
+221003   Staff Training                                               1.37         0.97            0.88            70.8%         64.1%        90.6%
+221005   Hire of Venue (chairs, projector, etc)                       0.10         0.03            0.03            31.2%         31.2%       100.0%
+221007   Books, Periodicals & Newspapers                              0.05         0.03            0.03            70.2%         70.2%       100.0%
+221008   Computer supplies and Information Technology (IT             0.11         0.07            0.07            60.1%         60.1%       100.0%
+221009   Welfare and Entertainment                                    0.39         0.32            0.32            81.7%         81.7%       100.0%
+221010   Special Meals and Drinks                                     0.00         0.00            0.00            97.7%         97.7%       100.0%
+221011   Printing, Stationery, Photocopying and Binding               1.31        445
+                                                                                   0.96            0.95            73.5%         72.3%        98.4%
+221012   Small Office Equipment                                       0.05         0.03            0.03            62.1%         61.5%        99.0%
+Vote: 014                         Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Billion Uganda Shillings                                       Approved      Releases    Expend-         % Budged       % Budget      %Releases
+                                                                 Budget                     iture         Released         Spent         Spent
+221016   IFMS Recurrent costs                                      0.05          0.05           0.05           100.0%        100.0%      100.0%
+221017   Subscriptions                                             0.00          0.00           0.00           100.0%        100.0%      100.0%
+221020   IPPS Recurrent Costs                                      0.03          0.01           0.01            41.0%         41.0%      100.0%
+222001   Telecommunications                                        0.13          0.13           0.13            96.9%         96.8%       99.9%
+222002   Postage and Courier                                       0.01          0.01           0.01            69.0%         69.0%      100.0%
+222003   Information and communications technology (ICT)           0.04          0.04           0.04            89.8%         89.8%      100.0%
+223001   Property Expenses                                         0.24          0.54           0.54           225.0%        225.0%      100.0%
+223005   Electricity                                               0.32          0.19           0.19            59.1%         59.1%      100.0%
+223006   Water                                                     0.14          0.09           0.09            65.1%         65.1%      100.0%
+223007   Other Utilities- (fuel, gas, firewood, charcoal)          0.28          0.15           0.15            55.1%         55.1%      100.0%
+224001   Medical and Agricultural supplies                         6.02          8.30           8.25           138.0%        137.1%       99.4%
+225001   Consultancy Services- Short term                          1.20          0.40           0.40            33.2%         33.2%      100.0%
+225002   Consultancy Services- Long-term                           0.16          0.04           0.04            25.0%         25.0%      100.0%
+225003   Taxes on (Professional) Services                          1.50          0.99           0.98            65.8%         65.1%       98.9%
+227001   Travel inland                                             4.97          3.25           3.25            65.3%         65.3%      100.0%
+227002   Travel abroad                                             0.83          0.79           0.78            95.1%         93.8%       98.6%
+227004   Fuel, Lubricants and Oils                                 1.60          1.37           1.37            85.3%         85.2%       99.8%
+228002   Maintenance - Vehicles                                    0.69          0.51           0.49            73.4%         70.3%       95.8%
+228003   Maintenance ­ Machinery, Equipment & Furniture            0.75          0.42           0.41            55.2%         54.6%       98.9%
+228004   Maintenance ­ Other                                       0.57          0.26           0.24            44.8%         43.0%       96.0%
+273101   Medical expenses (To general Public)                      1.85          0.52           0.60            27.9%         32.6%      116.8%
+282181   Extra-Ordinary Items (Losses/Gains)                       0.00          3.92           3.92              N/A           N/A      100.0%
+Output Class: Outputs Funded                                      10.29          9.48           9.42           92.1%         91.6%        99.4%
+262101   Contributions to International Organisations (Curre       0.20          0.18           0.13            90.0%         65.0%       72.2%
+263104   Transfers to other govt. Units (Current)                  3.12          2.45           2.45            78.6%         78.5%       99.8%
+263204   Transfers to other govt. Units (Capital)                  0.30          0.18           0.18            58.3%         58.3%      100.0%
+264101   Contributions to Autonomous Institutions                  6.43          6.43           6.43           100.0%        100.0%      100.0%
+264102   Contributions to Autonomous Institutions (Wage Su         0.24          0.24           0.24           100.0%        100.0%      100.0%
+Output Class: Capital Purchases                                    6.40          4.02           3.78           62.8%         59.0%        94.0%
+231001 Non Residential buildings (Depreciation)                    1.58          0.98           0.81            62.0%         51.1%       82.4%
+231004   Transport equipment                                       0.46          0.59           0.59           128.0%        127.3%       99.4%
+231005   Machinery and equipment                                   0.12          0.12           0.08           100.0%         64.0%       64.0%
+312105   Taxes on Buildings & Structures                           3.30          1.54           1.54            46.7%         46.7%      100.0%
+312204   Taxes on Machinery, Furniture & Vehicles                  0.94          0.79           0.76            84.0%         81.5%       97.0%
+Output Class: Arrears                                              0.37          0.37           0.37           100.0%        100.0%      100.0%
+321612 Water arrears(Budgeting)                                    0.07          0.07           0.07           100.0%        100.0%      100.0%
+321614 Electricity arrears (Budgeting)                             0.30          0.30           0.30           100.0%        100.0%      100.0%
+Grand Total:                                                      53.75         50.18       49.57              93.4%         92.2%        98.8%
+Total Excluding Taxes and Arrears:                                49.13         47.48       46.90              96.6%         95.4%        98.8%
+
+Table V3.3: GoU Releases and Expenditure by Project and Programme*
+Billion Uganda Shillings                                                  Approved Released            Spent       % GoU       % GoU      % GoU
+                                                                            Budget                                 Budget      Budget    Releases
+                                                                                                                  Released       Spent      Spent
+VF:0801 Sector Monitoring and Quality Assurance                                0.81      0.59           0.59        73.1%       73.0%      99.9%
+Recurrent Programmes
+03    Quality Assurance                                                        0.81      0.59           0.59        73.1%       73.0%      99.9%
+VF:0802 Health systems development                                             4.46      3.41           3.15        76.4%       70.7%      92.5%
+Development Projects
+0216 District Infrastructure Support Programme                                 1.40      0.66           0.63        47.3%       45.4%      95.9%
+1027 Insitutional Support to MoH                                               1.01      0.71           0.63        70.4%       62.4%      88.6%
+1123 Health Systems Strengthening                                              0.40      0.38           0.38        95.6%       95.6%     100.0%
+1187 Support to Mulago Hospital Rehabilitation                                 0.85      0.85           0.84       100.0%       99.1%      99.1%
+1315 Construction of Specialised Neonatal and Maternal Unit in                 0.80      0.80           0.66       100.0%       82.6%      82.6%
+      Mulago Hospital
+VF:0803 Health Research                                                        2.41      2.12           2.08        87.9%       86.3%      98.2%
+Recurrent Programmes
+04    Research Institutions                                                    2.17      1.88           1.84        86.5%       84.8%      98.0%
+05    JCRC                                                                     0.24      0.24           0.24       100.0%      100.0%     100.0%
+                                                                               446
+VF:0804 Clinical and public health                                            21.21     23.34          23.31       110.0%      109.9%      99.9%
+Vote: 014                        Ministry of Health
+QUARTER 4: Highlights of Vote Performance
+Billion Uganda Shillings                                                  Approved Released    Spent     % GoU     % GoU      % GoU
+                                                                            Budget                       Budget    Budget    Releases
+                                                                                                        Released     Spent      Spent
+Recurrent Programmes
+06     Community Health                                                        3.11     2.14     2.09     68.7%     67.3%      97.9%
+07     Clinical Services                                                       8.89     8.32     8.31     93.6%     93.6%      99.9%
+08     National Disease Control                                                8.73    12.51    12.54    143.3%    143.6%     100.2%
+11     Nursing Services                                                        0.18     0.18     0.18     97.3%     96.8%      99.6%
+Development Projects
+1148 Public Health Laboratory strengthening project                            0.25     0.15     0.15     60.0%     60.0%     100.0%
+1218 Uganda Sanitation Fund Project                                            0.05     0.04     0.04     75.0%     75.0%     100.0%
+VF:0805 Pharmaceutical and other Supplies                                      8.21     7.28     7.24     88.6%     88.2%      99.6%
+Development Projects
+0220 Global Fund for AIDS, TB and Malaria                                      5.01     3.75     3.71     74.7%     74.1%      99.2%
+1141 Gavi Vaccines and HSSP                                                    3.20     3.53     3.53    110.3%    110.3%     100.0%
+VF:0849 Policy, Planning and Support Services                                 12.03    10.76    10.52     89.4%     87.5%      97.8%
+Recurrent Programmes
+01     Headquarters                                                            7.24    7.14      7.02     98.6%     96.9%      98.3%
+02     Planning                                                                4.38    3.25      3.14     74.2%     71.8%      96.8%
+10     Internal Audit Department                                               0.42    0.37      0.36     89.1%     87.4%      98.1%
+ Total For Vote                                                               49.13    47.48    46.90     96.6%     95.4%      98.8%
+* Excluding Taxes and Arrears
+Table V3.4: External Financing Releases and Expenditure by Project and Programme*
+Billion Uganda Shillings                                                  Approved Released    Spent     % GoU     % GoU      % GoU
+                                                                            Budget                       Budget    Budget    Releases
+                                                                                                        Released     Spent      Spent
+VF:0802 Health systems development                                           206.05    98.26    98.26     47.7%     47.7%     100.0%
+Development Projects
+1123 Health Systems Strengthening                                             80.61    58.16    58.16     72.1%     72.1%     100.0%
+1187 Support to Mulago Hospital Rehabilitation                                55.83    38.73    38.73     69.4%     69.4%     100.0%
+1243 Rehabilitation and Construction of General Hospitals                     12.59     0.00     0.00      0.0%      0.0%        N/A
+1314 Rehabilitation and Equiping of Health Facilities in Western Region       43.58     0.00     0.00      0.0%      0.0%        N/A
+1315 Construction of Specialised Neonatal and Maternal Unit in                13.44     1.37     1.37     10.2%     10.2%     100.0%
+       Mulago Hospital
+VF:0804 Clinical and public health                                             8.24     1.50     1.69     18.3%     20.5%     112.6%
+Development Projects
+1148 Public Health Laboratory strengthening project                            5.11     1.34     1.34     26.2%     26.2%     100.0%
+1218 Uganda Sanitation Fund Project                                            3.13     0.16     0.35      5.2%     11.3%     215.6%
+VF:0805 Pharmaceutical and other Supplies                                    304.09   398.16   220.49    130.9%     72.5%      55.4%
+Development Projects
+0220 Global Fund for AIDS, TB and Malaria                                    255.80   315.09   212.57    123.2%     83.1%      67.5%
+1141 Gavi Vaccines and HSSP                                                   48.29    83.07     7.92    172.0%     16.4%       9.5%
+VF:0849 Policy, Planning and Support Services                                  9.62     5.24     5.24     54.5%     54.5%     100.0%
+Development Projects
+1145 Institutional Capacity Building                                           9.62     5.24     5.24     54.5%     54.5%     100.0%
+ Total For Vote                                                              528.00   503.16   325.68     95.3%     61.7%      64.7%
+
+
+
+
+                                                                               447
 

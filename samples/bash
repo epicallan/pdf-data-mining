@@ -1,4 +1,4 @@
 #!/bin/bash
 # you can run the scrapping for the various 'votes' as bash commands
-budget -f 437 -l 438 -n health-regular 2014-15.pdf
-budget -o -f 437 -l 438 -n health-over 2014-15.pdf
+budget -f 437 -l 447 -n health-regular 2014-15.pdf
+budget -o -f 437 -l 437 -n health-over-view 2014-15.pdf
