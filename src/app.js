@@ -90,12 +90,13 @@ function readInFile(segments, readFileByLine) {
 function main(segments) {
   const minedTextFile = program.args[0].split('.');
   const readFileByLine = readline.createInterface({
-    input: fs.createReadStream(`${minedTextFile}.txt`)
+    input: fs.createReadStream(`${minedTextFile[0]}.txt`)
   });
   readInFile(segments, readFileByLine);
   readFileByLine.on('close', () => {
     csvStream.end();
     console.log('*finished reading files closing*');
+    setTimeout(() => process.exit, 2000); // exit process
   });
 }
 
