@@ -2,11 +2,7 @@ import fs from 'fs';
 import readline from 'readline';
 import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
-import {
-  budgetSegmentsToRead,
-  transformRegular,
-  transformOverview
-} from './config';
+import { budgetSegmentsToRead, transformRegular, transformOverview } from './config';
 import program from './cli';
 
 const spawn = require('child_process').spawn;
@@ -34,8 +30,11 @@ const csvStream = (() => {
   return stream;
 })();
 
+// transform sentences to array and removes empty elements(space)
 const csvLineTowrite = (line) => line.split('  ').filter(word => word.length > 1);
 
+// function we use to writing out csv lines for regular tables
+// to the csv file
 const writeLineToFileRegular = (line, title) => {
   const csvLine = csvLineTowrite(line);
   // check whether we have numbers after the first items in the array
@@ -50,7 +49,8 @@ const writeLineToFileRegular = (line, title) => {
 
 // looks bad global variable FIXME
 let missingValue = null;
-
+// function we use to writing out csv lines for the overviewVoteExpenditure table
+// which is abit different from the rest of the tables
 const writeLineToOverView = (line, title) => {
   const csvLine = csvLineTowrite(line);
   // check whether we have numbers after the first items in the array
@@ -62,8 +62,6 @@ const writeLineToOverView = (line, title) => {
   if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
 
   if (csvLine.length > 6 && !isNotValidLine && title.includes('Overview of Vote Expenditures')) {
-    // console.log(csvLine, csvLine.length);
-    // if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
     csvLine.push(title);
     csvStream.write(csvLine);
   }
@@ -108,6 +106,5 @@ pdftoTextProcess.stderr.on('data', (data) => {
 
 pdftoTextProcess.on('close', (code) => {
   console.log(`child process exited with code  ${code}`);
-  // const segments = program.overview ? overviewVoteExpenditure : budgetSegmentsToRead;
   setTimeout(main(budgetSegmentsToRead), 3000);
 });

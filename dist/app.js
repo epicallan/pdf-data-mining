@@ -92,12 +92,15 @@
 	  return stream;
 	}();
 
+	// transform sentences to array and removes empty elements(space)
 	var csvLineTowrite = function csvLineTowrite(line) {
 	  return line.split('  ').filter(function (word) {
 	    return word.length > 1;
 	  });
 	};
 
+	// function we use to writing out csv lines for regular tables
+	// to the csv file
 	var writeLineToFileRegular = function writeLineToFileRegular(line, title) {
 	  var csvLine = csvLineTowrite(line);
 	  // check whether we have numbers after the first items in the array
@@ -114,7 +117,8 @@
 
 	// looks bad global variable FIXME
 	var missingValue = null;
-
+	// function we use to writing out csv lines for the overviewVoteExpenditure table
+	// which is abit different from the rest of the tables
 	var writeLineToOverView = function writeLineToOverView(line, title) {
 	  var csvLine = csvLineTowrite(line);
 	  // check whether we have numbers after the first items in the array
@@ -128,8 +132,6 @@
 	  if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
 
 	  if (csvLine.length > 6 && !isNotValidLine && title.includes('Overview of Vote Expenditures')) {
-	    // console.log(csvLine, csvLine.length);
-	    // if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
 	    csvLine.push(title);
 	    csvStream.write(csvLine);
 	  }
@@ -181,7 +183,6 @@
 
 	pdftoTextProcess.on('close', function (code) {
 	  console.log('child process exited with code  ' + code);
-	  // const segments = program.overview ? overviewVoteExpenditure : budgetSegmentsToRead;
 	  setTimeout(main(_config.budgetSegmentsToRead), 3000);
 	});
 
