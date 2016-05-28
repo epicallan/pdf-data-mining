@@ -7,6 +7,8 @@
     "build": "rimraf dist && webpack --progress --colors --optimize-minimize",
     "dev": "webpack --watch",
     "lint": "eslint src --cache",
+    "test": " NODE_ENV=test mocha $(find src -name '*-test.js')  --compilers js:babel-core/register",
+    "test-watch": "NODE_ENV=test mocha $(find src -name '*-test.js') --compilers js:babel-core/register --watch",
     "util-watch": "nodemon dist/util",
     "util": "node dist/util"
     },

@@ -49,7 +49,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getVoteTitle = undefined;
+	exports.getVoteTitle = exports.writeLineToFileRegular = exports.shouldHaveNumericalValues = undefined;
 
 	var _fs = __webpack_require__(1);
 
@@ -75,27 +75,32 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	var spawn = __webpack_require__(32).spawn;
 
-	var pdftoTextProcess = spawn('pdftotext', ['-layout', '-f', _cli2.default.first, '-l', _cli2.default.last, _cli2.default.args[0]]);
+	var pdftoTextProcess = function pdftoTextProcess() {
+	  return spawn('pdftotext', ['-layout', '-f', _cli2.default.first, '-l', _cli2.default.last, _cli2.default.args[0]]);
+	};
 
 	// returns a file stream, which the csv stream pipes into
-	var writableStream = function () {
+	var writableStream = function writableStream() {
 	  var date = new Date();
 	  var time = date.getTime();
 	  var csvFileName = _cli2.default.name + '-' + time || time;
 	  var stream = _fs2.default.createWriteStream(csvFileName + '.csv');
 	  return stream;
-	}();
+	};
 
 	// configuring csv stream object which feeds into the file stream
-	var csvStream = function () {
+	var csvStream = function csvStream() {
+	  var writeStream = writableStream();
 	  var stream = _fastCsv2.default.createWriteStream({ headers: true });
 	  // adding a transformation function that is responsible for the row titles
 	  var transform = _cli2.default.overview ? _config.transformOverview : _config.transformRegular;
-	  stream.transform(transform).pipe(writableStream);
+	  stream.transform(transform).pipe(writeStream);
 	  return stream;
-	}();
+	};
 
 	// transform sentences to array and removes empty elements(space)
 	var csvLineTowrite = function csvLineTowrite(line) {
@@ -104,42 +109,61 @@
 	  });
 	};
 
+	var shouldHaveNumericalValues = exports.shouldHaveNumericalValues = function shouldHaveNumericalValues(line) {
+	  var chunkedLine = csvLineTowrite(line);
+	  if (chunkedLine.length < 7) return false;
+	  var lastValues = chunkedLine.slice(2, chunkedLine.length);
+	  var values = lastValues.map(function (val) {
+	    var value = val;
+	    if (val.includes('N/A')) value = 0;
+	    return parseInt(value, 10);
+	  });
+	  var isLineValid = values.every(function (val) {
+	    return Number.isInteger(val);
+	  });
+	  return isLineValid;
+	};
 	// function we use to writing out csv lines for regular tables
 	// to the csv file
-	var writeLineToFileRegular = function writeLineToFileRegular(line, title) {
+	var writeLineToFileRegular = exports.writeLineToFileRegular = function writeLineToFileRegular(line, _ref) {
+	  var title = _ref.title;
+	  var voteTitle = _ref.voteTitle;
+	  var stream = _ref.stream;
+
 	  var csvLine = csvLineTowrite(line);
+	  var hasNumericalValues = shouldHaveNumericalValues(line);
+	  if (!hasNumericalValues) return false;
 	  // check whether we have numbers after the first items in the array
-	  var onlyValues = csvLine.slice(2, csvLine.length - 1);
-	  var isNotValidLine = onlyValues.every(function (val) {
-	    return isNaN(val);
-	  });
-	  if (csvLine.length > 6 && !isNotValidLine && !title.includes('Overview of Vote Expenditures')) {
+	  if (hasNumericalValues && !title.includes('Overview of Vote Expenditures')) {
 	    if (csvLine.length !== 7) csvLine.splice(0, 2, csvLine[0] + ' ' + csvLine[1]);
-	    csvLine.push(title);
-	    csvStream.write(csvLine);
+	    stream.write([].concat(_toConsumableArray(csvLine), [voteTitle, title]));
 	  }
+	  return true;
 	};
 
 	// looks bad global variable FIXME
+	// the missing value we are looking for is on a previous line
+	// so we cache is here till the line that needs it comes up and we use it
 	var missingValue = null;
 	// function we use to writing out csv lines for the overviewVoteExpenditure table
 	// which is abit different from the rest of the tables
-	var writeLineToOverView = function writeLineToOverView(line, title) {
+	var writeLineToOverView = function writeLineToOverView(line, _ref2) {
+	  var title = _ref2.title;
+	  var voteTitle = _ref2.voteTitle;
+	  var stream = _ref2.stream;
+
 	  var csvLine = csvLineTowrite(line);
 	  // check whether we have numbers after the first items in the array
-	  var onlyValues = csvLine.slice(2, csvLine.length - 1);
-	  var isNotValidLine = onlyValues.every(function (val) {
-	    return isNaN(val);
-	  });
+	  var hasNumericalValues = shouldHaveNumericalValues(line);
+	  if (!hasNumericalValues) return false;
 	  // table structure quacks
 	  if (line.includes('Recurrent')) missingValue = csvLine[1];
 	  if (line.includes('Non Wage')) csvLine.splice(2, 0, missingValue);
 	  if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
-
-	  if (csvLine.length > 6 && !isNotValidLine && title.includes('Overview of Vote Expenditures')) {
-	    csvLine.push(title);
-	    csvStream.write(csvLine);
+	  if (hasNumericalValues && title.includes('Overview of Vote Expenditures')) {
+	    stream.write([].concat(_toConsumableArray(csvLine), [voteTitle, title]));
 	  }
+	  return true;
 	};
 
 	var isNewTableTitleExpressions = function isNewTableTitleExpressions(segments) {
@@ -155,20 +179,21 @@
 	  // only returns vote titles
 	  var chunkedLine = csvLineTowrite(line);
 	  // should have a count of 3
-	  if (chunkedLine.length !== 3) return currentVote;
+	  if (chunkedLine.length !== 2) return currentVote;
 	  // test whether first item is Vote: and  2nd is a number and third a string
-	  var isNumber = Number.isInteger(parseInt(chunkedLine[1], 10));
+	  var voteNumber = chunkedLine[0].split(' ')[1];
+	  var isNumber = Number.isInteger(parseInt(voteNumber, 10));
 	  if (!isNumber) return currentVote;
-	  if (isNumber && typeof chunkedLine[2] === 'string') return chunkedLine[2];
+	  if (isNumber && typeof chunkedLine[1] === 'string') return chunkedLine[1].replace(/^\s/, '');
 	  return currentVote;
 	};
 
-	function readInFile(segments, readFileByLine) {
+	function writeCSVFile(segments, readFileByLine, stream) {
 	  var startMining = false;
 	  var isTableTitle = false;
 	  var title = null;
 	  var currentVoteTitle = null;
-	  var writetoFile = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
+	  var writeCSVLine = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
 	  var isTableExpressions = isNewTableTitleExpressions(segments);
 	  readFileByLine.on('line', function (line) {
 	    isTableTitle = isTableExpressions.some(function (expression) {
@@ -182,34 +207,46 @@
 	      startMining = true;
 	      console.log('currentTable: ', currentVoteTitle + ': ' + title);
 	    }
-	    if (startMining && currentVoteTitle) writetoFile(line, title);
+	    if (startMining && currentVoteTitle) writeCSVLine(line, { title: title, currentVoteTitle: currentVoteTitle, stream: stream });
 	  });
 	}
 
-	function main(segments) {
+	var readByLine = function readByLine() {
 	  var minedTextFile = _cli2.default.args[0].split('.');
-	  var readFileByLine = _readline2.default.createInterface({
+	  return _readline2.default.createInterface({
 	    input: _fs2.default.createReadStream(minedTextFile[0] + '.txt')
 	  });
-	  readInFile(segments, readFileByLine);
+	};
+
+	var closeReadingTextFile = function closeReadingTextFile(readFileByLine, stream) {
 	  readFileByLine.on('close', function () {
-	    csvStream.end();
+	    stream.end();
 	    console.log('*finished reading files closing*');
 	    setTimeout(function () {
 	      return process.exit;
 	    }, 2000); // exit process
 	  });
+	};
+
+	function main() {
+	  var pdfMining = pdftoTextProcess();
+	  var csvWriteStream = csvStream();
+
+	  pdfMining.stderr.on('data', function (data) {
+	    console.log('stderr : ' + data);
+	    process.exit();
+	  });
+
+	  pdfMining.on('close', function (code) {
+	    console.log('child process for PDFtoText exited with code  ' + code);
+	    setTimeout(function () {
+	      var readFileByLine = readByLine();
+	      writeCSVFile(_config.budgetSegmentsToRead, readFileByLine, csvWriteStream);
+	      closeReadingTextFile(readFileByLine, csvWriteStream);
+	    }, 2000);
+	  });
 	}
-
-	pdftoTextProcess.stderr.on('data', function (data) {
-	  console.log('stderr : ' + data);
-	  process.exit();
-	});
-
-	pdftoTextProcess.on('close', function (code) {
-	  console.log('child process exited with code  ' + code);
-	  setTimeout(main(_config.budgetSegmentsToRead), 3000);
-	});
+	exports.default = main;
 
 /***/ },
 /* 1 */
