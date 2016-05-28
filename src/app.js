@@ -70,20 +70,37 @@ const writeLineToOverView = (line, title) => {
 const isNewTableTitleExpressions =
   (segments) => segments.map(segment => verEx().find(segment.tableTitle));
 
+export const getVoteTitle = (line, currentVote) => {
+  // the line should start with Vote:
+  const hasVoteHasFirstLine = /^Vote:/.test(line);
+  if (!hasVoteHasFirstLine) return currentVote;
+  // only returns vote titles
+  const chunkedLine = csvLineTowrite(line);
+  // should have a count of 3
+  if (chunkedLine.length !== 3) return currentVote;
+  // test whether first item is Vote: and  2nd is a number and third a string
+  const isNumber = Number.isInteger(parseInt(chunkedLine[1], 10));
+  if (!isNumber) return currentVote;
+  if (isNumber && typeof chunkedLine[2] === 'string') return chunkedLine[2];
+  return currentVote;
+};
+
 function readInFile(segments, readFileByLine) {
   let startMining = false;
   let isTableTitle = false;
   let title = null;
+  let currentVoteTitle = null;
   const writetoFile = program.overview ? writeLineToOverView : writeLineToFileRegular;
   const isTableExpressions = isNewTableTitleExpressions(segments);
   readFileByLine.on('line', (line) => {
     isTableTitle = isTableExpressions.some(expression => expression.test(line));
+    currentVoteTitle = getVoteTitle(line, currentVoteTitle);
     if (isTableTitle) {
       title = segments.find(segment => line.includes(segment.tableTitle)).tableTitle;
       startMining = true;
-      console.log('currentTable: ', title);
+      console.log('currentTable: ', `${currentVoteTitle}: ${title}`);
     }
-    if (startMining) writetoFile(line, title);
+    if (startMining && currentVoteTitle) writetoFile(line, title);
   });
 }
 

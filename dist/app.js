@@ -46,6 +46,11 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getVoteTitle = undefined;
+
 	var _fs = __webpack_require__(1);
 
 	var _fs2 = _interopRequireDefault(_fs);
@@ -143,24 +148,41 @@
 	  });
 	};
 
+	var getVoteTitle = exports.getVoteTitle = function getVoteTitle(line, currentVote) {
+	  // the line should start with Vote:
+	  var hasVoteHasFirstLine = /^Vote:/.test(line);
+	  if (!hasVoteHasFirstLine) return currentVote;
+	  // only returns vote titles
+	  var chunkedLine = csvLineTowrite(line);
+	  // should have a count of 3
+	  if (chunkedLine.length !== 3) return currentVote;
+	  // test whether first item is Vote: and  2nd is a number and third a string
+	  var isNumber = Number.isInteger(parseInt(chunkedLine[1], 10));
+	  if (!isNumber) return currentVote;
+	  if (isNumber && typeof chunkedLine[2] === 'string') return chunkedLine[2];
+	  return currentVote;
+	};
+
 	function readInFile(segments, readFileByLine) {
 	  var startMining = false;
 	  var isTableTitle = false;
 	  var title = null;
+	  var currentVoteTitle = null;
 	  var writetoFile = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
 	  var isTableExpressions = isNewTableTitleExpressions(segments);
 	  readFileByLine.on('line', function (line) {
 	    isTableTitle = isTableExpressions.some(function (expression) {
 	      return expression.test(line);
 	    });
+	    currentVoteTitle = getVoteTitle(line, currentVoteTitle);
 	    if (isTableTitle) {
 	      title = segments.find(function (segment) {
 	        return line.includes(segment.tableTitle);
 	      }).tableTitle;
 	      startMining = true;
-	      console.log('currentTable: ', title);
+	      console.log('currentTable: ', currentVoteTitle + ': ' + title);
 	    }
-	    if (startMining) writetoFile(line, title);
+	    if (startMining && currentVoteTitle) writetoFile(line, title);
 	  });
 	}
 
