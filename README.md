@@ -6,11 +6,11 @@
 > You can mine per vote or section or everything by specifying the first and last page in your budget mine command
   see [bash script](https://github.com/epicallan/uganda-budget-data/blob/master/samples/bash)
 
-> All the tables with data that we are interested in and can mine per now are listed in the [config file](https://github.com/epicallan/uganda-budget-data/blob/master/src/config.js)
-  The overview vote Expenditure table is different from the rest and hence the need for specifying an option
-  indicating that
+> All the tables with data that we are interested in are listed in the [config file](https://github.com/epicallan/uganda-budget-data/blob/master/src/config.js).
+  The overview vote Expenditure table is different from the rest and hence the need for specifying the ``overview`` option
+  when mining it.
   ```
-    mining over view expenditure table
+    mining over view expenditure tables
   ```
   ```
   budget --overview -f 437 -l 438 -n health-over-views-expenditure 2014-15.pdf
