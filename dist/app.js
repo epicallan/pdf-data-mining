@@ -136,14 +136,15 @@
 	  // check whether we have numbers after the first items in the array
 	  if (hasNumericalValues && !title.includes('Overview of Vote Expenditures')) {
 	    if (csvLine.length !== 7) csvLine.splice(0, 2, csvLine[0] + ' ' + csvLine[1]);
-	    stream.write([].concat(_toConsumableArray(csvLine), [voteTitle, title]));
+	    stream.write([].concat(_toConsumableArray(csvLine), [title, voteTitle]));
 	  }
 	  return true;
 	};
 
 	// looks bad global variable FIXME
 	// the missing value we are looking for is on a previous line
-	// so we cache is here till the line that needs it comes up and we use it
+	// so we cache till the line that needs it comes up and we use it
+	// and we cant do that with in a function that is called every then
 	var missingValue = null;
 	// function we use to writing out csv lines for the overviewVoteExpenditure table
 	// which is abit different from the rest of the tables
@@ -153,15 +154,15 @@
 	  var stream = _ref2.stream;
 
 	  var csvLine = csvLineTowrite(line);
+	  if (line.includes('Recurrent')) missingValue = csvLine[1];
 	  // check whether we have numbers after the first items in the array
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
 	  if (!hasNumericalValues) return false;
 	  // table structure quacks
-	  if (line.includes('Recurrent')) missingValue = csvLine[1];
-	  if (line.includes('Non Wage')) csvLine.splice(2, 0, missingValue);
+	  if (line.includes('Non Wage') && missingValue) csvLine.splice(2, 0, missingValue);
 	  if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
 	  if (hasNumericalValues && title.includes('Overview of Vote Expenditures')) {
-	    stream.write([].concat(_toConsumableArray(csvLine), [voteTitle, title]));
+	    stream.write([].concat(_toConsumableArray(csvLine), [title, voteTitle]));
 	  }
 	  return true;
 	};
@@ -174,17 +175,20 @@
 
 	var getVoteTitle = exports.getVoteTitle = function getVoteTitle(line, currentVote) {
 	  // the line should start with Vote:
-	  var hasVoteHasFirstLine = /^Vote:/.test(line);
+	  // remove extra white space at the beginning of the line if any
+	  var newLine = line.replace(/^\s+/, '');
+	  var hasVoteHasFirstLine = /^Vote:/.test(newLine);
 	  if (!hasVoteHasFirstLine) return currentVote;
-	  // only returns vote titles
-	  var chunkedLine = csvLineTowrite(line);
-	  // should have a count of 3
-	  if (chunkedLine.length !== 2) return currentVote;
-	  // test whether first item is Vote: and  2nd is a number and third a string
-	  var voteNumber = chunkedLine[0].split(' ')[1];
-	  var isNumber = Number.isInteger(parseInt(voteNumber, 10));
+	  // should have the vote Number
+	  var chunkedLine = newLine.replace(/\s{2,}/, ' ').split(' ');
+	  // test whether 2nd element is a number and third a string
+	  var isNumber = Number.isInteger(parseInt(chunkedLine[1], 10));
 	  if (!isNumber) return currentVote;
-	  if (isNumber && typeof chunkedLine[1] === 'string') return chunkedLine[1].replace(/^\s/, '');
+	  if (isNumber && typeof chunkedLine[2] === 'string') {
+	    var voteTitle = newLine.replace(/(Vote:)(.*[0-9])(.\s)/, '');
+	    // console.log('line:', line); ;
+	    return voteTitle.replace(/^\s+/, '');
+	  }
 	  return currentVote;
 	};
 
@@ -192,22 +196,22 @@
 	  var startMining = false;
 	  var isTableTitle = false;
 	  var title = null;
-	  var currentVoteTitle = null;
+	  var voteTitle = null;
 	  var writeCSVLine = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
 	  var isTableExpressions = isNewTableTitleExpressions(segments);
 	  readFileByLine.on('line', function (line) {
 	    isTableTitle = isTableExpressions.some(function (expression) {
 	      return expression.test(line);
 	    });
-	    currentVoteTitle = getVoteTitle(line, currentVoteTitle);
+	    voteTitle = getVoteTitle(line, voteTitle);
 	    if (isTableTitle) {
 	      title = segments.find(function (segment) {
 	        return line.includes(segment.tableTitle);
 	      }).tableTitle;
 	      startMining = true;
-	      console.log('currentTable: ', currentVoteTitle + ': ' + title);
+	      console.log('Title', voteTitle);
 	    }
-	    if (startMining && currentVoteTitle) writeCSVLine(line, { title: title, currentVoteTitle: currentVoteTitle, stream: stream });
+	    if (startMining && voteTitle) writeCSVLine(line, { title: title, voteTitle: voteTitle, stream: stream });
 	  });
 	}
 
@@ -246,7 +250,8 @@
 	    }, 2000);
 	  });
 	}
-	exports.default = main;
+
+	if (_cli2.default.args.length && process.env.NODE_ENV !== 'test') main();
 
 /***/ },
 /* 1 */
@@ -6454,6 +6459,7 @@
 	// this is for all the tables that are alike
 	var transformRegular = exports.transformRegular = function transformRegular(row) {
 	  return {
+	    'Vote Name': row[8],
 	    'Table Name': row[7],
 	    Sector: row[0],
 	    'Approved Budget': row[1],
@@ -6467,6 +6473,7 @@
 	// overviewVoteExpenditure tables have different table names and structure
 	var transformOverview = exports.transformOverview = function transformOverview(row) {
 	  return {
+	    'Vote Name': row[9],
 	    'Table Name': row[8],
 	    Category: row[0],
 	    'Approved Budget': row[1],

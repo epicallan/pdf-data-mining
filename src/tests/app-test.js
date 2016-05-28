@@ -4,15 +4,18 @@ import { getVoteTitle, shouldHaveNumericalValues } from '../app.js';
 describe('app.js unit tests', () => {
   it('should get us a valid vote titles for each line', () => {
     const currentVoteTitle = null;
-    const testA = 'Vote: 102                       Electoral Commission';
-    const testB = 'Vote hey  102';
-    const testC = 'Vote 102                       Electoral Commission';
+    const testA = 'Vote: 164                       Electoral Commission';
+    const testB = 'Vote 102 Electoral Commission';
+    const testC = 'Vote: 102 Electoral Commission';
     const resultA = getVoteTitle(testA, currentVoteTitle);
     const resultB = getVoteTitle(testB, currentVoteTitle);
     const resultC = getVoteTitle(testC, currentVoteTitle);
     expect(resultA).to.be.equal('Electoral Commission');
+    // console.log('resultA', resultA);
     expect(resultB).to.be.null;
-    expect(resultC).to.be.null;
+    // console.log('resultB', resultB);
+    // console.log('resultC', resultC);
+    expect(resultC).to.be.equal('Electoral Commission');
   });
   it('line should have numbers to be valid and have a particular length', () => {
     /* eslint-disable max-len */

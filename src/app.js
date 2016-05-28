@@ -55,28 +55,29 @@ export const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
   // check whether we have numbers after the first items in the array
   if (hasNumericalValues && !title.includes('Overview of Vote Expenditures')) {
     if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
-    stream.write([...csvLine, voteTitle, title]);
+    stream.write([...csvLine, title, voteTitle]);
   }
   return true;
 };
 
 // looks bad global variable FIXME
 // the missing value we are looking for is on a previous line
-// so we cache is here till the line that needs it comes up and we use it
+// so we cache till the line that needs it comes up and we use it
+// and we cant do that with in a function that is called every then
 let missingValue = null;
 // function we use to writing out csv lines for the overviewVoteExpenditure table
 // which is abit different from the rest of the tables
 const writeLineToOverView = (line, { title, voteTitle, stream }) => {
   const csvLine = csvLineTowrite(line);
+  if (line.includes('Recurrent')) missingValue = csvLine[1];
   // check whether we have numbers after the first items in the array
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
   // table structure quacks
-  if (line.includes('Recurrent')) missingValue = csvLine[1];
-  if (line.includes('Non Wage')) csvLine.splice(2, 0, missingValue);
+  if (line.includes('Non Wage') && missingValue) csvLine.splice(2, 0, missingValue);
   if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
   if (hasNumericalValues && title.includes('Overview of Vote Expenditures')) {
-    stream.write([...csvLine, voteTitle, title]);
+    stream.write([...csvLine, title, voteTitle]);
   }
   return true;
 };
@@ -86,17 +87,20 @@ const isNewTableTitleExpressions =
 
 export const getVoteTitle = (line, currentVote) => {
   // the line should start with Vote:
-  const hasVoteHasFirstLine = /^Vote:/.test(line);
+  // remove extra white space at the beginning of the line if any
+  const newLine = line.replace(/^\s+/, '');
+  const hasVoteHasFirstLine = /^Vote:/.test(newLine);
   if (!hasVoteHasFirstLine) return currentVote;
-  // only returns vote titles
-  const chunkedLine = csvLineTowrite(line);
-  // should have a count of 3
-  if (chunkedLine.length !== 2) return currentVote;
-  // test whether first item is Vote: and  2nd is a number and third a string
-  const voteNumber = chunkedLine[0].split(' ')[1];
-  const isNumber = Number.isInteger(parseInt(voteNumber, 10));
+  // should have the vote Number
+  const chunkedLine = newLine.replace(/\s{2,}/, ' ').split(' ');
+  // test whether 2nd element is a number and third a string
+  const isNumber = Number.isInteger(parseInt(chunkedLine[1], 10));
   if (!isNumber) return currentVote;
-  if (isNumber && typeof chunkedLine[1] === 'string') return chunkedLine[1].replace(/^\s/, '');
+  if (isNumber && typeof chunkedLine[2] === 'string') {
+    const voteTitle = newLine.replace(/(Vote:)(.*[0-9])(.\s)/, '');
+    // console.log('line:', line); ;
+    return voteTitle.replace(/^\s+/, '');
+  }
   return currentVote;
 };
 
@@ -104,18 +108,18 @@ function writeCSVFile(segments, readFileByLine, stream) {
   let startMining = false;
   let isTableTitle = false;
   let title = null;
-  let currentVoteTitle = null;
+  let voteTitle = null;
   const writeCSVLine = program.overview ? writeLineToOverView : writeLineToFileRegular;
   const isTableExpressions = isNewTableTitleExpressions(segments);
   readFileByLine.on('line', (line) => {
     isTableTitle = isTableExpressions.some(expression => expression.test(line));
-    currentVoteTitle = getVoteTitle(line, currentVoteTitle);
+    voteTitle = getVoteTitle(line, voteTitle);
     if (isTableTitle) {
       title = segments.find(segment => line.includes(segment.tableTitle)).tableTitle;
       startMining = true;
-      console.log('currentTable: ', `${currentVoteTitle}: ${title}`);
+      console.log('Title', voteTitle);
     }
-    if (startMining && currentVoteTitle) writeCSVLine(line, { title, currentVoteTitle, stream });
+    if (startMining && voteTitle) writeCSVLine(line, { title, voteTitle, stream });
   });
 }
 
@@ -152,4 +156,5 @@ function main() {
     }, 2000);
   });
 }
-export default main;
+
+if (program.args.length && process.env.NODE_ENV !== 'test') main();

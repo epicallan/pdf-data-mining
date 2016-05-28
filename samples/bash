@@ -1,4 +1,5 @@
 #!/bin/bash
 # you can run the scrapping for the various 'votes' as bash commands
-budget -f 437 -l 447 -n health-regular 2014-15.pdf
-budget -o -f 437 -l 437 -n health-over-view 2014-15.pdf
+# from the samples folder or any folder with the pdfs
+budget -f 503 -l 579 -n referals 2014-15.pdf
+budget -f 503 -l 579 -n referals 2014-15.pdf

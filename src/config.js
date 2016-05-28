@@ -28,6 +28,7 @@ export const budgetSegmentsToRead = [
 // responsible for table titles
 // this is for all the tables that are alike
 export const transformRegular = (row) => ({
+  'Vote Name': row[8],
   'Table Name': row[7],
   Sector: row[0],
   'Approved Budget': row[1],
@@ -39,6 +40,7 @@ export const transformRegular = (row) => ({
 });
 // overviewVoteExpenditure tables have different table names and structure
 export const transformOverview = (row) => ({
+  'Vote Name': row[9],
   'Table Name': row[8],
   Category: row[0],
   'Approved Budget': row[1],

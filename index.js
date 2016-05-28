@@ -1,2 +1,2 @@
 #! /usr/local/bin/node
-require('./dist/app.js')();
+require('./dist/app.js');
