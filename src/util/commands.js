@@ -41,6 +41,7 @@ function readInFile(readFileByLine) {
     }
   });
 }
+
 function writeBashCommands(sectionsToMine) {
   if (!sectionsToMine.length) console.error('error !!! data missing');
   sectionsToMine.forEach((section, index) => {
@@ -58,6 +59,7 @@ function writeBashCommands(sectionsToMine) {
     writableStream.write(overviewTablesCommand);
   });
 }
+
 function main() {
   const readFileByLine = readline.createInterface({
     input: fs.createReadStream(`${rootPath}/2014-15.txt`)
