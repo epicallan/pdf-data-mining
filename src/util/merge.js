@@ -5,7 +5,7 @@ import readline from 'readline';
 const buffers = new Map();
 const rootPath = '/Users/allanlukwago/apps/budget-data/samples';
 
-// returns a file stream, which the csv stream pipes into
+// returns a write stream for writing to the merge file
 const writableStream = () => {
   const stream = fs.createWriteStream((`${rootPath}/mergedNew.csv`));
   return stream;
@@ -16,6 +16,9 @@ const readStream = (fileName) => (
     input: fs.createReadStream(`${rootPath}/${fileName}`)
   }));
 
+// we dont want to have all the table headings from various
+// tables in out final file, so when we find them
+// we will skip them save for the first one
 const findTableHeading = (line) =>
   (/(^\bVote Name\b)(.*\bTable Name\b)/.test(line));
 
@@ -45,7 +48,7 @@ function writeBuffersToFile(readerStreams) {
       const buffer = buffers.get(index);
       // cleanup buffers
       buffers.delete(index);
-      // write to file
+      // write each line to file
       buffer.forEach(line => writer.write(line));
     });
   });
