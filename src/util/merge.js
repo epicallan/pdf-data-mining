@@ -17,7 +17,7 @@ const readStream = (fileName) => (
   }));
 
 // we dont want to have all the table headings from various
-// tables in out final file, so when we find them
+// tables in our final file, so when we find them
 // we will skip them save for the first one
 const findTableHeading = (line) =>
   (/(^\bVote Name\b)(.*\bTable Name\b)/.test(line));
@@ -31,7 +31,7 @@ function fillDataBuffers(readerStreams) {
   readerStreams.forEach((stream, index) => {
     const streamData = [];
     stream.on('line', (line) => {
-      // we want to record the first table heading column
+      // we want to record the first table heading row
       if (index > 0) isATableHeadingLine = findTableHeading(line);
       if (!isATableHeadingLine) {
         streamData.push(`${line}\n`);
