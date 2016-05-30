@@ -4,6 +4,7 @@ program.version('0.0.1')
         .option('-f, --first <n>', 'Add first page')
         .option('-l, --last <n>', 'Add last page')
         .option('-o, --overview', 'indicates we are mining from overview vote expenditure tables')
+        .option('-a, --annex', 'indicates that we want to mine annex tables')
         .option('-n, --name [name]', 'Add resulting csv file name');
 
 program.on('--help', () => {

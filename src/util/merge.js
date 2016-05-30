@@ -3,11 +3,11 @@ import readline from 'readline';
 // import Rx from 'rxjs/Rx';
 
 const buffers = new Map(); // for storing file data
-const rootPath = '/Users/allanlukwago/apps/budget-data/samples';
+const rootPath = '/home/allan/budget-data-scraping/samples';
 
 // returns a write stream for writing to the merge file
 const writableStream = () => {
-  const stream = fs.createWriteStream((`${rootPath}/mergedNew.csv`));
+  const stream = fs.createWriteStream((`${rootPath}/merged.csv`));
   return stream;
 };
 
@@ -29,7 +29,7 @@ const createsReadStreams = (files) =>
 export const hello = () => 'hello';
 
 export const readDirFiles = () => {
-  
+
 };
 
 function fillDataBuffers(readerStreams) {
@@ -65,3 +65,5 @@ export default function main() {
   fillDataBuffers(streams);
   writeBuffersToFile(streams);
 }
+
+main();

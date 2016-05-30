@@ -22,12 +22,18 @@ export const budgetSegmentsToRead = [
   },
   {
     tableTitle: 'Overview of Vote Expenditures'
+  },
+  {
+    tableTitle: 'Annex A1.1'
+  },
+  {
+    tableTitle: 'Annex A1.2'
   }
 ];
 
 // responsible for table titles
 // this is for all the tables that are alike
-export const transformRegular = (row) => ({
+export const transformRegular = row => ({
   'Vote Name': row[8],
   'Table Name': row[7],
   Sector: row[0],
@@ -67,4 +73,26 @@ const rowStructure = row => {
     '% Releases spent': row[6]
   };
 };
-export const transformOverview = (row) => rowStructure(row);
+
+export const transformOverview = row => rowStructure(row);
+
+export const transformForAnnexTables = row => ({
+  'Annex Type': row[0],
+  'Approved Estimates wage': row[1],
+  'Approved Estimates Non Wage': row[2],
+  'Approved Estimates GoU Dev': row[3],
+  'Approved Estimates GoU Total': row[4],
+  'Releases by End June Wage': row[5],
+  'Releases by End June Non Wage': row[6],
+  'Releases by End June Gou Dev': row[7],
+  'Releases by End June GoU Total': row[8],
+  'Expenditure by End June Wage': row[9],
+  'Expenditure by End June Non Wage': row[10],
+  'Expenditure by End June Gou Dev': row[11],
+  'Expenditure by End June GoU Total': row[12],
+  'Performance by End June Wage': row[13],
+  'Performance by End June Non Wage': row[14],
+  'Performance by End June Gou Dev': row[15],
+  'Performance by End June GoU Total': row[16]
+
+});

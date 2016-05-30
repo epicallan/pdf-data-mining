@@ -49,7 +49,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getVoteTitle = exports.writeLineToFileRegular = exports.shouldHaveNumericalValues = undefined;
+	exports.getVoteTitle = exports.shouldHaveNumericalValues = undefined;
 
 	var _fs = __webpack_require__(1);
 
@@ -97,18 +97,24 @@
 	  var writeStream = writableStream();
 	  var stream = _fastCsv2.default.createWriteStream({ headers: true });
 	  // adding a transformation function that is responsible for the row titles
-	  var transform = _cli2.default.overview ? _config.transformOverview : _config.transformRegular;
+	  var transform = null;
+	  if (_cli2.default.annex) {
+	    transform = _config.transformForAnnexTables;
+	  } else {
+	    transform = _cli2.default.overview ? _config.transformOverview : _config.transformRegular;
+	  }
 	  stream.transform(transform).pipe(writeStream);
 	  return stream;
 	};
 
-	// transform sentences to array and removes empty elements(space)
+	// transform sentences to array and removes empty elements(space) in the array
 	var csvLineTowrite = function csvLineTowrite(line) {
 	  return line.split('  ').filter(function (word) {
 	    return word.length > 1;
 	  });
 	};
 
+	// we are only interested in sentence lines that have numerical values
 	var shouldHaveNumericalValues = exports.shouldHaveNumericalValues = function shouldHaveNumericalValues(line) {
 	  var chunkedLine = csvLineTowrite(line);
 	  if (chunkedLine.length < 7) return false;
@@ -123,12 +129,17 @@
 	  });
 	  return isLineValid;
 	};
+
+	var writeLineForAnnexTables = function writeLineForAnnexTables(line, _ref) {
+	  var title = _ref.title;
+	  var stream = _ref.stream;
+	};
 	// function we use to writing out csv lines for regular tables
 	// to the csv file
-	var writeLineToFileRegular = exports.writeLineToFileRegular = function writeLineToFileRegular(line, _ref) {
-	  var title = _ref.title;
-	  var voteTitle = _ref.voteTitle;
-	  var stream = _ref.stream;
+	var writeLineToFileRegular = function writeLineToFileRegular(line, _ref2) {
+	  var title = _ref2.title;
+	  var voteTitle = _ref2.voteTitle;
+	  var stream = _ref2.stream;
 
 	  var csvLine = csvLineTowrite(line);
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
@@ -143,15 +154,15 @@
 
 	// looks bad global variable FIXME
 	// the missing value we are looking for is on a previous line
-	// so we cache till the line that needs it comes up and we use it
-	// and we cant do that with in a function that is called every then
+	// so we cache it till the line that needs it comes up and we use it
+	// and we cant do that with in a function that is continuosly being called
 	var missingValue = null;
 	// function we use to writing out csv lines for the overviewVoteExpenditure table
 	// which is abit different from the rest of the tables
-	var writeLineToOverView = function writeLineToOverView(line, _ref2) {
-	  var title = _ref2.title;
-	  var voteTitle = _ref2.voteTitle;
-	  var stream = _ref2.stream;
+	var writeLineToOverView = function writeLineToOverView(line, _ref3) {
+	  var title = _ref3.title;
+	  var voteTitle = _ref3.voteTitle;
+	  var stream = _ref3.stream;
 
 	  var csvLine = csvLineTowrite(line);
 	  if (line.includes('Recurrent')) missingValue = csvLine[1];
@@ -6453,6 +6464,10 @@
 	  tableTitle: 'Overview of Vote Expenditures'
 	}, {
 	  tableTitle: 'Overview of Vote Expenditures'
+	}, {
+	  tableTitle: 'Annex A1.1'
+	}, {
+	  tableTitle: 'Annex A1.2'
 	}];
 
 	// responsible for table titles
@@ -6499,8 +6514,32 @@
 	    '% Releases spent': row[6]
 	  };
 	};
+
 	var transformOverview = exports.transformOverview = function transformOverview(row) {
 	  return rowStructure(row);
+	};
+
+	var transformForAnnexTables = exports.transformForAnnexTables = function transformForAnnexTables(row) {
+	  return {
+	    'Annex Type': row[0],
+	    'Approved Estimates wage': row[1],
+	    'Approved Estimates Non Wage': row[2],
+	    'Approved Estimates GoU Dev': row[3],
+	    'Approved Estimates GoU Total': row[4],
+	    'Releases by End June Wage': row[5],
+	    'Releases by End June Non Wage': row[6],
+	    'Releases by End June Gou Dev': row[7],
+	    'Releases by End June GoU Total': row[8],
+	    'Expenditure by End June Wage': row[9],
+	    'Expenditure by End June Non Wage': row[10],
+	    'Expenditure by End June Gou Dev': row[11],
+	    'Expenditure by End June GoU Total': row[12],
+	    'Performance by End June Wage': row[13],
+	    'Performance by End June Non Wage': row[14],
+	    'Performance by End June Gou Dev': row[15],
+	    'Performance by End June GoU Total': row[16]
+
+	  };
 	};
 
 /***/ },

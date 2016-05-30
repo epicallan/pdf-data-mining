@@ -2,7 +2,11 @@ import fs from 'fs';
 import readline from 'readline';
 import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
-import { budgetSegmentsToRead, transformRegular, transformOverview } from './config';
+import {
+  budgetSegmentsToRead,
+  transformRegular,
+  transformOverview,
+  transformForAnnexTables } from './config';
 import program from './cli';
 
 const spawn = require('child_process').spawn;
@@ -25,15 +29,21 @@ const csvStream = () => {
   const writeStream = writableStream();
   const stream = csv.createWriteStream({ headers: true });
   // adding a transformation function that is responsible for the row titles
-  const transform = program.overview ? transformOverview : transformRegular;
+  let transform = null;
+  if (program.annex) {
+    transform = transformForAnnexTables;
+  } else {
+    transform = program.overview ? transformOverview : transformRegular;
+  }
   stream.transform(transform)
   .pipe(writeStream);
   return stream;
 };
 
-// transform sentences to array and removes empty elements(space)
+// transform sentences to array and removes empty elements(space) in the array
 const csvLineTowrite = (line) => line.split('  ').filter(word => word.length > 1);
 
+// we are only interested in sentence lines that have numerical values
 export const shouldHaveNumericalValues = (line) => {
   const chunkedLine = csvLineTowrite(line);
   if (chunkedLine.length < 7) return false;
@@ -46,9 +56,13 @@ export const shouldHaveNumericalValues = (line) => {
   const isLineValid = values.every(val => Number.isInteger(val));
   return isLineValid;
 };
+
+const writeLineForAnnexTables = (line, {title, stream}) => {
+
+};
 // function we use to writing out csv lines for regular tables
 // to the csv file
-export const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
+const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
   const csvLine = csvLineTowrite(line);
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
@@ -62,8 +76,8 @@ export const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
 
 // looks bad global variable FIXME
 // the missing value we are looking for is on a previous line
-// so we cache till the line that needs it comes up and we use it
-// and we cant do that with in a function that is called every then
+// so we cache it till the line that needs it comes up and we use it
+// and we cant do that with in a function that is continuosly being called
 let missingValue = null;
 // function we use to writing out csv lines for the overviewVoteExpenditure table
 // which is abit different from the rest of the tables
@@ -109,7 +123,12 @@ function writeCSVFile(segments, readFileByLine, stream) {
   let isTableTitle = false;
   let title = null;
   let voteTitle = null;
-  const writeCSVLine = program.overview ? writeLineToOverView : writeLineToFileRegular;
+  let writeCsvLine = null;
+  if (program.annex) {
+    writeCsvLine = writeLineForAnnexTables;
+  } else {
+    writeCsvLine = program.overview ? writeLineToOverView : writeLineToFileRegular;
+  }
   const isTableExpressions = isNewTableTitleExpressions(segments);
   readFileByLine.on('line', (line) => {
     isTableTitle = isTableExpressions.some(expression => expression.test(line));
@@ -119,7 +138,7 @@ function writeCSVFile(segments, readFileByLine, stream) {
       startMining = true;
       console.log('Title', voteTitle);
     }
-    if (startMining && voteTitle) writeCSVLine(line, { title, voteTitle, stream });
+    if (startMining && voteTitle) writeCsvLine(line, { title, voteTitle, stream });
   });
 }
 
