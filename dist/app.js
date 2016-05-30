@@ -133,6 +133,14 @@
 	var writeLineForAnnexTables = function writeLineForAnnexTables(line, _ref) {
 	  var title = _ref.title;
 	  var stream = _ref.stream;
+
+	  var hasNumericalValues = shouldHaveNumericalValues(line);
+	  if (!hasNumericalValues) return false;
+	  var csvLine = csvLineTowrite(line);
+	  if (hasNumericalValues && !title.includes('Annex')) {
+	    stream.write([title].concat(_toConsumableArray(csvLine)));
+	  }
+	  return true;
 	};
 	// function we use to writing out csv lines for regular tables
 	// to the csv file
@@ -141,9 +149,9 @@
 	  var voteTitle = _ref2.voteTitle;
 	  var stream = _ref2.stream;
 
-	  var csvLine = csvLineTowrite(line);
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
 	  if (!hasNumericalValues) return false;
+	  var csvLine = csvLineTowrite(line);
 	  // check whether we have numbers after the first items in the array
 	  if (hasNumericalValues && !title.includes('Overview of Vote Expenditures')) {
 	    if (csvLine.length !== 7) csvLine.splice(0, 2, csvLine[0] + ' ' + csvLine[1]);
@@ -208,9 +216,15 @@
 	  var isTableTitle = false;
 	  var title = null;
 	  var voteTitle = null;
-	  var writeCSVLine = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
+	  var writeCsvLine = null;
+	  if (_cli2.default.annex) {
+	    writeCsvLine = writeLineForAnnexTables;
+	  } else {
+	    writeCsvLine = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
+	  }
 	  var isTableExpressions = isNewTableTitleExpressions(segments);
 	  readFileByLine.on('line', function (line) {
+	    console.log(line.includes('Annex'));
 	    isTableTitle = isTableExpressions.some(function (expression) {
 	      return expression.test(line);
 	    });
@@ -222,7 +236,7 @@
 	      startMining = true;
 	      console.log('Title', voteTitle);
 	    }
-	    if (startMining && voteTitle) writeCSVLine(line, { title: title, voteTitle: voteTitle, stream: stream });
+	    if (startMining && voteTitle) writeCsvLine(line, { title: title, voteTitle: voteTitle, stream: stream });
 	  });
 	}
 
@@ -6558,7 +6572,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_commander2.default.version('0.0.1').option('-f, --first <n>', 'Add first page').option('-l, --last <n>', 'Add last page').option('-o, --overview', 'indicates we are mining from overview vote expenditure tables').option('-n, --name [name]', 'Add resulting csv file name');
+	_commander2.default.version('0.0.1').option('-f, --first <n>', 'Add first page').option('-l, --last <n>', 'Add last page').option('-o, --overview', 'indicates we are mining from overview vote expenditure tables').option('-a, --annex', 'indicates that we want to mine annex tables').option('-n, --name [name]', 'Add resulting csv file name');
 
 	_commander2.default.on('--help', function () {
 	  console.log('  Example:');
@@ -6577,22 +6591,23 @@
 /* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
 	/**
 	 * Module dependencies.
 	 */
 
 	var EventEmitter = __webpack_require__(31).EventEmitter;
 	var spawn = __webpack_require__(32).spawn;
-	var path = __webpack_require__(33);
+	var readlink = __webpack_require__(33).readlinkSync;
+	var path = __webpack_require__(34);
 	var dirname = path.dirname;
 	var basename = path.basename;
+	var fs = __webpack_require__(1);
 
 	/**
 	 * Expose the root command.
 	 */
 
-	exports = module.exports = new Command;
+	exports = module.exports = new Command();
 
 	/**
 	 * Expose `Command`.
@@ -6632,7 +6647,7 @@
 	 * @api private
 	 */
 
-	Option.prototype.name = function(){
+	Option.prototype.name = function() {
 	  return this.long
 	    .replace('--', '')
 	    .replace('no-', '');
@@ -6646,9 +6661,8 @@
 	 * @api private
 	 */
 
-	Option.prototype.is = function(arg){
-	  return arg == this.short
-	    || arg == this.long;
+	Option.prototype.is = function(arg) {
+	  return arg == this.short || arg == this.long;
 	};
 
 	/**
@@ -6661,9 +6675,10 @@
 	function Command(name) {
 	  this.commands = [];
 	  this.options = [];
-	  this._execs = [];
+	  this._execs = {};
+	  this._allowUnknownOption = false;
 	  this._args = [];
-	  this._name = name;
+	  this._name = name || '';
 	}
 
 	/**
@@ -6695,43 +6710,73 @@
 	 *      program
 	 *        .command('setup')
 	 *        .description('run remote setup commands')
-	 *        .action(function(){
+	 *        .action(function() {
 	 *          console.log('setup');
 	 *        });
 	 *
 	 *      program
 	 *        .command('exec <cmd>')
 	 *        .description('run the given remote command')
-	 *        .action(function(cmd){
+	 *        .action(function(cmd) {
 	 *          console.log('exec "%s"', cmd);
+	 *        });
+	 *
+	 *      program
+	 *        .command('teardown <dir> [otherDirs...]')
+	 *        .description('run teardown commands')
+	 *        .action(function(dir, otherDirs) {
+	 *          console.log('dir "%s"', dir);
+	 *          if (otherDirs) {
+	 *            otherDirs.forEach(function (oDir) {
+	 *              console.log('dir "%s"', oDir);
+	 *            });
+	 *          }
 	 *        });
 	 *
 	 *      program
 	 *        .command('*')
 	 *        .description('deploy the given env')
-	 *        .action(function(env){
+	 *        .action(function(env) {
 	 *          console.log('deploying "%s"', env);
 	 *        });
 	 *
 	 *      program.parse(process.argv);
 	  *
 	 * @param {String} name
-	 * @param {String} [desc]
+	 * @param {String} [desc] for git-style sub-commands
 	 * @return {Command} the new command
 	 * @api public
 	 */
 
-	Command.prototype.command = function(name, desc) {
+	Command.prototype.command = function(name, desc, opts) {
+	  opts = opts || {};
 	  var args = name.split(/ +/);
 	  var cmd = new Command(args.shift());
-	  if (desc) cmd.description(desc);
-	  if (desc) this.executables = true;
-	  if (desc) this._execs[cmd._name] = true;
+
+	  if (desc) {
+	    cmd.description(desc);
+	    this.executables = true;
+	    this._execs[cmd._name] = true;
+	    if (opts.isDefault) this.defaultExecutable = cmd._name;
+	  }
+
+	  cmd._noHelp = !!opts.noHelp;
 	  this.commands.push(cmd);
 	  cmd.parseExpectedArgs(args);
 	  cmd.parent = this;
+
 	  if (desc) return this;
 	  return cmd;
+	};
+
+	/**
+	 * Define argument syntax for the top-level command.
+	 *
+	 * @api public
+	 */
+
+	Command.prototype.arguments = function (desc) {
+	  return this.parseExpectedArgs(desc.split(/ +/));
 	};
 
 	/**
@@ -6755,17 +6800,32 @@
 	 * @api public
 	 */
 
-	Command.prototype.parseExpectedArgs = function(args){
+	Command.prototype.parseExpectedArgs = function(args) {
 	  if (!args.length) return;
 	  var self = this;
-	  args.forEach(function(arg){
+	  args.forEach(function(arg) {
+	    var argDetails = {
+	      required: false,
+	      name: '',
+	      variadic: false
+	    };
+
 	    switch (arg[0]) {
 	      case '<':
-	        self._args.push({ required: true, name: arg.slice(1, -1) });
+	        argDetails.required = true;
+	        argDetails.name = arg.slice(1, -1);
 	        break;
 	      case '[':
-	        self._args.push({ required: false, name: arg.slice(1, -1) });
+	        argDetails.name = arg.slice(1, -1);
 	        break;
+	    }
+
+	    if (argDetails.name.length > 3 && argDetails.name.slice(-3) === '...') {
+	      argDetails.variadic = true;
+	      argDetails.name = argDetails.name.slice(0, -3);
+	    }
+	    if (argDetails.name) {
+	      self._args.push(argDetails);
 	    }
 	  });
 	  return this;
@@ -6779,7 +6839,7 @@
 	 *      program
 	 *        .command('help')
 	 *        .description('display verbose help')
-	 *        .action(function(){
+	 *        .action(function() {
 	 *           // output help here
 	 *        });
 	 *
@@ -6788,9 +6848,9 @@
 	 * @api public
 	 */
 
-	Command.prototype.action = function(fn){
+	Command.prototype.action = function(fn) {
 	  var self = this;
-	  var listener = function(args, unknown){
+	  var listener = function(args, unknown) {
 	    // Parse any so-far unknown options
 	    args = args || [];
 	    unknown = unknown || [];
@@ -6810,9 +6870,15 @@
 	    // Leftover arguments need to be pushed back. Fixes issue #56
 	    if (parsed.args.length) args = parsed.args.concat(args);
 
-	    self._args.forEach(function(arg, i){
+	    self._args.forEach(function(arg, i) {
 	      if (arg.required && null == args[i]) {
 	        self.missingArgument(arg.name);
+	      } else if (arg.variadic) {
+	        if (i !== self._args.length - 1) {
+	          self.variadicArgNotLast(arg.name);
+	        }
+
+	        args[i] = args.splice(i);
 	      }
 	    });
 
@@ -6825,10 +6891,12 @@
 	      args.push(self);
 	    }
 
-	    fn.apply(this, args);
+	    fn.apply(self, args);
 	  };
-	  this.parent.on(this._name, listener);
-	  if (this._alias) this.parent.on(this._alias, listener);
+	  var parent = this.parent || this;
+	  var name = parent === this ? '*' : this._name;
+	  parent.on(name, listener);
+	  if (this._alias) parent.on(this._alias, listener);
 	  return this;
 	};
 
@@ -6881,14 +6949,26 @@
 	 * @api public
 	 */
 
-	Command.prototype.option = function(flags, description, fn, defaultValue){
+	Command.prototype.option = function(flags, description, fn, defaultValue) {
 	  var self = this
 	    , option = new Option(flags, description)
 	    , oname = option.name()
 	    , name = camelcase(oname);
 
 	  // default as 3rd arg
-	  if ('function' != typeof fn) defaultValue = fn, fn = null;
+	  if (typeof fn != 'function') {
+	    if (fn instanceof RegExp) {
+	      var regex = fn;
+	      fn = function(val, def) {
+	        var m = regex.exec(val);
+	        return m ? m[0] : def;
+	      }
+	    }
+	    else {
+	      defaultValue = fn;
+	      fn = null;
+	    }
+	  }
 
 	  // preassign default value only for --no-*, [optional], or <required>
 	  if (false == option.bool || option.optional || option.required) {
@@ -6903,9 +6983,11 @@
 
 	  // when it's passed assign the value
 	  // and conditionally invoke the callback
-	  this.on(oname, function(val){
+	  this.on(oname, function(val) {
 	    // coercion
-	    if (null !== val && fn) val = fn(val, undefined === self[name] ? defaultValue : self[name]);
+	    if (null !== val && fn) val = fn(val, undefined === self[name]
+	      ? defaultValue
+	      : self[name]);
 
 	    // unassigned or bool
 	    if ('boolean' == typeof self[name] || 'undefined' == typeof self[name]) {
@@ -6927,6 +7009,18 @@
 	};
 
 	/**
+	 * Allow unknown options on the command line.
+	 *
+	 * @param {Boolean} arg if `true` or omitted, no error will be thrown
+	 * for unknown options.
+	 * @api public
+	 */
+	Command.prototype.allowUnknownOption = function(arg) {
+	    this._allowUnknownOption = arguments.length === 0 || arg;
+	    return this;
+	};
+
+	/**
 	 * Parse `argv`, settings options and invoking commands when defined.
 	 *
 	 * @param {Array} argv
@@ -6934,7 +7028,7 @@
 	 * @api public
 	 */
 
-	Command.prototype.parse = function(argv){
+	Command.prototype.parse = function(argv) {
 	  // implicit help
 	  if (this.executables) this.addImplicitHelpCommand();
 
@@ -6944,6 +7038,12 @@
 	  // guess name
 	  this._name = this._name || basename(argv[1], '.js');
 
+	  // github-style sub-commands with no sub-command
+	  if (this.executables && argv.length < 3 && !this.defaultExecutable) {
+	    // this user needs help
+	    argv.push('--help');
+	  }
+
 	  // process argv
 	  var parsed = this.parseOptions(this.normalize(argv.slice(2)));
 	  var args = this.args = parsed.args;
@@ -6952,7 +7052,13 @@
 
 	  // executable sub-commands
 	  var name = result.args[0];
-	  if (this._execs[name]) return this.executeSubCommand(argv, args, parsed.unknown);
+	  if (this._execs[name] && typeof this._execs[name] != "function") {
+	    return this.executeSubCommand(argv, args, parsed.unknown);
+	  } else if (this.defaultExecutable) {
+	    // use the default subcommand
+	    args.unshift(name = this.defaultExecutable);
+	    return this.executeSubCommand(argv, args, parsed.unknown);
+	  }
 
 	  return result;
 	};
@@ -6979,24 +7085,63 @@
 	  }
 
 	  // executable
-	  var dir = dirname(argv[1]);
-	  var bin = basename(argv[1], '.js') + '-' + args[0];
+	  var f = argv[1];
+	  // name of the subcommand, link `pm-install`
+	  var bin = basename(f, '.js') + '-' + args[0];
 
-	  // check for ./<bin> first
-	  var local = path.join(dir, bin);
 
-	  // run it
+	  // In case of globally installed, get the base dir where executable
+	  //  subcommand file should be located at
+	  var baseDir
+	    , link = readlink(f);
+
+	  // when symbolink is relative path
+	  if (link !== f && link.charAt(0) !== '/') {
+	    link = path.join(dirname(f), link)
+	  }
+	  baseDir = dirname(link);
+
+	  // prefer local `./<bin>` to bin in the $PATH
+	  var localBin = path.join(baseDir, bin);
+
+	  // whether bin file is a js script with explicit `.js` extension
+	  var isExplicitJS = false;
+	  if (exists(localBin + '.js')) {
+	    bin = localBin + '.js';
+	    isExplicitJS = true;
+	  } else if (exists(localBin)) {
+	    bin = localBin;
+	  }
+
 	  args = args.slice(1);
-	  args.unshift(local);
-	  var proc = spawn('node', args, { stdio: 'inherit', customFds: [0, 1, 2] });
-	  proc.on('error', function(err){
+
+	  var proc;
+	  if (process.platform !== 'win32') {
+	    if (isExplicitJS) {
+	      args.unshift(localBin);
+	      // add executable arguments to spawn
+	      args = (process.execArgv || []).concat(args);
+
+	      proc = spawn('node', args, { stdio: 'inherit', customFds: [0, 1, 2] });
+	    } else {
+	      proc = spawn(bin, args, { stdio: 'inherit', customFds: [0, 1, 2] });
+	    }
+	  } else {
+	    args.unshift(localBin);
+	    proc = spawn(process.execPath, args, { stdio: 'inherit'});
+	  }
+
+	  proc.on('close', process.exit.bind(process));
+	  proc.on('error', function(err) {
 	    if (err.code == "ENOENT") {
 	      console.error('\n  %s(1) does not exist, try --help\n', bin);
 	    } else if (err.code == "EACCES") {
 	      console.error('\n  %s(1) not executable. try chmod or run with root\n', bin);
 	    }
+	    process.exit(1);
 	  });
 
+	  // Store the reference to the child process
 	  this.runningCommand = proc;
 	};
 
@@ -7010,7 +7155,7 @@
 	 * @api private
 	 */
 
-	Command.prototype.normalize = function(args){
+	Command.prototype.normalize = function(args) {
 	  var ret = []
 	    , arg
 	    , lastOpt
@@ -7018,12 +7163,18 @@
 
 	  for (var i = 0, len = args.length; i < len; ++i) {
 	    arg = args[i];
-	    i > 0 && (lastOpt = this.optionFor(args[i-1]));
+	    if (i > 0) {
+	      lastOpt = this.optionFor(args[i-1]);
+	    }
 
-	    if (lastOpt && lastOpt.required) {
-	     	ret.push(arg);
+	    if (arg === '--') {
+	      // Honor option terminator
+	      ret = ret.concat(args.slice(i));
+	      break;
+	    } else if (lastOpt && lastOpt.required) {
+	      ret.push(arg);
 	    } else if (arg.length > 1 && '-' == arg[0] && '-' != arg[1]) {
-	      arg.slice(1).split('').forEach(function(c){
+	      arg.slice(1).split('').forEach(function(c) {
 	        ret.push('-' + c);
 	      });
 	    } else if (/^--/.test(arg) && ~(index = arg.indexOf('='))) {
@@ -7048,10 +7199,8 @@
 	 * @api private
 	 */
 
-	Command.prototype.parseArgs = function(args, unknown){
-	  var cmds = this.commands
-	    , len = cmds.length
-	    , name;
+	Command.prototype.parseArgs = function(args, unknown) {
+	  var name;
 
 	  if (args.length) {
 	    name = args[0];
@@ -7081,7 +7230,7 @@
 	 * @api private
 	 */
 
-	Command.prototype.optionFor = function(arg){
+	Command.prototype.optionFor = function(arg) {
 	  for (var i = 0, len = this.options.length; i < len; ++i) {
 	    if (this.options[i].is(arg)) {
 	      return this.options[i];
@@ -7098,7 +7247,7 @@
 	 * @api public
 	 */
 
-	Command.prototype.parseOptions = function(argv){
+	Command.prototype.parseOptions = function(argv) {
 	  var args = []
 	    , len = argv.length
 	    , literal
@@ -7169,13 +7318,30 @@
 	};
 
 	/**
+	 * Return an object containing options as key-value pairs
+	 *
+	 * @return {Object}
+	 * @api public
+	 */
+	Command.prototype.opts = function() {
+	  var result = {}
+	    , len = this.options.length;
+
+	  for (var i = 0 ; i < len; i++) {
+	    var key = camelcase(this.options[i].name());
+	    result[key] = key === 'version' ? this._version : this[key];
+	  }
+	  return result;
+	};
+
+	/**
 	 * Argument `name` is missing.
 	 *
 	 * @param {String} name
 	 * @api private
 	 */
 
-	Command.prototype.missingArgument = function(name){
+	Command.prototype.missingArgument = function(name) {
 	  console.error();
 	  console.error("  error: missing required argument `%s'", name);
 	  console.error();
@@ -7190,7 +7356,7 @@
 	 * @api private
 	 */
 
-	Command.prototype.optionMissingArgument = function(option, flag){
+	Command.prototype.optionMissingArgument = function(option, flag) {
 	  console.error();
 	  if (flag) {
 	    console.error("  error: option `%s' argument missing, got `%s'", option.flags, flag);
@@ -7208,13 +7374,27 @@
 	 * @api private
 	 */
 
-	Command.prototype.unknownOption = function(flag){
+	Command.prototype.unknownOption = function(flag) {
+	  if (this._allowUnknownOption) return;
 	  console.error();
 	  console.error("  error: unknown option `%s'", flag);
 	  console.error();
 	  process.exit(1);
 	};
 
+	/**
+	 * Variadic argument with `name` is not the last argument as required.
+	 *
+	 * @param {String} name
+	 * @api private
+	 */
+
+	Command.prototype.variadicArgNotLast = function(name) {
+	  console.error();
+	  console.error("  error: variadic arguments must be last `%s'", name);
+	  console.error();
+	  process.exit(1);
+	};
 
 	/**
 	 * Set the program version to `str`.
@@ -7228,28 +7408,28 @@
 	 * @api public
 	 */
 
-	Command.prototype.version = function(str, flags){
+	Command.prototype.version = function(str, flags) {
 	  if (0 == arguments.length) return this._version;
 	  this._version = str;
 	  flags = flags || '-V, --version';
 	  this.option(flags, 'output the version number');
-	  this.on('version', function(){
-	    console.log(str);
+	  this.on('version', function() {
+	    process.stdout.write(str + '\n');
 	    process.exit(0);
 	  });
 	  return this;
 	};
 
 	/**
-	 * Set the description `str`.
+	 * Set the description to `str`.
 	 *
 	 * @param {String} str
 	 * @return {String|Command}
 	 * @api public
 	 */
 
-	Command.prototype.description = function(str){
-	  if (0 == arguments.length) return this._description;
+	Command.prototype.description = function(str) {
+	  if (0 === arguments.length) return this._description;
 	  this._description = str;
 	  return this;
 	};
@@ -7262,7 +7442,7 @@
 	 * @api public
 	 */
 
-	Command.prototype.alias = function(alias){
+	Command.prototype.alias = function(alias) {
 	  if (0 == arguments.length) return this._alias;
 	  this._alias = alias;
 	  return this;
@@ -7276,22 +7456,31 @@
 	 * @api public
 	 */
 
-	Command.prototype.usage = function(str){
-	  var args = this._args.map(function(arg){
-	    return arg.required
-	      ? '<' + arg.name + '>'
-	      : '[' + arg.name + ']';
+	Command.prototype.usage = function(str) {
+	  var args = this._args.map(function(arg) {
+	    return humanReadableArgName(arg);
 	  });
 
-	  var usage = '[options'
-	    + (this.commands.length ? '] [command' : '')
-	    + ']'
-	    + (this._args.length ? ' ' + args : '');
+	  var usage = '[options]'
+	    + (this.commands.length ? ' [command]' : '')
+	    + (this._args.length ? ' ' + args.join(' ') : '');
 
 	  if (0 == arguments.length) return this._usage || usage;
 	  this._usage = str;
 
 	  return this;
+	};
+
+	/**
+	 * Get the name of the command
+	 *
+	 * @param {String} name
+	 * @return {String|Command}
+	 * @api public
+	 */
+
+	Command.prototype.name = function() {
+	  return this._name;
 	};
 
 	/**
@@ -7301,8 +7490,8 @@
 	 * @api private
 	 */
 
-	Command.prototype.largestOptionLength = function(){
-	  return this.options.reduce(function(max, option){
+	Command.prototype.largestOptionLength = function() {
+	  return this.options.reduce(function(max, option) {
 	    return Math.max(max, option.flags.length);
 	  }, 0);
 	};
@@ -7314,16 +7503,15 @@
 	 * @api private
 	 */
 
-	Command.prototype.optionHelp = function(){
+	Command.prototype.optionHelp = function() {
 	  var width = this.largestOptionLength();
 
 	  // Prepend the help information
 	  return [pad('-h, --help', width) + '  ' + 'output usage information']
-	    .concat(this.options.map(function(option){
-	      return pad(option.flags, width)
-	        + '  ' + option.description;
+	      .concat(this.options.map(function(option) {
+	        return pad(option.flags, width) + '  ' + option.description;
 	      }))
-	    .join('\n');
+	      .join('\n');
 	};
 
 	/**
@@ -7333,30 +7521,36 @@
 	 * @api private
 	 */
 
-	Command.prototype.commandHelp = function(){
+	Command.prototype.commandHelp = function() {
 	  if (!this.commands.length) return '';
+
+	  var commands = this.commands.filter(function(cmd) {
+	    return !cmd._noHelp;
+	  }).map(function(cmd) {
+	    var args = cmd._args.map(function(arg) {
+	      return humanReadableArgName(arg);
+	    }).join(' ');
+
+	    return [
+	      cmd._name
+	        + (cmd._alias ? '|' + cmd._alias : '')
+	        + (cmd.options.length ? ' [options]' : '')
+	        + ' ' + args
+	      , cmd.description()
+	    ];
+	  });
+
+	  var width = commands.reduce(function(max, command) {
+	    return Math.max(max, command[0].length);
+	  }, 0);
+
 	  return [
-	      ''
+	    ''
 	    , '  Commands:'
 	    , ''
-	    , this.commands.map(function(cmd){
-	      var args = cmd._args.map(function(arg){
-	        return arg.required
-	          ? '<' + arg.name + '>'
-	          : '[' + arg.name + ']';
-	      }).join(' ');
-
-	      return cmd._name
-	        + (cmd._alias
-	          ? '|' + cmd._alias
-	          : '')
-	        + (cmd.options.length
-	          ? ' [options]'
-	          : '') + ' ' + args
-	        + (cmd.description()
-	          ? '\n   ' + cmd.description()
-	          : '')
-	        + '\n';
+	    , commands.map(function(cmd) {
+	      var desc = cmd[1] ? '  ' + cmd[1] : '';
+	      return pad(cmd[0], width) + desc;
 	    }).join('\n').replace(/^/gm, '    ')
 	    , ''
 	  ].join('\n');
@@ -7369,21 +7563,42 @@
 	 * @api private
 	 */
 
-	Command.prototype.helpInformation = function(){
-	  return [
-	      ''
-	    , '  Usage: ' + this._name
-	        + (this._alias
-	          ? '|' + this._alias
-	          : '')
-	        + ' ' + this.usage()
-	    , '' + this.commandHelp()
-	    , '  Options:'
+	Command.prototype.helpInformation = function() {
+	  var desc = [];
+	  if (this._description) {
+	    desc = [
+	      '  ' + this._description
+	      , ''
+	    ];
+	  }
+
+	  var cmdName = this._name;
+	  if (this._alias) {
+	    cmdName = cmdName + '|' + this._alias;
+	  }
+	  var usage = [
+	    ''
+	    ,'  Usage: ' + cmdName + ' ' + this.usage()
+	    , ''
+	  ];
+
+	  var cmds = [];
+	  var commandHelp = this.commandHelp();
+	  if (commandHelp) cmds = [commandHelp];
+
+	  var options = [
+	    '  Options:'
 	    , ''
 	    , '' + this.optionHelp().replace(/^/gm, '    ')
 	    , ''
 	    , ''
-	  ].join('\n');
+	  ];
+
+	  return usage
+	    .concat(cmds)
+	    .concat(desc)
+	    .concat(options)
+	    .join('\n');
 	};
 
 	/**
@@ -7392,8 +7607,13 @@
 	 * @api public
 	 */
 
-	Command.prototype.outputHelp = function(){
-	  process.stdout.write(this.helpInformation());
+	Command.prototype.outputHelp = function(cb) {
+	  if (!cb) {
+	    cb = function(passthru) {
+	      return passthru;
+	    }
+	  }
+	  process.stdout.write(cb(this.helpInformation()));
 	  this.emit('--help');
 	};
 
@@ -7403,8 +7623,8 @@
 	 * @api public
 	 */
 
-	Command.prototype.help = function(){
-	  this.outputHelp();
+	Command.prototype.help = function(cb) {
+	  this.outputHelp(cb);
 	  process.exit();
 	};
 
@@ -7417,7 +7637,7 @@
 	 */
 
 	function camelcase(flag) {
-	  return flag.split('-').reduce(function(str, word){
+	  return flag.split('-').reduce(function(str, word) {
 	    return str + word[0].toUpperCase() + word.slice(1);
 	  });
 	}
@@ -7454,6 +7674,34 @@
 	  }
 	}
 
+	/**
+	 * Takes an argument an returns its human readable equivalent for help usage.
+	 *
+	 * @param {Object} arg
+	 * @return {String}
+	 * @api private
+	 */
+
+	function humanReadableArgName(arg) {
+	  var nameOutput = arg.name + (arg.variadic === true ? '...' : '');
+
+	  return arg.required
+	    ? '<' + nameOutput + '>'
+	    : '[' + nameOutput + ']'
+	}
+
+	// for versions before node v0.8 when there weren't `fs.existsSync`
+	function exists(file) {
+	  try {
+	    if (fs.statSync(file).isFile()) {
+	      return true;
+	    }
+	  } catch (e) {
+	    return false;
+	  }
+	}
+
+
 
 /***/ },
 /* 31 */
@@ -7469,6 +7717,24 @@
 
 /***/ },
 /* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var fs = __webpack_require__(1)
+	  , lstat = fs.lstatSync;
+
+	exports.readlinkSync = function (p) {
+	  if (lstat(p).isSymbolicLink()) {
+	    return fs.readlinkSync(p);
+	  } else {
+	    return p;
+	  }
+	};
+
+
+
+
+/***/ },
+/* 34 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");

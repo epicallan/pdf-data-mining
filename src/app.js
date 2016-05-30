@@ -57,15 +57,21 @@ export const shouldHaveNumericalValues = (line) => {
   return isLineValid;
 };
 
-const writeLineForAnnexTables = (line, {title, stream}) => {
-
+const writeLineForAnnexTables = (line, { title, stream }) => {
+  const hasNumericalValues = shouldHaveNumericalValues(line);
+  if (!hasNumericalValues) return false;
+  const csvLine = csvLineTowrite(line);
+  if (hasNumericalValues && !title.includes('Annex')) {
+    stream.write([title, ...csvLine]);
+  }
+  return true;
 };
 // function we use to writing out csv lines for regular tables
 // to the csv file
 const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
-  const csvLine = csvLineTowrite(line);
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
+  const csvLine = csvLineTowrite(line);
   // check whether we have numbers after the first items in the array
   if (hasNumericalValues && !title.includes('Overview of Vote Expenditures')) {
     if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
@@ -131,6 +137,7 @@ function writeCSVFile(segments, readFileByLine, stream) {
   }
   const isTableExpressions = isNewTableTitleExpressions(segments);
   readFileByLine.on('line', (line) => {
+    console.log(line.includes('Annex'));
     isTableTitle = isTableExpressions.some(expression => expression.test(line));
     voteTitle = getVoteTitle(line, voteTitle);
     if (isTableTitle) {
