@@ -1,8 +1,8 @@
 import fs from 'fs';
 import readline from 'readline';
+// import Rx from 'rxjs/Rx';
 
-// const spawn = require('child_process').spawn;
-const buffers = new Map();
+const buffers = new Map(); // for storing file data
 const rootPath = '/Users/allanlukwago/apps/budget-data/samples';
 
 // returns a write stream for writing to the merge file
@@ -25,6 +25,12 @@ const findTableHeading = (line) =>
 
 const createsReadStreams = (files) =>
   (files.map((fileName) => readStream(fileName)));
+
+export const hello = () => 'hello';
+
+export const readDirFiles = () => {
+  
+};
 
 function fillDataBuffers(readerStreams) {
   let isATableHeadingLine = false;
@@ -54,10 +60,8 @@ function writeBuffersToFile(readerStreams) {
   });
 }
 
-function main() {
+export default function main() {
   const streams = createsReadStreams(['test1.csv', 'test2.csv']);
   fillDataBuffers(streams);
   writeBuffersToFile(streams);
 }
-
-main();

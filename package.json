@@ -13,7 +13,7 @@
     "commands": "node dist/commands",
     "merge-watch": "nodemon dist/merge.js",
     "merge": "node dist/merge.js"
-    },
+  },
   "repository": "github.com/epicallan/budget-data",
   "keywords": [
     "data",
@@ -51,10 +51,11 @@
   },
   "license": "MIT",
   "bin": {
-   "budget": "index.js"
+    "budget": "index.js"
   },
   "dependencies": {
     "fast-csv": "^2.0.0",
+    "rxjs-es": "^5.0.0-beta.8",
     "verbal-expressions": "^0.2.1"
   }
 }

@@ -17,6 +17,7 @@ module.exports = {
     ]
   },
   resolve: {
+    // exclude: /(node_modules)/,
     modulesDirectories: [
       'src',
       'node_modules'
