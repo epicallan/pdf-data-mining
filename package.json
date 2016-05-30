@@ -55,7 +55,6 @@
   },
   "dependencies": {
     "fast-csv": "^2.0.0",
-    "rxjs-es": "^5.0.0-beta.8",
-    "verbal-expressions": "^0.2.1"
+    "rxjs-es": "^5.0.0-beta.8"
   }
 }

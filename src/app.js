@@ -1,6 +1,5 @@
 import fs from 'fs';
 import readline from 'readline';
-import verEx from 'verbal-expressions';
 import csv from 'fast-csv';
 import {
   budgetSegmentsToRead,
@@ -56,12 +55,14 @@ export const shouldHaveNumericalValues = (line) => {
   const isLineValid = values.every(val => Number.isInteger(val));
   return isLineValid;
 };
-
+// TODO some lines are shorten coz of page numbers
+// for those lines we should join them with the next extension new shorter line
 const writeLineForAnnexTables = (line, { title, stream }) => {
+  if (!title.includes('Annex')) return false;
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
   const csvLine = csvLineTowrite(line);
-  if (hasNumericalValues && !title.includes('Annex')) {
+  if (hasNumericalValues) {
     stream.write([title, ...csvLine]);
   }
   return true;
@@ -69,11 +70,12 @@ const writeLineForAnnexTables = (line, { title, stream }) => {
 // function we use to writing out csv lines for regular tables
 // to the csv file
 const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
+  if (title.includes('Overview of Vote Expenditures') || title.includes('Annex')) return false;
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
   const csvLine = csvLineTowrite(line);
   // check whether we have numbers after the first items in the array
-  if (hasNumericalValues && !title.includes('Overview of Vote Expenditures')) {
+  if (hasNumericalValues) {
     if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
     stream.write([...csvLine, title, voteTitle]);
   }
@@ -88,6 +90,7 @@ let missingValue = null;
 // function we use to writing out csv lines for the overviewVoteExpenditure table
 // which is abit different from the rest of the tables
 const writeLineToOverView = (line, { title, voteTitle, stream }) => {
+  if (!title.includes('Overview of Vote Expenditures')) return false;
   const csvLine = csvLineTowrite(line);
   if (line.includes('Recurrent')) missingValue = csvLine[1];
   // check whether we have numbers after the first items in the array
@@ -96,14 +99,14 @@ const writeLineToOverView = (line, { title, voteTitle, stream }) => {
   // table structure quacks
   if (line.includes('Non Wage') && missingValue) csvLine.splice(2, 0, missingValue);
   if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
-  if (hasNumericalValues && title.includes('Overview of Vote Expenditures')) {
+  if (hasNumericalValues) {
     stream.write([...csvLine, title, voteTitle]);
   }
   return true;
 };
 
-const isNewTableTitleExpressions =
-  (segments) => segments.map(segment => verEx().find(segment.tableTitle));
+const isNewTableTitle =
+  (segments, line) => segments.some(segment => line.includes(segment.tableTitle));
 
 export const getVoteTitle = (line, currentVote) => {
   // the line should start with Vote:
@@ -135,17 +138,15 @@ function writeCSVFile(segments, readFileByLine, stream) {
   } else {
     writeCsvLine = program.overview ? writeLineToOverView : writeLineToFileRegular;
   }
-  const isTableExpressions = isNewTableTitleExpressions(segments);
   readFileByLine.on('line', (line) => {
-    console.log(line.includes('Annex'));
-    isTableTitle = isTableExpressions.some(expression => expression.test(line));
+    isTableTitle = isNewTableTitle(segments, line);
     voteTitle = getVoteTitle(line, voteTitle);
     if (isTableTitle) {
       title = segments.find(segment => line.includes(segment.tableTitle)).tableTitle;
       startMining = true;
-      console.log('Title', voteTitle);
+      console.log(`voteTitle: ${voteTitle} Title : ${title}`);
     }
-    if (startMining && voteTitle) writeCsvLine(line, { title, voteTitle, stream });
+    if (startMining) writeCsvLine(line, { title, voteTitle, stream });
   });
 }
 
