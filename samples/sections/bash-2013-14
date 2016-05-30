@@ -1,0 +1,20 @@
+#!/bin/bash
+# you can run the scrapping for the various 'votes' as bash commands
+# from the samples folder or any folder with the pdfs
+budget -f 124 -l 185 -n agriculture 2013-14.pdf
+budget -o -f 124 -l 185 -n agriculture-2 2013-14.pdf
+
+budget -f 229 -l 257 -n works 2013-14.pdf
+budget -o -f 229 -l 257 -n works-2 2013-14.pdf
+
+budget -f 344 -l 414 -n education 2013-14.pdf
+budget -o -f 344 -l 414 -n education-2 2013-14.pdf
+
+budget -f 421 -l 480 -n health 2013-14.pdf
+budget -o -f 421 -l 480 -n health-2 2013-14.pdf
+
+budget -f 561 -l 598 -n water-environment 2013-14.pdf
+budget -o -f 561 -l 598 -n water-environment-2 2013-14.pdf
+
+budget -f 605 -l 626 -n social 2013-14.pdf
+budget -o -f 605 -l 626 -n social-2 2013-14.pdf

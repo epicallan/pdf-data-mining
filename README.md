@@ -89,5 +89,9 @@ run the budget data mining command
 ```
 $ budget -f 444 -l 447 -n health 2014-15.pdf
   ```
+## Note
+
+> Make sure you have the right path to the nodeJs executable in the [index.js file](https://github.com/epicallan/uganda-budget-data/blob/master/index.js#L1)
+
 ## License
 MIT © [Allan](http://github.com/epicallan)

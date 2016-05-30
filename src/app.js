@@ -14,7 +14,7 @@ const pdftoTextProcess = () => (spawn('pdftotext',
 const writableStream = () => {
   const date = new Date();
   const time = date.getTime();
-  const csvFileName = `${program.name}-${time}` || time;
+  const csvFileName = program.name || time;
   const stream = fs.createWriteStream(`${csvFileName}.csv`);
   return stream;
 };
