@@ -17,7 +17,7 @@ const pdftoTextProcess = () => (spawn('pdftotext',
 const writableStream = () => {
   const date = new Date();
   const time = date.getTime();
-  const csvFileName = program.name || time;
+  const csvFileName = `${program.name}-${time}` || time;
   const stream = fs.createWriteStream(`${csvFileName}.csv`);
   return stream;
 };
@@ -55,6 +55,19 @@ export const shouldHaveNumericalValues = (line) => {
   const isLineValid = values.every(val => Number.isInteger(val));
   return isLineValid;
 };
+
+// another quack, this is in the annex tables
+// some numbers in two adjoining cells come out joined
+export const splitJoinedNumbers = (joined) => {
+  const splitted = joined.split('.');
+  if (splitted.length !== 3) return joined;
+  const subFirstNum = splitted[1].substring(0, 2);
+  const firstNumber = `${splitted[0]}.${subFirstNum}`;
+  const subSecondNumber = splitted[1].substring(2, -1);
+  const SecondNumber = `${subSecondNumber}.${splitted[2]}`;
+  return [firstNumber, SecondNumber];
+};
+
 export const annexCsvLine = line => {
  // get line name or title
   const csvLine = csvLineTowrite(line);
@@ -65,8 +78,14 @@ export const annexCsvLine = line => {
   const chunkedLine = newLine.replace(/\s+/g, ' ').split(' ');
   // console.log(lineName, lineName);
   if (/^\d+/.test(lineName)) {
-    console.log(line);
-    return chunkedLine.filter(word => word.length > 1);
+    const filtered = chunkedLine.filter(word => word.length > 1);
+    // if the first item is made up of joined up numbers it will return a split array
+    const splitNumbers = splitJoinedNumbers(filtered[0]);
+    if (splitNumbers.length === 2) {
+      filtered.shift();
+      return [...splitNumbers, filtered];
+    }
+    return filtered;
   }
   // add lineName back to the newLine and remove any empty spaces
   return [lineName, ...chunkedLine].filter(word => word.length > 1);
@@ -84,14 +103,14 @@ const writeLineForAnnexTables = (line, { title, stream }) => {
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
   const csvLine = annexCsvLine(line);
-  console.log('line length:', csvLine.length);
+  // console.log('line length:', csvLine.length);
   if (csvLine.length < 9) {
     prevShortLine = [title, ...csvLine];
+    // console.log(prevShortLine.join(','));
     return false;
   }
   if (prevShortLine && csvLine.length < 19) {
-    // remove last item coz its just a page number
-    prevShortLine.pop();
+    // prevShortLine.pop();
     stream.write([...prevShortLine, ...csvLine]);
     prevShortLine = null;
     return true;
@@ -146,7 +165,6 @@ export const getVoteTitle = (line, currentVote) => {
   if (!isNumber) return currentVote;
   if (isNumber && typeof chunkedLine[2] === 'string') {
     const voteTitle = newLine.replace(/(Vote:)(.*[0-9])(.\s)/, '');
-    // console.log('line:', line); ;
     return voteTitle.replace(/^\s+/, '');
   }
   return currentVote;

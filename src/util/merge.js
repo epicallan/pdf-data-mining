@@ -3,7 +3,9 @@ import readline from 'readline';
 // import Rx from 'rxjs/Rx';
 
 const buffers = new Map(); // for storing file data
-const rootPath = '/Users/allanlukwago/apps/budget-data/samples';
+// const rootPath = '/Users/allanlukwago/apps/budget-data/samples';
+const rootPath = '/home/allan/budget-data-scraping/samples';
+
 
 // returns a write stream for writing to the merge file
 const writableStream = () => {

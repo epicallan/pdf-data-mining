@@ -1,5 +1,9 @@
 import { expect } from 'chai';
-import { getVoteTitle, shouldHaveNumericalValues, annexCsvLine } from '../app.js';
+import {
+  splitJoinedNumbers,
+  getVoteTitle,
+  shouldHaveNumericalValues,
+  annexCsvLine } from '../app.js';
 /* eslint-disable no-unused-expressions */
 describe('app.js unit tests', () => {
   it('should get us a valid vote titles for each line', () => {
@@ -29,7 +33,7 @@ describe('app.js unit tests', () => {
     expect(resultB).to.be.false;
     expect(resultC).to.be.true;
   });
-  it('should return a valid annex csvLine with all the values', () => {
+  it('should return a valid annex csvLine with all the values regardless of the spacing', () => {
     const lineA = 'VF:1651 Management  150.08      157.89      N/A       105.2%      79%    87.5%';
     const lineB = 'VF:1651 Management  150.08      157.89      N/A       105.2% 79%    87.5%';
     const lineC = '150.08 150.07   157.89      N/A       105.2% 79%    87.5%';
@@ -37,7 +41,13 @@ describe('app.js unit tests', () => {
     const resultB = annexCsvLine(lineB);
     const resultC = annexCsvLine(lineC);
     expect(resultC).to.have.length(7);
-    expect(resultB).to.have.length(8);
-    expect(resultA).to.have.length(8);
+    expect(resultB).to.have.length(7);
+    expect(resultA).to.have.length(7);
+  });
+  it('should split joined up numbers', () => {
+    const joined = '0.2353.20';
+    const result = splitJoinedNumbers(joined);
+    expect(result).to.have.length(2);
+    expect(result[0]).to.be.equal(0.23);
   });
 });

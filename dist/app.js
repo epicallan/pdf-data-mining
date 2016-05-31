@@ -49,7 +49,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getVoteTitle = exports.annexCsvLine = exports.shouldHaveNumericalValues = undefined;
+	exports.getVoteTitle = exports.annexCsvLine = exports.splitJoinedNumbers = exports.shouldHaveNumericalValues = undefined;
 
 	var _fs = __webpack_require__(1);
 
@@ -59,13 +59,13 @@
 
 	var _readline2 = _interopRequireDefault(_readline);
 
-	var _fastCsv = __webpack_require__(4);
+	var _fastCsv = __webpack_require__(3);
 
 	var _fastCsv2 = _interopRequireDefault(_fastCsv);
 
-	var _config = __webpack_require__(28);
+	var _config = __webpack_require__(27);
 
-	var _cli = __webpack_require__(29);
+	var _cli = __webpack_require__(28);
 
 	var _cli2 = _interopRequireDefault(_cli);
 
@@ -73,7 +73,7 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var spawn = __webpack_require__(32).spawn;
+	var spawn = __webpack_require__(31).spawn;
 
 	var pdftoTextProcess = function pdftoTextProcess() {
 	  return spawn('pdftotext', ['-layout', '-f', _cli2.default.first, '-l', _cli2.default.last, _cli2.default.args[0]]);
@@ -83,7 +83,7 @@
 	var writableStream = function writableStream() {
 	  var date = new Date();
 	  var time = date.getTime();
-	  var csvFileName = _cli2.default.name || time;
+	  var csvFileName = _cli2.default.name + '-' + time || time;
 	  var stream = _fs2.default.createWriteStream(csvFileName + '.csv');
 	  return stream;
 	};
@@ -125,6 +125,19 @@
 	  });
 	  return isLineValid;
 	};
+
+	// another quack, this is in the annex tables
+	// some numbers in two adjoining cells come out joined
+	var splitJoinedNumbers = exports.splitJoinedNumbers = function splitJoinedNumbers(joined) {
+	  var splitted = joined.split('.');
+	  if (splitted.length !== 3) return joined;
+	  var subFirstNum = splitted[1].substring(0, 2);
+	  var firstNumber = splitted[0] + '.' + subFirstNum;
+	  var subSecondNumber = splitted[1].substring(2, -1);
+	  var SecondNumber = subSecondNumber + '.' + splitted[2];
+	  return [firstNumber, SecondNumber];
+	};
+
 	var annexCsvLine = exports.annexCsvLine = function annexCsvLine(line) {
 	  // get line name or title
 	  var csvLine = csvLineTowrite(line);
@@ -135,10 +148,16 @@
 	  var chunkedLine = newLine.replace(/\s+/g, ' ').split(' ');
 	  // console.log(lineName, lineName);
 	  if (/^\d+/.test(lineName)) {
-	    console.log(line);
-	    return chunkedLine.filter(function (word) {
+	    var filtered = chunkedLine.filter(function (word) {
 	      return word.length > 1;
 	    });
+	    // if the first item is made up of joined up numbers it will return a split array
+	    var splitNumbers = splitJoinedNumbers(filtered[0]);
+	    if (splitNumbers.length === 2) {
+	      filtered.shift();
+	      return [].concat(_toConsumableArray(splitNumbers), [filtered]);
+	    }
+	    return filtered;
 	  }
 	  // add lineName back to the newLine and remove any empty spaces
 	  return [lineName].concat(_toConsumableArray(chunkedLine)).filter(function (word) {
@@ -161,14 +180,14 @@
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
 	  if (!hasNumericalValues) return false;
 	  var csvLine = annexCsvLine(line);
-	  console.log('line length:', csvLine.length);
+	  // console.log('line length:', csvLine.length);
 	  if (csvLine.length < 9) {
 	    prevShortLine = [title].concat(_toConsumableArray(csvLine));
+	    // console.log(prevShortLine.join(','));
 	    return false;
 	  }
 	  if (prevShortLine && csvLine.length < 19) {
-	    // remove last item coz its just a page number
-	    prevShortLine.pop();
+	    // prevShortLine.pop();
 	    stream.write([].concat(_toConsumableArray(prevShortLine), _toConsumableArray(csvLine)));
 	    prevShortLine = null;
 	    return true;
@@ -231,7 +250,6 @@
 	  if (!isNumber) return currentVote;
 	  if (isNumber && typeof chunkedLine[2] === 'string') {
 	    var voteTitle = newLine.replace(/(Vote:)(.*[0-9])(.\s)/, '');
-	    // console.log('line:', line); ;
 	    return voteTitle.replace(/^\s+/, '');
 	  }
 	  return currentVote;
@@ -319,14 +337,13 @@
 	module.exports = require("readline");
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(5);
+	module.exports = __webpack_require__(4);
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -337,8 +354,8 @@
 	 */
 
 	var fs = __webpack_require__(1),
-	    parser = __webpack_require__(6),
-	    formatter = __webpack_require__(25);
+	    parser = __webpack_require__(5),
+	    formatter = __webpack_require__(24);
 
 	function csv() {
 	    return parser.apply(void 0, arguments);
@@ -360,14 +377,14 @@
 	module.exports = csv;
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var extended = __webpack_require__(7),
+	var extended = __webpack_require__(6),
 	    out = process.stdout,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    fs = __webpack_require__(1),
-	    ParserStream = __webpack_require__(21);
+	    ParserStream = __webpack_require__(20);
 
 
 	function parse(options) {
@@ -396,15 +413,15 @@
 
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var is = __webpack_require__(8);
-	module.exports = __webpack_require__(9)()
+	var is = __webpack_require__(7);
+	module.exports = __webpack_require__(8)()
 	    .register(is)
-	    .register(__webpack_require__(14))
-	    .register(__webpack_require__(17))
-	    .register("LINE_BREAK", __webpack_require__(19).EOL)
+	    .register(__webpack_require__(13))
+	    .register(__webpack_require__(16))
+	    .register("LINE_BREAK", __webpack_require__(18).EOL)
 	    .register("asyncEach", function (arr, iter, cb) {
 
 
@@ -461,7 +478,7 @@
 	    });
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -951,7 +968,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineIsa(__webpack_require__(9));
+	            module.exports = defineIsa(__webpack_require__(8));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -967,7 +984,7 @@
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -1049,7 +1066,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineExtended(__webpack_require__(10));
+	            module.exports = defineExtended(__webpack_require__(9));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -1070,13 +1087,13 @@
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(11);
+	module.exports = __webpack_require__(10);
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -1607,7 +1624,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineExtender(__webpack_require__(12));
+	            module.exports = defineExtender(__webpack_require__(11));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -1621,13 +1638,13 @@
 	}).call(this);
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(13);
+	module.exports = __webpack_require__(12);
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -2558,7 +2575,7 @@
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -2759,7 +2776,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineObject(__webpack_require__(9), __webpack_require__(8), __webpack_require__(15));
+	            module.exports = defineObject(__webpack_require__(8), __webpack_require__(7), __webpack_require__(14));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -2780,7 +2797,7 @@
 
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -3434,7 +3451,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineArray(__webpack_require__(9), __webpack_require__(8), __webpack_require__(16));
+	            module.exports = defineArray(__webpack_require__(8), __webpack_require__(7), __webpack_require__(15));
 	        }
 	    } else if ("function" === typeof define && define.amd) {
 	        define(["extended", "is-extended", "arguments-extended"], function (extended, is, args) {
@@ -3454,7 +3471,7 @@
 
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -3487,7 +3504,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineArgumentsExtended(__webpack_require__(9), __webpack_require__(8));
+	            module.exports = defineArgumentsExtended(__webpack_require__(8), __webpack_require__(7));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -3503,7 +3520,7 @@
 
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -4133,7 +4150,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineString(__webpack_require__(9), __webpack_require__(8), __webpack_require__(18), __webpack_require__(15));
+	            module.exports = defineString(__webpack_require__(8), __webpack_require__(7), __webpack_require__(17), __webpack_require__(14));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -4154,7 +4171,7 @@
 
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -5085,7 +5102,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineDate(__webpack_require__(9), __webpack_require__(8), __webpack_require__(15));
+	            module.exports = defineDate(__webpack_require__(8), __webpack_require__(7), __webpack_require__(14));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -5106,32 +5123,32 @@
 
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = require("os");
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports) {
 
 	module.exports = require("stream");
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var extended = __webpack_require__(7),
+	var extended = __webpack_require__(6),
 	    isUndefined = extended.isUndefined,
 	    spreadArgs = extended.spreadArgs,
-	    util = __webpack_require__(22),
+	    util = __webpack_require__(21),
 	    out = process.stdout,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    EMPTY = /^\s*(?:''|"")?\s*(?:,\s*(?:''|"")?\s*)*$/,
 	    DEFAULT_DELIMITER = ",",
-	    createParser = __webpack_require__(23),
+	    createParser = __webpack_require__(22),
 	    fs = __webpack_require__(1),
-	    StringDecoder = __webpack_require__(24).StringDecoder,
+	    StringDecoder = __webpack_require__(23).StringDecoder,
 	    hasIsPaused = !!stream.Transform.prototype.isPaused;
 
 	function ParserStream(options) {
@@ -5471,16 +5488,16 @@
 
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = require("util");
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var extended = __webpack_require__(7),
+	var extended = __webpack_require__(6),
 	    has = extended.has,
 	    isUndefinedOrNull = extended.isUndefinedOrNull,
 	    trim = extended.trim,
@@ -5680,21 +5697,21 @@
 
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = require("string_decoder");
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(1),
-	    extended = __webpack_require__(7),
+	    extended = __webpack_require__(6),
 	    escape = extended.escape,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    LINE_BREAK = extended.LINE_BREAK,
-	    CsvTransformStream = __webpack_require__(26);
+	    CsvTransformStream = __webpack_require__(25);
 
 
 	function createWriteStream(options) {
@@ -5772,19 +5789,19 @@
 
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(1),
-	    util = __webpack_require__(22),
-	    extended = __webpack_require__(7),
+	    util = __webpack_require__(21),
+	    extended = __webpack_require__(6),
 	    escape = extended.escape,
 	    isArray = extended.isArray,
 	    has = extended.has,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    Transform = stream.Transform,
 	    LINE_BREAK = extended.LINE_BREAK,
-	    formatter = __webpack_require__(27),
+	    formatter = __webpack_require__(26),
 	    createFormatter = formatter.createFormatter,
 	    checkHeaders = formatter.checkHeaders,
 	    transformItem = formatter.transformItem,
@@ -5871,18 +5888,18 @@
 
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(1),
-	    extended = __webpack_require__(7),
+	    extended = __webpack_require__(6),
 	    has = extended.has,
 	    isBoolean = extended.isBoolean,
 	    isUndefinedOrNull = extended.isUndefinedOrNull,
 	    escape = extended.escape,
 	    isArray = extended.isArray,
 	    keys = extended.keys,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    LINE_BREAK = extended.LINE_BREAK;
 
 	function createQuoteChecker(stream, quoteColumns, quoteHeaders) {
@@ -6070,7 +6087,7 @@
 
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -6173,7 +6190,7 @@
 	};
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6182,7 +6199,7 @@
 	  value: true
 	});
 
-	var _commander = __webpack_require__(30);
+	var _commander = __webpack_require__(29);
 
 	var _commander2 = _interopRequireDefault(_commander);
 
@@ -6204,26 +6221,25 @@
 	exports.default = _commander2.default;
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
 	/**
 	 * Module dependencies.
 	 */
 
-	var EventEmitter = __webpack_require__(31).EventEmitter;
-	var spawn = __webpack_require__(32).spawn;
-	var readlink = __webpack_require__(33).readlinkSync;
-	var path = __webpack_require__(34);
+	var EventEmitter = __webpack_require__(30).EventEmitter;
+	var spawn = __webpack_require__(31).spawn;
+	var path = __webpack_require__(32);
 	var dirname = path.dirname;
 	var basename = path.basename;
-	var fs = __webpack_require__(1);
 
 	/**
 	 * Expose the root command.
 	 */
 
-	exports = module.exports = new Command();
+	exports = module.exports = new Command;
 
 	/**
 	 * Expose `Command`.
@@ -6263,7 +6279,7 @@
 	 * @api private
 	 */
 
-	Option.prototype.name = function() {
+	Option.prototype.name = function(){
 	  return this.long
 	    .replace('--', '')
 	    .replace('no-', '');
@@ -6277,8 +6293,9 @@
 	 * @api private
 	 */
 
-	Option.prototype.is = function(arg) {
-	  return arg == this.short || arg == this.long;
+	Option.prototype.is = function(arg){
+	  return arg == this.short
+	    || arg == this.long;
 	};
 
 	/**
@@ -6291,10 +6308,9 @@
 	function Command(name) {
 	  this.commands = [];
 	  this.options = [];
-	  this._execs = {};
-	  this._allowUnknownOption = false;
+	  this._execs = [];
 	  this._args = [];
-	  this._name = name || '';
+	  this._name = name;
 	}
 
 	/**
@@ -6326,73 +6342,43 @@
 	 *      program
 	 *        .command('setup')
 	 *        .description('run remote setup commands')
-	 *        .action(function() {
+	 *        .action(function(){
 	 *          console.log('setup');
 	 *        });
 	 *
 	 *      program
 	 *        .command('exec <cmd>')
 	 *        .description('run the given remote command')
-	 *        .action(function(cmd) {
+	 *        .action(function(cmd){
 	 *          console.log('exec "%s"', cmd);
-	 *        });
-	 *
-	 *      program
-	 *        .command('teardown <dir> [otherDirs...]')
-	 *        .description('run teardown commands')
-	 *        .action(function(dir, otherDirs) {
-	 *          console.log('dir "%s"', dir);
-	 *          if (otherDirs) {
-	 *            otherDirs.forEach(function (oDir) {
-	 *              console.log('dir "%s"', oDir);
-	 *            });
-	 *          }
 	 *        });
 	 *
 	 *      program
 	 *        .command('*')
 	 *        .description('deploy the given env')
-	 *        .action(function(env) {
+	 *        .action(function(env){
 	 *          console.log('deploying "%s"', env);
 	 *        });
 	 *
 	 *      program.parse(process.argv);
 	  *
 	 * @param {String} name
-	 * @param {String} [desc] for git-style sub-commands
+	 * @param {String} [desc]
 	 * @return {Command} the new command
 	 * @api public
 	 */
 
-	Command.prototype.command = function(name, desc, opts) {
-	  opts = opts || {};
+	Command.prototype.command = function(name, desc) {
 	  var args = name.split(/ +/);
 	  var cmd = new Command(args.shift());
-
-	  if (desc) {
-	    cmd.description(desc);
-	    this.executables = true;
-	    this._execs[cmd._name] = true;
-	    if (opts.isDefault) this.defaultExecutable = cmd._name;
-	  }
-
-	  cmd._noHelp = !!opts.noHelp;
+	  if (desc) cmd.description(desc);
+	  if (desc) this.executables = true;
+	  if (desc) this._execs[cmd._name] = true;
 	  this.commands.push(cmd);
 	  cmd.parseExpectedArgs(args);
 	  cmd.parent = this;
-
 	  if (desc) return this;
 	  return cmd;
-	};
-
-	/**
-	 * Define argument syntax for the top-level command.
-	 *
-	 * @api public
-	 */
-
-	Command.prototype.arguments = function (desc) {
-	  return this.parseExpectedArgs(desc.split(/ +/));
 	};
 
 	/**
@@ -6416,32 +6402,17 @@
 	 * @api public
 	 */
 
-	Command.prototype.parseExpectedArgs = function(args) {
+	Command.prototype.parseExpectedArgs = function(args){
 	  if (!args.length) return;
 	  var self = this;
-	  args.forEach(function(arg) {
-	    var argDetails = {
-	      required: false,
-	      name: '',
-	      variadic: false
-	    };
-
+	  args.forEach(function(arg){
 	    switch (arg[0]) {
 	      case '<':
-	        argDetails.required = true;
-	        argDetails.name = arg.slice(1, -1);
+	        self._args.push({ required: true, name: arg.slice(1, -1) });
 	        break;
 	      case '[':
-	        argDetails.name = arg.slice(1, -1);
+	        self._args.push({ required: false, name: arg.slice(1, -1) });
 	        break;
-	    }
-
-	    if (argDetails.name.length > 3 && argDetails.name.slice(-3) === '...') {
-	      argDetails.variadic = true;
-	      argDetails.name = argDetails.name.slice(0, -3);
-	    }
-	    if (argDetails.name) {
-	      self._args.push(argDetails);
 	    }
 	  });
 	  return this;
@@ -6455,7 +6426,7 @@
 	 *      program
 	 *        .command('help')
 	 *        .description('display verbose help')
-	 *        .action(function() {
+	 *        .action(function(){
 	 *           // output help here
 	 *        });
 	 *
@@ -6464,9 +6435,9 @@
 	 * @api public
 	 */
 
-	Command.prototype.action = function(fn) {
+	Command.prototype.action = function(fn){
 	  var self = this;
-	  var listener = function(args, unknown) {
+	  var listener = function(args, unknown){
 	    // Parse any so-far unknown options
 	    args = args || [];
 	    unknown = unknown || [];
@@ -6486,15 +6457,9 @@
 	    // Leftover arguments need to be pushed back. Fixes issue #56
 	    if (parsed.args.length) args = parsed.args.concat(args);
 
-	    self._args.forEach(function(arg, i) {
+	    self._args.forEach(function(arg, i){
 	      if (arg.required && null == args[i]) {
 	        self.missingArgument(arg.name);
-	      } else if (arg.variadic) {
-	        if (i !== self._args.length - 1) {
-	          self.variadicArgNotLast(arg.name);
-	        }
-
-	        args[i] = args.splice(i);
 	      }
 	    });
 
@@ -6507,12 +6472,10 @@
 	      args.push(self);
 	    }
 
-	    fn.apply(self, args);
+	    fn.apply(this, args);
 	  };
-	  var parent = this.parent || this;
-	  var name = parent === this ? '*' : this._name;
-	  parent.on(name, listener);
-	  if (this._alias) parent.on(this._alias, listener);
+	  this.parent.on(this._name, listener);
+	  if (this._alias) this.parent.on(this._alias, listener);
 	  return this;
 	};
 
@@ -6565,26 +6528,14 @@
 	 * @api public
 	 */
 
-	Command.prototype.option = function(flags, description, fn, defaultValue) {
+	Command.prototype.option = function(flags, description, fn, defaultValue){
 	  var self = this
 	    , option = new Option(flags, description)
 	    , oname = option.name()
 	    , name = camelcase(oname);
 
 	  // default as 3rd arg
-	  if (typeof fn != 'function') {
-	    if (fn instanceof RegExp) {
-	      var regex = fn;
-	      fn = function(val, def) {
-	        var m = regex.exec(val);
-	        return m ? m[0] : def;
-	      }
-	    }
-	    else {
-	      defaultValue = fn;
-	      fn = null;
-	    }
-	  }
+	  if ('function' != typeof fn) defaultValue = fn, fn = null;
 
 	  // preassign default value only for --no-*, [optional], or <required>
 	  if (false == option.bool || option.optional || option.required) {
@@ -6599,11 +6550,9 @@
 
 	  // when it's passed assign the value
 	  // and conditionally invoke the callback
-	  this.on(oname, function(val) {
+	  this.on(oname, function(val){
 	    // coercion
-	    if (null !== val && fn) val = fn(val, undefined === self[name]
-	      ? defaultValue
-	      : self[name]);
+	    if (null !== val && fn) val = fn(val, undefined === self[name] ? defaultValue : self[name]);
 
 	    // unassigned or bool
 	    if ('boolean' == typeof self[name] || 'undefined' == typeof self[name]) {
@@ -6625,18 +6574,6 @@
 	};
 
 	/**
-	 * Allow unknown options on the command line.
-	 *
-	 * @param {Boolean} arg if `true` or omitted, no error will be thrown
-	 * for unknown options.
-	 * @api public
-	 */
-	Command.prototype.allowUnknownOption = function(arg) {
-	    this._allowUnknownOption = arguments.length === 0 || arg;
-	    return this;
-	};
-
-	/**
 	 * Parse `argv`, settings options and invoking commands when defined.
 	 *
 	 * @param {Array} argv
@@ -6644,7 +6581,7 @@
 	 * @api public
 	 */
 
-	Command.prototype.parse = function(argv) {
+	Command.prototype.parse = function(argv){
 	  // implicit help
 	  if (this.executables) this.addImplicitHelpCommand();
 
@@ -6654,12 +6591,6 @@
 	  // guess name
 	  this._name = this._name || basename(argv[1], '.js');
 
-	  // github-style sub-commands with no sub-command
-	  if (this.executables && argv.length < 3 && !this.defaultExecutable) {
-	    // this user needs help
-	    argv.push('--help');
-	  }
-
 	  // process argv
 	  var parsed = this.parseOptions(this.normalize(argv.slice(2)));
 	  var args = this.args = parsed.args;
@@ -6668,13 +6599,7 @@
 
 	  // executable sub-commands
 	  var name = result.args[0];
-	  if (this._execs[name] && typeof this._execs[name] != "function") {
-	    return this.executeSubCommand(argv, args, parsed.unknown);
-	  } else if (this.defaultExecutable) {
-	    // use the default subcommand
-	    args.unshift(name = this.defaultExecutable);
-	    return this.executeSubCommand(argv, args, parsed.unknown);
-	  }
+	  if (this._execs[name]) return this.executeSubCommand(argv, args, parsed.unknown);
 
 	  return result;
 	};
@@ -6701,63 +6626,24 @@
 	  }
 
 	  // executable
-	  var f = argv[1];
-	  // name of the subcommand, link `pm-install`
-	  var bin = basename(f, '.js') + '-' + args[0];
+	  var dir = dirname(argv[1]);
+	  var bin = basename(argv[1], '.js') + '-' + args[0];
 
+	  // check for ./<bin> first
+	  var local = path.join(dir, bin);
 
-	  // In case of globally installed, get the base dir where executable
-	  //  subcommand file should be located at
-	  var baseDir
-	    , link = readlink(f);
-
-	  // when symbolink is relative path
-	  if (link !== f && link.charAt(0) !== '/') {
-	    link = path.join(dirname(f), link)
-	  }
-	  baseDir = dirname(link);
-
-	  // prefer local `./<bin>` to bin in the $PATH
-	  var localBin = path.join(baseDir, bin);
-
-	  // whether bin file is a js script with explicit `.js` extension
-	  var isExplicitJS = false;
-	  if (exists(localBin + '.js')) {
-	    bin = localBin + '.js';
-	    isExplicitJS = true;
-	  } else if (exists(localBin)) {
-	    bin = localBin;
-	  }
-
+	  // run it
 	  args = args.slice(1);
-
-	  var proc;
-	  if (process.platform !== 'win32') {
-	    if (isExplicitJS) {
-	      args.unshift(localBin);
-	      // add executable arguments to spawn
-	      args = (process.execArgv || []).concat(args);
-
-	      proc = spawn('node', args, { stdio: 'inherit', customFds: [0, 1, 2] });
-	    } else {
-	      proc = spawn(bin, args, { stdio: 'inherit', customFds: [0, 1, 2] });
-	    }
-	  } else {
-	    args.unshift(localBin);
-	    proc = spawn(process.execPath, args, { stdio: 'inherit'});
-	  }
-
-	  proc.on('close', process.exit.bind(process));
-	  proc.on('error', function(err) {
+	  args.unshift(local);
+	  var proc = spawn('node', args, { stdio: 'inherit', customFds: [0, 1, 2] });
+	  proc.on('error', function(err){
 	    if (err.code == "ENOENT") {
 	      console.error('\n  %s(1) does not exist, try --help\n', bin);
 	    } else if (err.code == "EACCES") {
 	      console.error('\n  %s(1) not executable. try chmod or run with root\n', bin);
 	    }
-	    process.exit(1);
 	  });
 
-	  // Store the reference to the child process
 	  this.runningCommand = proc;
 	};
 
@@ -6771,7 +6657,7 @@
 	 * @api private
 	 */
 
-	Command.prototype.normalize = function(args) {
+	Command.prototype.normalize = function(args){
 	  var ret = []
 	    , arg
 	    , lastOpt
@@ -6779,18 +6665,12 @@
 
 	  for (var i = 0, len = args.length; i < len; ++i) {
 	    arg = args[i];
-	    if (i > 0) {
-	      lastOpt = this.optionFor(args[i-1]);
-	    }
+	    i > 0 && (lastOpt = this.optionFor(args[i-1]));
 
-	    if (arg === '--') {
-	      // Honor option terminator
-	      ret = ret.concat(args.slice(i));
-	      break;
-	    } else if (lastOpt && lastOpt.required) {
-	      ret.push(arg);
+	    if (lastOpt && lastOpt.required) {
+	     	ret.push(arg);
 	    } else if (arg.length > 1 && '-' == arg[0] && '-' != arg[1]) {
-	      arg.slice(1).split('').forEach(function(c) {
+	      arg.slice(1).split('').forEach(function(c){
 	        ret.push('-' + c);
 	      });
 	    } else if (/^--/.test(arg) && ~(index = arg.indexOf('='))) {
@@ -6815,8 +6695,10 @@
 	 * @api private
 	 */
 
-	Command.prototype.parseArgs = function(args, unknown) {
-	  var name;
+	Command.prototype.parseArgs = function(args, unknown){
+	  var cmds = this.commands
+	    , len = cmds.length
+	    , name;
 
 	  if (args.length) {
 	    name = args[0];
@@ -6846,7 +6728,7 @@
 	 * @api private
 	 */
 
-	Command.prototype.optionFor = function(arg) {
+	Command.prototype.optionFor = function(arg){
 	  for (var i = 0, len = this.options.length; i < len; ++i) {
 	    if (this.options[i].is(arg)) {
 	      return this.options[i];
@@ -6863,7 +6745,7 @@
 	 * @api public
 	 */
 
-	Command.prototype.parseOptions = function(argv) {
+	Command.prototype.parseOptions = function(argv){
 	  var args = []
 	    , len = argv.length
 	    , literal
@@ -6934,30 +6816,13 @@
 	};
 
 	/**
-	 * Return an object containing options as key-value pairs
-	 *
-	 * @return {Object}
-	 * @api public
-	 */
-	Command.prototype.opts = function() {
-	  var result = {}
-	    , len = this.options.length;
-
-	  for (var i = 0 ; i < len; i++) {
-	    var key = camelcase(this.options[i].name());
-	    result[key] = key === 'version' ? this._version : this[key];
-	  }
-	  return result;
-	};
-
-	/**
 	 * Argument `name` is missing.
 	 *
 	 * @param {String} name
 	 * @api private
 	 */
 
-	Command.prototype.missingArgument = function(name) {
+	Command.prototype.missingArgument = function(name){
 	  console.error();
 	  console.error("  error: missing required argument `%s'", name);
 	  console.error();
@@ -6972,7 +6837,7 @@
 	 * @api private
 	 */
 
-	Command.prototype.optionMissingArgument = function(option, flag) {
+	Command.prototype.optionMissingArgument = function(option, flag){
 	  console.error();
 	  if (flag) {
 	    console.error("  error: option `%s' argument missing, got `%s'", option.flags, flag);
@@ -6990,27 +6855,13 @@
 	 * @api private
 	 */
 
-	Command.prototype.unknownOption = function(flag) {
-	  if (this._allowUnknownOption) return;
+	Command.prototype.unknownOption = function(flag){
 	  console.error();
 	  console.error("  error: unknown option `%s'", flag);
 	  console.error();
 	  process.exit(1);
 	};
 
-	/**
-	 * Variadic argument with `name` is not the last argument as required.
-	 *
-	 * @param {String} name
-	 * @api private
-	 */
-
-	Command.prototype.variadicArgNotLast = function(name) {
-	  console.error();
-	  console.error("  error: variadic arguments must be last `%s'", name);
-	  console.error();
-	  process.exit(1);
-	};
 
 	/**
 	 * Set the program version to `str`.
@@ -7024,28 +6875,28 @@
 	 * @api public
 	 */
 
-	Command.prototype.version = function(str, flags) {
+	Command.prototype.version = function(str, flags){
 	  if (0 == arguments.length) return this._version;
 	  this._version = str;
 	  flags = flags || '-V, --version';
 	  this.option(flags, 'output the version number');
-	  this.on('version', function() {
-	    process.stdout.write(str + '\n');
+	  this.on('version', function(){
+	    console.log(str);
 	    process.exit(0);
 	  });
 	  return this;
 	};
 
 	/**
-	 * Set the description to `str`.
+	 * Set the description `str`.
 	 *
 	 * @param {String} str
 	 * @return {String|Command}
 	 * @api public
 	 */
 
-	Command.prototype.description = function(str) {
-	  if (0 === arguments.length) return this._description;
+	Command.prototype.description = function(str){
+	  if (0 == arguments.length) return this._description;
 	  this._description = str;
 	  return this;
 	};
@@ -7058,7 +6909,7 @@
 	 * @api public
 	 */
 
-	Command.prototype.alias = function(alias) {
+	Command.prototype.alias = function(alias){
 	  if (0 == arguments.length) return this._alias;
 	  this._alias = alias;
 	  return this;
@@ -7072,31 +6923,22 @@
 	 * @api public
 	 */
 
-	Command.prototype.usage = function(str) {
-	  var args = this._args.map(function(arg) {
-	    return humanReadableArgName(arg);
+	Command.prototype.usage = function(str){
+	  var args = this._args.map(function(arg){
+	    return arg.required
+	      ? '<' + arg.name + '>'
+	      : '[' + arg.name + ']';
 	  });
 
-	  var usage = '[options]'
-	    + (this.commands.length ? ' [command]' : '')
-	    + (this._args.length ? ' ' + args.join(' ') : '');
+	  var usage = '[options'
+	    + (this.commands.length ? '] [command' : '')
+	    + ']'
+	    + (this._args.length ? ' ' + args : '');
 
 	  if (0 == arguments.length) return this._usage || usage;
 	  this._usage = str;
 
 	  return this;
-	};
-
-	/**
-	 * Get the name of the command
-	 *
-	 * @param {String} name
-	 * @return {String|Command}
-	 * @api public
-	 */
-
-	Command.prototype.name = function() {
-	  return this._name;
 	};
 
 	/**
@@ -7106,8 +6948,8 @@
 	 * @api private
 	 */
 
-	Command.prototype.largestOptionLength = function() {
-	  return this.options.reduce(function(max, option) {
+	Command.prototype.largestOptionLength = function(){
+	  return this.options.reduce(function(max, option){
 	    return Math.max(max, option.flags.length);
 	  }, 0);
 	};
@@ -7119,15 +6961,16 @@
 	 * @api private
 	 */
 
-	Command.prototype.optionHelp = function() {
+	Command.prototype.optionHelp = function(){
 	  var width = this.largestOptionLength();
 
 	  // Prepend the help information
 	  return [pad('-h, --help', width) + '  ' + 'output usage information']
-	      .concat(this.options.map(function(option) {
-	        return pad(option.flags, width) + '  ' + option.description;
+	    .concat(this.options.map(function(option){
+	      return pad(option.flags, width)
+	        + '  ' + option.description;
 	      }))
-	      .join('\n');
+	    .join('\n');
 	};
 
 	/**
@@ -7137,36 +6980,30 @@
 	 * @api private
 	 */
 
-	Command.prototype.commandHelp = function() {
+	Command.prototype.commandHelp = function(){
 	  if (!this.commands.length) return '';
-
-	  var commands = this.commands.filter(function(cmd) {
-	    return !cmd._noHelp;
-	  }).map(function(cmd) {
-	    var args = cmd._args.map(function(arg) {
-	      return humanReadableArgName(arg);
-	    }).join(' ');
-
-	    return [
-	      cmd._name
-	        + (cmd._alias ? '|' + cmd._alias : '')
-	        + (cmd.options.length ? ' [options]' : '')
-	        + ' ' + args
-	      , cmd.description()
-	    ];
-	  });
-
-	  var width = commands.reduce(function(max, command) {
-	    return Math.max(max, command[0].length);
-	  }, 0);
-
 	  return [
-	    ''
+	      ''
 	    , '  Commands:'
 	    , ''
-	    , commands.map(function(cmd) {
-	      var desc = cmd[1] ? '  ' + cmd[1] : '';
-	      return pad(cmd[0], width) + desc;
+	    , this.commands.map(function(cmd){
+	      var args = cmd._args.map(function(arg){
+	        return arg.required
+	          ? '<' + arg.name + '>'
+	          : '[' + arg.name + ']';
+	      }).join(' ');
+
+	      return cmd._name
+	        + (cmd._alias
+	          ? '|' + cmd._alias
+	          : '')
+	        + (cmd.options.length
+	          ? ' [options]'
+	          : '') + ' ' + args
+	        + (cmd.description()
+	          ? '\n   ' + cmd.description()
+	          : '')
+	        + '\n';
 	    }).join('\n').replace(/^/gm, '    ')
 	    , ''
 	  ].join('\n');
@@ -7179,42 +7016,21 @@
 	 * @api private
 	 */
 
-	Command.prototype.helpInformation = function() {
-	  var desc = [];
-	  if (this._description) {
-	    desc = [
-	      '  ' + this._description
-	      , ''
-	    ];
-	  }
-
-	  var cmdName = this._name;
-	  if (this._alias) {
-	    cmdName = cmdName + '|' + this._alias;
-	  }
-	  var usage = [
-	    ''
-	    ,'  Usage: ' + cmdName + ' ' + this.usage()
-	    , ''
-	  ];
-
-	  var cmds = [];
-	  var commandHelp = this.commandHelp();
-	  if (commandHelp) cmds = [commandHelp];
-
-	  var options = [
-	    '  Options:'
+	Command.prototype.helpInformation = function(){
+	  return [
+	      ''
+	    , '  Usage: ' + this._name
+	        + (this._alias
+	          ? '|' + this._alias
+	          : '')
+	        + ' ' + this.usage()
+	    , '' + this.commandHelp()
+	    , '  Options:'
 	    , ''
 	    , '' + this.optionHelp().replace(/^/gm, '    ')
 	    , ''
 	    , ''
-	  ];
-
-	  return usage
-	    .concat(cmds)
-	    .concat(desc)
-	    .concat(options)
-	    .join('\n');
+	  ].join('\n');
 	};
 
 	/**
@@ -7223,13 +7039,8 @@
 	 * @api public
 	 */
 
-	Command.prototype.outputHelp = function(cb) {
-	  if (!cb) {
-	    cb = function(passthru) {
-	      return passthru;
-	    }
-	  }
-	  process.stdout.write(cb(this.helpInformation()));
+	Command.prototype.outputHelp = function(){
+	  process.stdout.write(this.helpInformation());
 	  this.emit('--help');
 	};
 
@@ -7239,8 +7050,8 @@
 	 * @api public
 	 */
 
-	Command.prototype.help = function(cb) {
-	  this.outputHelp(cb);
+	Command.prototype.help = function(){
+	  this.outputHelp();
 	  process.exit();
 	};
 
@@ -7253,7 +7064,7 @@
 	 */
 
 	function camelcase(flag) {
-	  return flag.split('-').reduce(function(str, word) {
+	  return flag.split('-').reduce(function(str, word){
 	    return str + word[0].toUpperCase() + word.slice(1);
 	  });
 	}
@@ -7290,67 +7101,21 @@
 	  }
 	}
 
-	/**
-	 * Takes an argument an returns its human readable equivalent for help usage.
-	 *
-	 * @param {Object} arg
-	 * @return {String}
-	 * @api private
-	 */
-
-	function humanReadableArgName(arg) {
-	  var nameOutput = arg.name + (arg.variadic === true ? '...' : '');
-
-	  return arg.required
-	    ? '<' + nameOutput + '>'
-	    : '[' + nameOutput + ']'
-	}
-
-	// for versions before node v0.8 when there weren't `fs.existsSync`
-	function exists(file) {
-	  try {
-	    if (fs.statSync(file).isFile()) {
-	      return true;
-	    }
-	  } catch (e) {
-	    return false;
-	  }
-	}
-
-
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = require("child_process");
 
 /***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var fs = __webpack_require__(1)
-	  , lstat = fs.lstatSync;
-
-	exports.readlinkSync = function (p) {
-	  if (lstat(p).isSymbolicLink()) {
-	    return fs.readlinkSync(p);
-	  } else {
-	    return p;
-	  }
-	};
-
-
-
-
-/***/ },
-/* 34 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
