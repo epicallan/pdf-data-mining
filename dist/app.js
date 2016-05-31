@@ -88,17 +88,19 @@
 	  return stream;
 	};
 
+	var getRowTransformFunc = function getRowTransformFunc() {
+	  if (_cli2.default.annex) return _config.transformForAnnexTables;
+	  if (_cli2.default.estimates) return _config.transformForEstimates;
+	  var transform = _cli2.default.overview ? _config.transformOverview : _config.transformRegular;
+	  return transform;
+	};
+
 	// configuring csv stream object which feeds into the file stream
 	var csvStream = function csvStream() {
 	  var writeStream = writableStream();
 	  var stream = _fastCsv2.default.createWriteStream({ headers: true });
 	  // adding a transformation function that is responsible for the row titles
-	  var transform = null;
-	  if (_cli2.default.annex) {
-	    transform = _config.transformForAnnexTables;
-	  } else {
-	    transform = _cli2.default.overview ? _config.transformOverview : _config.transformRegular;
-	  }
+	  var transform = getRowTransformFunc();
 	  stream.transform(transform).pipe(writeStream);
 	  return stream;
 	};
@@ -165,6 +167,19 @@
 	  });
 	};
 
+	var writeLineForEstimatesTables = function writeLineForEstimatesTables(line, _ref) {
+	  var title = _ref.title;
+	  var stream = _ref.stream;
+
+	  if (!title.includes('FY 2015/16 PAF')) return false;
+	  var hasNumericalValues = shouldHaveNumericalValues(line);
+	  if (!hasNumericalValues) return false;
+	  var csvLine = csvLineTowrite(line);
+	  if (csvLine.length > 7) csvLine.shift();
+	  console.log([title].concat(_toConsumableArray(csvLine)));
+	  stream.write([title].concat(_toConsumableArray(csvLine)));
+	  return true;
+	};
 	// coz of line numbers at the bottom of the page
 	// the line is returned at the end of that number
 	// hence turning out shorter
@@ -172,9 +187,9 @@
 	// then we wait for the next line which is also short and we add them together
 	var prevShortLine = null;
 
-	var writeLineForAnnexTables = function writeLineForAnnexTables(line, _ref) {
-	  var title = _ref.title;
-	  var stream = _ref.stream;
+	var writeLineForAnnexTables = function writeLineForAnnexTables(line, _ref2) {
+	  var title = _ref2.title;
+	  var stream = _ref2.stream;
 
 	  if (!title.includes('Annex')) return false;
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
@@ -197,10 +212,10 @@
 	};
 	// function we use to writing out csv lines for regular tables
 	// to the csv file
-	var writeLineToFileRegular = function writeLineToFileRegular(line, _ref2) {
-	  var title = _ref2.title;
-	  var voteTitle = _ref2.voteTitle;
-	  var stream = _ref2.stream;
+	var writeLineToFileRegular = function writeLineToFileRegular(line, _ref3) {
+	  var title = _ref3.title;
+	  var voteTitle = _ref3.voteTitle;
+	  var stream = _ref3.stream;
 
 	  if (title.includes('Overview of Vote Expenditures') || title.includes('Annex')) return false;
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
@@ -212,17 +227,15 @@
 	  return true;
 	};
 
-	// looks bad global variable FIXME
-	// the missing value we are looking for is on a previous line
+	// tne line that has non wage seems to some time miss a value which with the previous line
 	// so we cache it till the line that needs it comes up and we use it
-	// and we cant do that with in a function that is continuosly being called
 	var missingValue = null;
 	// function we use to writing out csv lines for the overviewVoteExpenditure table
 	// which is abit different from the rest of the tables
-	var writeLineToOverView = function writeLineToOverView(line, _ref3) {
-	  var title = _ref3.title;
-	  var voteTitle = _ref3.voteTitle;
-	  var stream = _ref3.stream;
+	var writeLineToOverView = function writeLineToOverView(line, _ref4) {
+	  var title = _ref4.title;
+	  var voteTitle = _ref4.voteTitle;
+	  var stream = _ref4.stream;
 
 	  if (!title.includes('Overview of Vote Expenditures')) return false;
 	  var csvLine = csvLineTowrite(line);
@@ -261,17 +274,19 @@
 	  });
 	};
 
+	var getWriteCsvLineFunc = function getWriteCsvLineFunc() {
+	  if (_cli2.default.annex) return writeLineForAnnexTables;
+	  if (_cli2.default.estimates) return writeLineForEstimatesTables;
+	  var write = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
+	  return write;
+	};
+
 	function writeCSVFile(segments, readFileByLine, stream) {
 	  var startMining = false;
 	  var isTableTitle = false;
 	  var title = null;
 	  var voteTitle = null;
-	  var writeCsvLine = null; // function
-	  if (_cli2.default.annex) {
-	    writeCsvLine = writeLineForAnnexTables;
-	  } else {
-	    writeCsvLine = _cli2.default.overview ? writeLineToOverView : writeLineToFileRegular;
-	  }
+	  var writeCsvLine = getWriteCsvLineFunc();
 	  readFileByLine.on('line', function (line) {
 	    isTableTitle = isNewTableTitle(segments, line);
 	    voteTitle = getVoteTitle(line, voteTitle);
@@ -6115,6 +6130,8 @@
 	  tableTitle: 'Annex A1.1'
 	}, {
 	  tableTitle: 'Annex A1.2'
+	}, {
+	  tableTitle: 'FY 2015/16 PAF'
 	}];
 
 	// responsible for table titles
@@ -6169,23 +6186,37 @@
 	var transformForAnnexTables = exports.transformForAnnexTables = function transformForAnnexTables(row) {
 	  return {
 	    'Annex Type': row[0],
-	    'Approved Estimates wage': row[1],
-	    'Approved Estimates Non Wage': row[2],
-	    'Approved Estimates GoU Dev': row[3],
-	    'Approved Estimates GoU Total': row[4],
-	    'Releases by End June Wage': row[5],
-	    'Releases by End June Non Wage': row[6],
-	    'Releases by End June Gou Dev': row[7],
-	    'Releases by End June GoU Total': row[8],
-	    'Expenditure by End June Wage': row[9],
-	    'Expenditure by End June Non Wage': row[10],
-	    'Expenditure by End June Gou Dev': row[11],
-	    'Expenditure by End June GoU Total': row[12],
-	    'Performance by End June Wage': row[13],
-	    'Performance by End June Non Wage': row[14],
-	    'Performance by End June Gou Dev': row[15],
-	    'Performance by End June GoU Total': row[16]
+	    Section: row[1],
+	    'Approved Estimates wage': row[2],
+	    'Approved Estimates Non Wage': row[3],
+	    'Approved Estimates GoU Dev': row[4],
+	    'Approved Estimates GoU Total': row[5],
+	    'Budget Projections June Wage': row[6],
+	    'Budget Projections June Non Wage': row[7],
+	    'Budget Projections June Gou Dev': row[8],
+	    'Budget Projections June GoU Total': row[9],
+	    'Expenditure by End June Wage': row[10],
+	    'Expenditure by End June Non Wage': row[11],
+	    'Expenditure by End June Gou Dev': row[12],
+	    'Expenditure by End June GoU Total': row[13],
+	    'Performance by End June Wage': row[14],
+	    'Performance by End June Non Wage': row[15],
+	    'Performance by End June Gou Dev': row[16],
+	    'Performance by End June GoU Total': row[17]
 
+	  };
+	};
+
+	var transformForEstimates = exports.transformForEstimates = function transformForEstimates(row) {
+	  return {
+	    'Table Title': row[0],
+	    Section: row[1],
+	    'Approved Budget Rec': row[2],
+	    'Approved Budget Dev': row[3],
+	    'Approved Budget Total': row[4],
+	    'Budget Projections Rec': row[5],
+	    'Budget Projections Dev': row[6],
+	    'Budget Projections Total': row[7]
 	  };
 	};
 
@@ -6205,7 +6236,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_commander2.default.version('0.0.1').option('-f, --first <n>', 'Add first page').option('-l, --last <n>', 'Add last page').option('-o, --overview', 'indicates we are mining from overview vote expenditure tables').option('-a, --annex', 'indicates that we want to mine annex tables').option('-n, --name [name]', 'Add resulting csv file name');
+	_commander2.default.version('0.0.1').option('-f, --first <n>', 'Add first page').option('-l, --last <n>', 'Add last page').option('-o, --overview', 'indicates we are mining from overview vote expenditure tables').option('-a, --annex', 'indicates that we want to mine annex tables').option('-e, --estimates', 'indicates that we want to mine the estimates tables').option('-n, --name [name]', 'Add resulting csv file name');
 
 	_commander2.default.on('--help', function () {
 	  console.log('  Example:');

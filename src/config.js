@@ -28,6 +28,9 @@ export const budgetSegmentsToRead = [
   },
   {
     tableTitle: 'Annex A1.2'
+  },
+  {
+    tableTitle: 'FY 2015/16 PAF'
   }
 ];
 
@@ -78,21 +81,33 @@ export const transformOverview = row => rowStructure(row);
 
 export const transformForAnnexTables = row => ({
   'Annex Type': row[0],
-  'Approved Estimates wage': row[1],
-  'Approved Estimates Non Wage': row[2],
-  'Approved Estimates GoU Dev': row[3],
-  'Approved Estimates GoU Total': row[4],
-  'Releases by End June Wage': row[5],
-  'Releases by End June Non Wage': row[6],
-  'Releases by End June Gou Dev': row[7],
-  'Releases by End June GoU Total': row[8],
-  'Expenditure by End June Wage': row[9],
-  'Expenditure by End June Non Wage': row[10],
-  'Expenditure by End June Gou Dev': row[11],
-  'Expenditure by End June GoU Total': row[12],
-  'Performance by End June Wage': row[13],
-  'Performance by End June Non Wage': row[14],
-  'Performance by End June Gou Dev': row[15],
-  'Performance by End June GoU Total': row[16]
+  Section: row[1],
+  'Approved Estimates wage': row[2],
+  'Approved Estimates Non Wage': row[3],
+  'Approved Estimates GoU Dev': row[4],
+  'Approved Estimates GoU Total': row[5],
+  'Budget Projections June Wage': row[6],
+  'Budget Projections June Non Wage': row[7],
+  'Budget Projections June Gou Dev': row[8],
+  'Budget Projections June GoU Total': row[9],
+  'Expenditure by End June Wage': row[10],
+  'Expenditure by End June Non Wage': row[11],
+  'Expenditure by End June Gou Dev': row[12],
+  'Expenditure by End June GoU Total': row[13],
+  'Performance by End June Wage': row[14],
+  'Performance by End June Non Wage': row[15],
+  'Performance by End June Gou Dev': row[16],
+  'Performance by End June GoU Total': row[17]
 
+});
+
+export const transformForEstimates = row => ({
+  'Table Title': row[0],
+  Section: row[1],
+  'Approved Budget Rec': row[2],
+  'Approved Budget Dev': row[3],
+  'Approved Budget Total': row[4],
+  'Budget Projections Rec': row[5],
+  'Budget Projections Dev': row[6],
+  'Budget Projections Total': row[7]
 });

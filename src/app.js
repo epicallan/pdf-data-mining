@@ -5,6 +5,7 @@ import {
   budgetSegmentsToRead,
   transformRegular,
   transformOverview,
+  transformForEstimates,
   transformForAnnexTables } from './config';
 import program from './cli';
 
@@ -22,18 +23,19 @@ const writableStream = () => {
   return stream;
 };
 
+const getRowTransformFunc = () => {
+  if (program.annex) return transformForAnnexTables;
+  if (program.estimates) return transformForEstimates;
+  const transform = program.overview ? transformOverview : transformRegular;
+  return transform;
+};
 
 // configuring csv stream object which feeds into the file stream
 const csvStream = () => {
   const writeStream = writableStream();
   const stream = csv.createWriteStream({ headers: true });
   // adding a transformation function that is responsible for the row titles
-  let transform = null;
-  if (program.annex) {
-    transform = transformForAnnexTables;
-  } else {
-    transform = program.overview ? transformOverview : transformRegular;
-  }
+  const transform = getRowTransformFunc();
   stream.transform(transform)
   .pipe(writeStream);
   return stream;
@@ -91,6 +93,16 @@ export const annexCsvLine = line => {
   return [lineName, ...chunkedLine].filter(word => word.length > 1);
 };
 
+const writeLineForEstimatesTables = (line, { title, stream }) => {
+  if (!title.includes('FY 2015/16 PAF')) return false;
+  const hasNumericalValues = shouldHaveNumericalValues(line);
+  if (!hasNumericalValues) return false;
+  const csvLine = csvLineTowrite(line);
+  if (csvLine.length > 7) csvLine.shift();
+  console.log([title, ...csvLine]);
+  stream.write([title, ...csvLine]);
+  return true;
+};
 // coz of line numbers at the bottom of the page
 // the line is returned at the end of that number
 // hence turning out shorter
@@ -131,10 +143,8 @@ const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
   return true;
 };
 
-// looks bad global variable FIXME
-// the missing value we are looking for is on a previous line
+// tne line that has non wage seems to some time miss a value which with the previous line
 // so we cache it till the line that needs it comes up and we use it
-// and we cant do that with in a function that is continuosly being called
 let missingValue = null;
 // function we use to writing out csv lines for the overviewVoteExpenditure table
 // which is abit different from the rest of the tables
@@ -173,17 +183,19 @@ export const getVoteTitle = (line, currentVote) => {
 const isNewTableTitle =
   (segments, line) => segments.some(segment => line.includes(segment.tableTitle));
 
+const getWriteCsvLineFunc = () => {
+  if (program.annex) return writeLineForAnnexTables;
+  if (program.estimates) return writeLineForEstimatesTables;
+  const write = program.overview ? writeLineToOverView : writeLineToFileRegular;
+  return write;
+};
+
 function writeCSVFile(segments, readFileByLine, stream) {
   let startMining = false;
   let isTableTitle = false;
   let title = null;
   let voteTitle = null;
-  let writeCsvLine = null; // function
-  if (program.annex) {
-    writeCsvLine = writeLineForAnnexTables;
-  } else {
-    writeCsvLine = program.overview ? writeLineToOverView : writeLineToFileRegular;
-  }
+  const writeCsvLine = getWriteCsvLineFunc();
   readFileByLine.on('line', (line) => {
     isTableTitle = isNewTableTitle(segments, line);
     voteTitle = getVoteTitle(line, voteTitle);
