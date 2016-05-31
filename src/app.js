@@ -55,16 +55,48 @@ export const shouldHaveNumericalValues = (line) => {
   const isLineValid = values.every(val => Number.isInteger(val));
   return isLineValid;
 };
-// TODO some lines are shorten coz of page numbers
-// for those lines we should join them with the next extension new shorter line
+export const annexCsvLine = line => {
+ // get line name or title
+  const csvLine = csvLineTowrite(line);
+  const lineName = csvLine[0].replace(/^\s+/, '');
+  // remove lineName from line
+  const newLine = /[ab-z]/.test(lineName) ? line.replace(lineName, '') : line;
+  // replace all double spaces with single spaces
+  const chunkedLine = newLine.replace(/\s+/g, ' ').split(' ');
+  // console.log(lineName, lineName);
+  if (/^\d+/.test(lineName)) {
+    console.log(line);
+    return chunkedLine.filter(word => word.length > 1);
+  }
+  // add lineName back to the newLine and remove any empty spaces
+  return [lineName, ...chunkedLine].filter(word => word.length > 1);
+};
+
+// coz of line numbers at the bottom of the page
+// the line is returned at the end of that number
+// hence turning out shorter
+// so we cache that line as prevShortLine and return false
+// then we wait for the next line which is also short and we add them together
+let prevShortLine = null;
+
 const writeLineForAnnexTables = (line, { title, stream }) => {
   if (!title.includes('Annex')) return false;
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
-  const csvLine = csvLineTowrite(line);
-  if (hasNumericalValues) {
-    stream.write([title, ...csvLine]);
+  const csvLine = annexCsvLine(line);
+  console.log('line length:', csvLine.length);
+  if (csvLine.length < 9) {
+    prevShortLine = [title, ...csvLine];
+    return false;
   }
+  if (prevShortLine && csvLine.length < 19) {
+    // remove last item coz its just a page number
+    prevShortLine.pop();
+    stream.write([...prevShortLine, ...csvLine]);
+    prevShortLine = null;
+    return true;
+  }
+  stream.write([title, ...csvLine]);
   return true;
 };
 // function we use to writing out csv lines for regular tables
@@ -72,13 +104,11 @@ const writeLineForAnnexTables = (line, { title, stream }) => {
 const writeLineToFileRegular = (line, { title, voteTitle, stream }) => {
   if (title.includes('Overview of Vote Expenditures') || title.includes('Annex')) return false;
   const hasNumericalValues = shouldHaveNumericalValues(line);
+  // check whether we have numbers after the first items in the array
   if (!hasNumericalValues) return false;
   const csvLine = csvLineTowrite(line);
-  // check whether we have numbers after the first items in the array
-  if (hasNumericalValues) {
-    if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
-    stream.write([...csvLine, title, voteTitle]);
-  }
+  if (csvLine.length !== 7) csvLine.splice(0, 2, `${csvLine[0]} ${csvLine[1]}`);
+  stream.write([...csvLine, title, voteTitle]);
   return true;
 };
 
@@ -99,19 +129,14 @@ const writeLineToOverView = (line, { title, voteTitle, stream }) => {
   // table structure quacks
   if (line.includes('Non Wage') && missingValue) csvLine.splice(2, 0, missingValue);
   if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
-  if (hasNumericalValues) {
-    stream.write([...csvLine, title, voteTitle]);
-  }
+  stream.write([...csvLine, title, voteTitle]);
   return true;
 };
 
-const isNewTableTitle =
-  (segments, line) => segments.some(segment => line.includes(segment.tableTitle));
-
 export const getVoteTitle = (line, currentVote) => {
-  // the line should start with Vote:
   // remove extra white space at the beginning of the line if any
   const newLine = line.replace(/^\s+/, '');
+  // the line should start with Vote:
   const hasVoteHasFirstLine = /^Vote:/.test(newLine);
   if (!hasVoteHasFirstLine) return currentVote;
   // should have the vote Number
@@ -127,12 +152,15 @@ export const getVoteTitle = (line, currentVote) => {
   return currentVote;
 };
 
+const isNewTableTitle =
+  (segments, line) => segments.some(segment => line.includes(segment.tableTitle));
+
 function writeCSVFile(segments, readFileByLine, stream) {
   let startMining = false;
   let isTableTitle = false;
   let title = null;
   let voteTitle = null;
-  let writeCsvLine = null;
+  let writeCsvLine = null; // function
   if (program.annex) {
     writeCsvLine = writeLineForAnnexTables;
   } else {

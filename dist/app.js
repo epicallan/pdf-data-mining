@@ -49,7 +49,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getVoteTitle = exports.shouldHaveNumericalValues = undefined;
+	exports.getVoteTitle = exports.annexCsvLine = exports.shouldHaveNumericalValues = undefined;
 
 	var _fs = __webpack_require__(1);
 
@@ -125,8 +125,34 @@
 	  });
 	  return isLineValid;
 	};
-	// TODO some lines are shorten coz of page numbers
-	// for those lines we should join them with the next extension new shorter line
+	var annexCsvLine = exports.annexCsvLine = function annexCsvLine(line) {
+	  // get line name or title
+	  var csvLine = csvLineTowrite(line);
+	  var lineName = csvLine[0].replace(/^\s+/, '');
+	  // remove lineName from line
+	  var newLine = /[ab-z]/.test(lineName) ? line.replace(lineName, '') : line;
+	  // replace all double spaces with single spaces
+	  var chunkedLine = newLine.replace(/\s+/g, ' ').split(' ');
+	  // console.log(lineName, lineName);
+	  if (/^\d+/.test(lineName)) {
+	    console.log(line);
+	    return chunkedLine.filter(function (word) {
+	      return word.length > 1;
+	    });
+	  }
+	  // add lineName back to the newLine and remove any empty spaces
+	  return [lineName].concat(_toConsumableArray(chunkedLine)).filter(function (word) {
+	    return word.length > 1;
+	  });
+	};
+
+	// coz of line numbers at the bottom of the page
+	// the line is returned at the end of that number
+	// hence turning out shorter
+	// so we cache that line as prevShortLine and return false
+	// then we wait for the next line which is also short and we add them together
+	var prevShortLine = null;
+
 	var writeLineForAnnexTables = function writeLineForAnnexTables(line, _ref) {
 	  var title = _ref.title;
 	  var stream = _ref.stream;
@@ -134,10 +160,20 @@
 	  if (!title.includes('Annex')) return false;
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
 	  if (!hasNumericalValues) return false;
-	  var csvLine = csvLineTowrite(line);
-	  if (hasNumericalValues) {
-	    stream.write([title].concat(_toConsumableArray(csvLine)));
+	  var csvLine = annexCsvLine(line);
+	  console.log('line length:', csvLine.length);
+	  if (csvLine.length < 9) {
+	    prevShortLine = [title].concat(_toConsumableArray(csvLine));
+	    return false;
 	  }
+	  if (prevShortLine && csvLine.length < 19) {
+	    // remove last item coz its just a page number
+	    prevShortLine.pop();
+	    stream.write([].concat(_toConsumableArray(prevShortLine), _toConsumableArray(csvLine)));
+	    prevShortLine = null;
+	    return true;
+	  }
+	  stream.write([title].concat(_toConsumableArray(csvLine)));
 	  return true;
 	};
 	// function we use to writing out csv lines for regular tables
@@ -149,13 +185,11 @@
 
 	  if (title.includes('Overview of Vote Expenditures') || title.includes('Annex')) return false;
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
+	  // check whether we have numbers after the first items in the array
 	  if (!hasNumericalValues) return false;
 	  var csvLine = csvLineTowrite(line);
-	  // check whether we have numbers after the first items in the array
-	  if (hasNumericalValues) {
-	    if (csvLine.length !== 7) csvLine.splice(0, 2, csvLine[0] + ' ' + csvLine[1]);
-	    stream.write([].concat(_toConsumableArray(csvLine), [title, voteTitle]));
-	  }
+	  if (csvLine.length !== 7) csvLine.splice(0, 2, csvLine[0] + ' ' + csvLine[1]);
+	  stream.write([].concat(_toConsumableArray(csvLine), [title, voteTitle]));
 	  return true;
 	};
 
@@ -180,22 +214,14 @@
 	  // table structure quacks
 	  if (line.includes('Non Wage') && missingValue) csvLine.splice(2, 0, missingValue);
 	  if (line.includes('and Taxes')) csvLine.splice(0, 2, csvLine[1]);
-	  if (hasNumericalValues) {
-	    stream.write([].concat(_toConsumableArray(csvLine), [title, voteTitle]));
-	  }
+	  stream.write([].concat(_toConsumableArray(csvLine), [title, voteTitle]));
 	  return true;
 	};
 
-	var isNewTableTitle = function isNewTableTitle(segments, line) {
-	  return segments.some(function (segment) {
-	    return line.includes(segment.tableTitle);
-	  });
-	};
-
 	var getVoteTitle = exports.getVoteTitle = function getVoteTitle(line, currentVote) {
-	  // the line should start with Vote:
 	  // remove extra white space at the beginning of the line if any
 	  var newLine = line.replace(/^\s+/, '');
+	  // the line should start with Vote:
 	  var hasVoteHasFirstLine = /^Vote:/.test(newLine);
 	  if (!hasVoteHasFirstLine) return currentVote;
 	  // should have the vote Number
@@ -211,12 +237,18 @@
 	  return currentVote;
 	};
 
+	var isNewTableTitle = function isNewTableTitle(segments, line) {
+	  return segments.some(function (segment) {
+	    return line.includes(segment.tableTitle);
+	  });
+	};
+
 	function writeCSVFile(segments, readFileByLine, stream) {
 	  var startMining = false;
 	  var isTableTitle = false;
 	  var title = null;
 	  var voteTitle = null;
-	  var writeCsvLine = null;
+	  var writeCsvLine = null; // function
 	  if (_cli2.default.annex) {
 	    writeCsvLine = writeLineForAnnexTables;
 	  } else {
