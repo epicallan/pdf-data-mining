@@ -30,9 +30,14 @@ const createsReadStreams = (files) =>
 
 export const hello = () => 'hello';
 
-export const readDirFiles = () => {
-  const stream = Rx.Observable.bindCallback(fs.readdir);
-  return stream(rootPath);
+export const readDirFiles = (annex = null, prefix = null) => {
+  let re = new RegExp('.csv$');
+  if (annex) re = new RegExp(`(${annex})(?=\.csv$)`);
+  if (prefix) re = new RegExp(`(^${prefix})(?=.*\.csv$)`);
+  const stream = Rx.Observable.bindNodeCallback(fs.readdir);
+  return stream(rootPath)
+    .flatMap(files => Rx.Observable.from(files))
+    .filter(file => re.test(file));
 };
 
 function fillDataBuffers(readerStreams) {
