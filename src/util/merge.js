@@ -1,6 +1,7 @@
 import fs from 'fs';
 import readline from 'readline';
 import Rx from 'rxjs/Rx';
+import path from 'path';
 
 const buffers = new Map(); // for storing file data
 const rootPath = '/Users/allanlukwago/apps/budget-data/samples';
@@ -13,9 +14,9 @@ const writableStream = () => {
   return stream;
 };
 
-const readStream = (fileName) => (
+const readStream = (filePath) => (
   readline.createInterface({
-    input: fs.createReadStream(`${rootPath}/${fileName}`)
+    input: fs.createReadStream(filePath)
   }));
 
 // we dont want to have all the table headings from various
@@ -30,14 +31,16 @@ const createsReadStreams = (files) =>
 
 export const hello = () => 'hello';
 
-export const readDirFiles = (annex = null, prefix = null) => {
+export const readDirFiles = (dir, annex, prefix) => {
   let re = new RegExp('.csv$');
+  const directory = dir || __dirname;
   if (annex) re = new RegExp(`(${annex})(?=\.csv$)`);
   if (prefix) re = new RegExp(`(^${prefix})(?=.*\.csv$)`);
   const stream = Rx.Observable.bindNodeCallback(fs.readdir);
-  return stream(rootPath)
+  return stream(directory)
     .flatMap(files => Rx.Observable.from(files))
-    .filter(file => re.test(file));
+    .filter(file => re.test(file))
+    .map(file => path.resolve(directory, file));
 };
 
 function fillDataBuffers(readerStreams) {
