@@ -6,6 +6,7 @@ import {
   transformRegular,
   transformOverview,
   transformForEstimates,
+  transformForPAFTable,
   transformForAnnexTables } from './config';
 import program from './cli';
 
@@ -18,13 +19,14 @@ const pdftoTextProcess = () => (spawn('pdftotext',
 const writableStream = () => {
   const date = new Date();
   const time = date.getTime();
-  const csvFileName = `${program.name}-${time}` || time;
+  const csvFileName = `${program.name}` || time;
   const stream = fs.createWriteStream(`${csvFileName}.csv`);
   return stream;
 };
 
 const getRowTransformFunc = () => {
   if (program.annex) return transformForAnnexTables;
+  if (program.paf) return transformForPAFTable;
   if (program.estimates) return transformForEstimates;
   const transform = program.overview ? transformOverview : transformRegular;
   return transform;
@@ -47,7 +49,7 @@ const csvLineTowrite = (line) => line.split('  ').filter(word => word.length > 1
 // we are only interested in sentence lines that have numerical values
 export const shouldHaveNumericalValues = (line) => {
   const chunkedLine = csvLineTowrite(line);
-  if (chunkedLine.length < 7) return false;
+  if (chunkedLine.length < 5) return false;
   const lastValues = chunkedLine.slice(2, chunkedLine.length);
   const values = lastValues.map(val => {
     let value = val;
@@ -78,7 +80,7 @@ export const annexCsvLine = line => {
   const newLine = /[ab-z]/.test(lineName) ? line.replace(lineName, '') : line;
   // replace all double spaces with single spaces
   const chunkedLine = newLine.replace(/\s+/g, ' ').split(' ');
-  // console.log(lineName, lineName);
+  // check to see whether its a continuation of another line and hence has only digits
   if (/^\d+/.test(lineName)) {
     const filtered = chunkedLine.filter(word => word.length > 1);
     // if the first item is made up of joined up numbers it will return a split array
@@ -93,7 +95,7 @@ export const annexCsvLine = line => {
   return [lineName, ...chunkedLine].filter(word => word.length > 1);
 };
 
-const writeLineForEstimatesTables = (line, { title, stream }) => {
+const writeLineForPafTables = (line, { title, stream }) => {
   if (!title.includes('FY 2015/16 PAF')) return false;
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
@@ -103,26 +105,25 @@ const writeLineForEstimatesTables = (line, { title, stream }) => {
   stream.write([title, ...csvLine]);
   return true;
 };
-// coz of line numbers at the bottom of the page
-// the line is returned at the end of that number
-// hence turning out shorter
-// so we cache that line as prevShortLine and return false
-// then we wait for the next line which is also short and we add them together
+// coz of line numbers at the bottom of the pages that appear in the tables
+// the node line reader stops at the pageNumber and outputs an incomplete short line
+// so we cache that line as prevShortLine and return false (leave the function)
+// and we never write that short line to file
+// then we wait for the next line which is also short that starts from
+// where the line number ends and we add it to the prevShortLine and we write that line
 let prevShortLine = null;
 
 const writeLineForAnnexTables = (line, { title, stream }) => {
-  if (!title.includes('Annex')) return false;
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
   const csvLine = annexCsvLine(line);
-  // console.log('line length:', csvLine.length);
-  if (csvLine.length < 9) {
+  const cutPoint = program.annex ? 9 : 7;
+  if (csvLine.length < cutPoint) {
     prevShortLine = [title, ...csvLine];
-    // console.log(prevShortLine.join(','));
+    prevShortLine.pop(); // removing page number
     return false;
   }
-  if (prevShortLine && csvLine.length < 19) {
-    // prevShortLine.pop();
+  if (prevShortLine) {
     stream.write([...prevShortLine, ...csvLine]);
     prevShortLine = null;
     return true;
@@ -184,8 +185,8 @@ const isNewTableTitle =
   (segments, line) => segments.some(segment => line.includes(segment.tableTitle));
 
 const getWriteCsvLineFunc = () => {
-  if (program.annex) return writeLineForAnnexTables;
-  if (program.estimates) return writeLineForEstimatesTables;
+  if (program.annex || program.estimates) return writeLineForAnnexTables;
+  if (program.paf) return writeLineForPafTables;
   const write = program.overview ? writeLineToOverView : writeLineToFileRegular;
   return write;
 };

@@ -48,6 +48,6 @@ describe('app.js unit tests', () => {
     const joined = '0.2353.20';
     const result = splitJoinedNumbers(joined);
     expect(result).to.have.length(2);
-    expect(result[0]).to.be.equal(0.23);
+    expect(result[0]).to.be.equal('0.23');
   });
 });

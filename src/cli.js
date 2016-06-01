@@ -6,6 +6,7 @@ program.version('0.0.1')
         .option('-o, --overview', 'indicates we are mining from overview vote expenditure tables')
         .option('-a, --annex', 'indicates that we want to mine annex tables')
         .option('-e, --estimates', 'indicates that we want to mine the estimates tables')
+        .option('-p, --paf', 'indicates that we want to mine the paf tables')
         .option('-n, --name [name]', 'Add resulting csv file name');
 
 program.on('--help', () => {
