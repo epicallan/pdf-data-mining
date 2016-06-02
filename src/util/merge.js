@@ -14,23 +14,20 @@ export const fromNodeStreamToObserverable = (stream, dataEventName, finishEventN
     };
   }));
 
-// returns a write stream for writing to the merge file
+// returns a write stream for writing to the resultant csv file
 export const getWriter = (dir) => {
-  const mergedCsvFilePath = dir ?
-    path.resolve(dir, 'new1.csv') : path.resolve(__dirname, 'new.csv');
-  return fs.createWriteStream(mergedCsvFilePath);
+  const resultCsvFile = dir ?
+    path.resolve(dir, 'merge.csv') : path.resolve(__dirname, 'merge.csv');
+  return fs.createWriteStream(resultCsvFile);
 };
 
+// Rx Observable that reads csv file by line and emits the lines as a stream
 export const readLineStream = (filePath) => {
   const rl = readline.createInterface({ input: fs.createReadStream(filePath) });
   return fromNodeStreamToObserverable(rl, 'line', 'close');
 };
-// we dont want to have all the table headings from various
-// tables in our final file, so when we find them
-// we will skip them save for the first one
-// const findTableHeading = (line) =>
-//   (/(^\bVote Name\b)(.*\bTable Name\b)/.test(line));
 
+// returns a stream of files from a specified directory or current directory
 export const readDirFiles = (dir, annex, prefix) => {
   let re = new RegExp('.csv$');
   const directory = dir || __dirname;
@@ -43,10 +40,28 @@ export const readDirFiles = (dir, annex, prefix) => {
     .map(file => path.resolve(directory, file));
 };
 
-export default function main() {
-  // const streams = createsReadStreams(['test1.csv', 'test2.csv']);
-  // writeToCsv(streams);
-  // writeBuffersToFile(streams);
+function main() {
+  const rootPath = program.directory || __dirname;
+  const writer = getWriter(rootPath, program.annex, program.prefix);
+  let tableHeaderRow = null;
+  readDirFiles(rootPath)
+    .flatMap(file => readLineStream(file))
+    .filter(line => {
+      if (!tableHeaderRow) {
+        tableHeaderRow = line; // the tableHeaderRow is the very first line
+        return true;
+      }
+      return !line.includes(tableHeaderRow);
+    })
+    .subscribe(
+      line => {
+        writer.write(`${line}\n`); // writing to file
+      },
+      err => {
+        console.log(`Error ${err}`);
+      },
+      () => { console.log('done'); }
+    );
 }
 
-main();
+if (process.env.NODE_ENV !== 'test') main();
