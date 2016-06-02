@@ -10,7 +10,7 @@ export const fromNodeStreamToObserverable = (stream, dataEventName, finishEventN
     stream.addListener(finishEventName, () => observer.complete());
     stream.resume();
     return () => {
-      stream.removeAllListener(dataEventName);
+      stream.removeAllListeners(dataEventName);
     };
   }));
 
@@ -21,7 +21,7 @@ export const getWriter = (dir) => {
   return fs.createWriteStream(mergedCsvFilePath);
 };
 
-export const readLineObs = (filePath) => {
+export const readLineStream = (filePath) => {
   const rl = readline.createInterface({ input: fs.createReadStream(filePath) });
   return fromNodeStreamToObserverable(rl, 'line', 'close');
 };
@@ -42,23 +42,6 @@ export const readDirFiles = (dir, annex, prefix) => {
     .filter(file => re.test(file))
     .map(file => path.resolve(directory, file));
 };
-
-export const ob = (file) =>
-  (Rx.Observable.create(observer => {
-    observer.next(file);
-  }));
-
-export function writeToCsv(reader, writer) {
-  return Rx.Observable.create(observer => {
-    reader.on('line', (line) => {
-      // we want to record the first table heading row
-      observer.next(line);
-      writer.write(line);
-    });
-    reader.on('error', (err) => observer.error(err));
-    reader.on('close', () => observer.complete('finished'));
-  });
-}
 
 export default function main() {
   // const streams = createsReadStreams(['test1.csv', 'test2.csv']);

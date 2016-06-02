@@ -59,13 +59,13 @@
 
 	var _readline2 = _interopRequireDefault(_readline);
 
-	var _fastCsv = __webpack_require__(4);
+	var _fastCsv = __webpack_require__(3);
 
 	var _fastCsv2 = _interopRequireDefault(_fastCsv);
 
-	var _config = __webpack_require__(28);
+	var _config = __webpack_require__(27);
 
-	var _cli = __webpack_require__(29);
+	var _cli = __webpack_require__(28);
 
 	var _cli2 = _interopRequireDefault(_cli);
 
@@ -73,7 +73,7 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var spawn = __webpack_require__(32).spawn;
+	var spawn = __webpack_require__(31).spawn;
 
 	var pdftoTextProcess = function pdftoTextProcess() {
 	  return spawn('pdftotext', ['-layout', '-f', _cli2.default.first, '-l', _cli2.default.last, _cli2.default.args[0]]);
@@ -352,14 +352,13 @@
 	module.exports = require("readline");
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(5);
+	module.exports = __webpack_require__(4);
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -370,8 +369,8 @@
 	 */
 
 	var fs = __webpack_require__(1),
-	    parser = __webpack_require__(6),
-	    formatter = __webpack_require__(25);
+	    parser = __webpack_require__(5),
+	    formatter = __webpack_require__(24);
 
 	function csv() {
 	    return parser.apply(void 0, arguments);
@@ -393,14 +392,14 @@
 	module.exports = csv;
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var extended = __webpack_require__(7),
+	var extended = __webpack_require__(6),
 	    out = process.stdout,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    fs = __webpack_require__(1),
-	    ParserStream = __webpack_require__(21);
+	    ParserStream = __webpack_require__(20);
 
 
 	function parse(options) {
@@ -429,15 +428,15 @@
 
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var is = __webpack_require__(8);
-	module.exports = __webpack_require__(9)()
+	var is = __webpack_require__(7);
+	module.exports = __webpack_require__(8)()
 	    .register(is)
-	    .register(__webpack_require__(14))
-	    .register(__webpack_require__(17))
-	    .register("LINE_BREAK", __webpack_require__(19).EOL)
+	    .register(__webpack_require__(13))
+	    .register(__webpack_require__(16))
+	    .register("LINE_BREAK", __webpack_require__(18).EOL)
 	    .register("asyncEach", function (arr, iter, cb) {
 
 
@@ -494,7 +493,7 @@
 	    });
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -984,7 +983,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineIsa(__webpack_require__(9));
+	            module.exports = defineIsa(__webpack_require__(8));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -1000,7 +999,7 @@
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -1082,7 +1081,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineExtended(__webpack_require__(10));
+	            module.exports = defineExtended(__webpack_require__(9));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -1103,13 +1102,13 @@
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(11);
+	module.exports = __webpack_require__(10);
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -1640,7 +1639,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineExtender(__webpack_require__(12));
+	            module.exports = defineExtender(__webpack_require__(11));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -1654,13 +1653,13 @@
 	}).call(this);
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(13);
+	module.exports = __webpack_require__(12);
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -2591,7 +2590,7 @@
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -2792,7 +2791,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineObject(__webpack_require__(9), __webpack_require__(8), __webpack_require__(15));
+	            module.exports = defineObject(__webpack_require__(8), __webpack_require__(7), __webpack_require__(14));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -2813,7 +2812,7 @@
 
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -3467,7 +3466,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineArray(__webpack_require__(9), __webpack_require__(8), __webpack_require__(16));
+	            module.exports = defineArray(__webpack_require__(8), __webpack_require__(7), __webpack_require__(15));
 	        }
 	    } else if ("function" === typeof define && define.amd) {
 	        define(["extended", "is-extended", "arguments-extended"], function (extended, is, args) {
@@ -3487,7 +3486,7 @@
 
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -3520,7 +3519,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineArgumentsExtended(__webpack_require__(9), __webpack_require__(8));
+	            module.exports = defineArgumentsExtended(__webpack_require__(8), __webpack_require__(7));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -3536,7 +3535,7 @@
 
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -4166,7 +4165,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineString(__webpack_require__(9), __webpack_require__(8), __webpack_require__(18), __webpack_require__(15));
+	            module.exports = defineString(__webpack_require__(8), __webpack_require__(7), __webpack_require__(17), __webpack_require__(14));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -4187,7 +4186,7 @@
 
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function () {
@@ -5118,7 +5117,7 @@
 
 	    if (true) {
 	        if ("undefined" !== typeof module && module.exports) {
-	            module.exports = defineDate(__webpack_require__(9), __webpack_require__(8), __webpack_require__(15));
+	            module.exports = defineDate(__webpack_require__(8), __webpack_require__(7), __webpack_require__(14));
 
 	        }
 	    } else if ("function" === typeof define && define.amd) {
@@ -5139,32 +5138,32 @@
 
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = require("os");
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports) {
 
 	module.exports = require("stream");
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var extended = __webpack_require__(7),
+	var extended = __webpack_require__(6),
 	    isUndefined = extended.isUndefined,
 	    spreadArgs = extended.spreadArgs,
-	    util = __webpack_require__(22),
+	    util = __webpack_require__(21),
 	    out = process.stdout,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    EMPTY = /^\s*(?:''|"")?\s*(?:,\s*(?:''|"")?\s*)*$/,
 	    DEFAULT_DELIMITER = ",",
-	    createParser = __webpack_require__(23),
+	    createParser = __webpack_require__(22),
 	    fs = __webpack_require__(1),
-	    StringDecoder = __webpack_require__(24).StringDecoder,
+	    StringDecoder = __webpack_require__(23).StringDecoder,
 	    hasIsPaused = !!stream.Transform.prototype.isPaused;
 
 	function ParserStream(options) {
@@ -5504,16 +5503,16 @@
 
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = require("util");
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var extended = __webpack_require__(7),
+	var extended = __webpack_require__(6),
 	    has = extended.has,
 	    isUndefinedOrNull = extended.isUndefinedOrNull,
 	    trim = extended.trim,
@@ -5713,21 +5712,21 @@
 
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = require("string_decoder");
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(1),
-	    extended = __webpack_require__(7),
+	    extended = __webpack_require__(6),
 	    escape = extended.escape,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    LINE_BREAK = extended.LINE_BREAK,
-	    CsvTransformStream = __webpack_require__(26);
+	    CsvTransformStream = __webpack_require__(25);
 
 
 	function createWriteStream(options) {
@@ -5805,19 +5804,19 @@
 
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(1),
-	    util = __webpack_require__(22),
-	    extended = __webpack_require__(7),
+	    util = __webpack_require__(21),
+	    extended = __webpack_require__(6),
 	    escape = extended.escape,
 	    isArray = extended.isArray,
 	    has = extended.has,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    Transform = stream.Transform,
 	    LINE_BREAK = extended.LINE_BREAK,
-	    formatter = __webpack_require__(27),
+	    formatter = __webpack_require__(26),
 	    createFormatter = formatter.createFormatter,
 	    checkHeaders = formatter.checkHeaders,
 	    transformItem = formatter.transformItem,
@@ -5904,18 +5903,18 @@
 
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(1),
-	    extended = __webpack_require__(7),
+	    extended = __webpack_require__(6),
 	    has = extended.has,
 	    isBoolean = extended.isBoolean,
 	    isUndefinedOrNull = extended.isUndefinedOrNull,
 	    escape = extended.escape,
 	    isArray = extended.isArray,
 	    keys = extended.keys,
-	    stream = __webpack_require__(20),
+	    stream = __webpack_require__(19),
 	    LINE_BREAK = extended.LINE_BREAK;
 
 	function createQuoteChecker(stream, quoteColumns, quoteHeaders) {
@@ -6103,7 +6102,7 @@
 
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -6246,7 +6245,7 @@
 	};
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6255,7 +6254,7 @@
 	        value: true
 	});
 
-	var _commander = __webpack_require__(30);
+	var _commander = __webpack_require__(29);
 
 	var _commander2 = _interopRequireDefault(_commander);
 
@@ -6277,17 +6276,17 @@
 	exports.default = _commander2.default;
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var EventEmitter = __webpack_require__(31).EventEmitter;
-	var spawn = __webpack_require__(32).spawn;
-	var readlink = __webpack_require__(33).readlinkSync;
-	var path = __webpack_require__(34);
+	var EventEmitter = __webpack_require__(30).EventEmitter;
+	var spawn = __webpack_require__(31).spawn;
+	var readlink = __webpack_require__(32).readlinkSync;
+	var path = __webpack_require__(33);
 	var dirname = path.dirname;
 	var basename = path.basename;
 	var fs = __webpack_require__(1);
@@ -7393,19 +7392,19 @@
 
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = require("child_process");
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(1)
@@ -7423,7 +7422,7 @@
 
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
