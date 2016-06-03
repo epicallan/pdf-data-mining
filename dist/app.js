@@ -116,7 +116,8 @@
 	// we are only interested in sentence lines that have numerical values
 	var shouldHaveNumericalValues = exports.shouldHaveNumericalValues = function shouldHaveNumericalValues(line) {
 	  var chunkedLine = csvLineTowrite(line);
-	  if (chunkedLine.length < 5) return false;
+	  var cutPoint = _cli2.default.estimates ? 4 : 7;
+	  if (chunkedLine.length < cutPoint) return false;
 	  var lastValues = chunkedLine.slice(2, chunkedLine.length);
 	  var values = lastValues.map(function (val) {
 	    var value = val;
@@ -196,13 +197,15 @@
 	  var hasNumericalValues = shouldHaveNumericalValues(line);
 	  if (!hasNumericalValues) return false;
 	  var csvLine = annexCsvLine(line);
-	  var cutPoint = _cli2.default.annex ? 9 : 7;
+	  var cutPoint = _cli2.default.annex ? 9 : 6;
 	  if (csvLine.length < cutPoint) {
 	    prevShortLine = [title].concat(_toConsumableArray(csvLine));
-	    prevShortLine.pop(); // removing page number
+	    if (_cli2.default.annex) prevShortLine.pop(); // removing page number
+	    console.log(prevShortLine.join(','));
 	    return false;
 	  }
 	  if (prevShortLine) {
+	    console.log(csvLine.join(','));
 	    stream.write([].concat(_toConsumableArray(prevShortLine), _toConsumableArray(csvLine)));
 	    prevShortLine = null;
 	    return true;
@@ -6133,7 +6136,7 @@
 	}, {
 	  tableTitle: 'FY 2015/16 PAF'
 	}, {
-	  tableTitle: 'Approved Estimates of Outturn by Vote and Vote Function'
+	  tableTitle: 'Draft Estimates by Vote and Vote Function'
 	}];
 
 	// responsible for table titles

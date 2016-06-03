@@ -33,7 +33,7 @@ export const budgetSegmentsToRead = [
     tableTitle: 'FY 2015/16 PAF'
   },
   {
-    tableTitle: 'Approved Estimates of Outturn by Vote and Vote Function'
+    tableTitle: 'Draft Estimates by Vote and Vote Function'
   }
 ];
 

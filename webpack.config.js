@@ -1,8 +1,7 @@
 module.exports = {
   entry: {
     app: './src/app.js',
-    commands: './src/util/commands.js',
-    merge: './src/util/merge.js',
+    commands: './src/util/commands.js'
   },
   target: 'node',
   output: {

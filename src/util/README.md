@@ -11,6 +11,3 @@ to excute script
 ```
 ./bash.sh
 ```
-# merge.js
-
-merges csv files in the current directory into one file.

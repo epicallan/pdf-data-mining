@@ -49,7 +49,8 @@ const csvLineTowrite = (line) => line.split('  ').filter(word => word.length > 1
 // we are only interested in sentence lines that have numerical values
 export const shouldHaveNumericalValues = (line) => {
   const chunkedLine = csvLineTowrite(line);
-  if (chunkedLine.length < 5) return false;
+  const cutPoint = program.estimates ? 4 : 7;
+  if (chunkedLine.length < cutPoint) return false;
   const lastValues = chunkedLine.slice(2, chunkedLine.length);
   const values = lastValues.map(val => {
     let value = val;
@@ -117,13 +118,15 @@ const writeLineForAnnexTables = (line, { title, stream }) => {
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
   const csvLine = annexCsvLine(line);
-  const cutPoint = program.annex ? 9 : 7;
+  const cutPoint = program.annex ? 9 : 6;
   if (csvLine.length < cutPoint) {
     prevShortLine = [title, ...csvLine];
-    prevShortLine.pop(); // removing page number
+    if (program.annex) prevShortLine.pop(); // removing page number
+    console.log(prevShortLine.join(','));
     return false;
   }
   if (prevShortLine) {
+    console.log(csvLine.join(','));
     stream.write([...prevShortLine, ...csvLine]);
     prevShortLine = null;
     return true;
