@@ -7,6 +7,8 @@ program.version('0.0.1')
         .option('-a, --annex', 'indicates that we want to mine annex tables')
         .option('-e, --estimates', 'indicates that we want to mine the estimates tables')
         .option('-p, --paf', 'indicates that we want to mine the paf tables')
+        .option('-s, --fiscal ', 'indicates that we are mining fiscal planning tables')
+        .option('-r, --revenue ', 'indicates that we are mining revenue tables')
         .option('-n, --name [name]', 'Add resulting csv file name');
 
 program.on('--help', () => {

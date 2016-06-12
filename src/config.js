@@ -30,10 +30,16 @@ export const budgetSegmentsToRead = [
     tableTitle: 'Annex A1.2'
   },
   {
-    tableTitle: 'FY 2015/16 PAF'
+    tableTitle: 'FY 2016/17 PAF Budget'
   },
   {
-    tableTitle: 'Draft Estimates by Vote and Vote Function'
+    tableTitle: 'Approved Estimates by Vote and Vote Function'
+  },
+  {
+    tableTitle: 'FISCAL FRAMEWORK FY 2012/13 - FY 2019/20'
+  },
+  {
+    tableTitle: 'Revenue projections FY 2016/2017'
   }
 ];
 
@@ -116,6 +122,28 @@ export const transformForPAFTable = row => ({
   'Development Total': row[7]
 });
 
+export const transformForFiscalTables = row => ({
+  'Table Title': row[0],
+  Section: row[1],
+  '2012/13': row[2],
+  '2013/14': row[3],
+  '2014/15': row[4],
+  '2015/16': row[5],
+  '2016/17': row[6],
+  '2017/18': row[7],
+  '2018/19': row[8],
+  '2019/20': row[9]
+});
+
+export const transformForRevenueTables = row => ({
+  'Table Title': row[0],
+  Section: row[1],
+  '2012/13': row[2],
+  '2013/14': row[3],
+  '2014/15': row[4],
+  '2015/16': row[5],
+  '2016/17': row[6]
+});
 
 export const transformForEstimates = row => ({
   'Table Name': row[0],

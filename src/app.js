@@ -7,6 +7,8 @@ import {
   transformOverview,
   transformForEstimates,
   transformForPAFTable,
+  transformForFiscalTables,
+  transformForRevenueTables,
   transformForAnnexTables } from './config';
 import program from './cli';
 
@@ -28,6 +30,8 @@ const getRowTransformFunc = () => {
   if (program.annex) return transformForAnnexTables;
   if (program.paf) return transformForPAFTable;
   if (program.estimates) return transformForEstimates;
+  if (program.revenue) return transformForRevenueTables;
+  if (program.fiscal) return transformForFiscalTables;
   const transform = program.overview ? transformOverview : transformRegular;
   return transform;
 };
@@ -96,13 +100,26 @@ export const annexCsvLine = line => {
   return [lineName, ...chunkedLine].filter(word => word.length > 1);
 };
 
+const writeLineForRevenueTables = (line, { title, stream }) => {
+  const csvLine = line.split('  ').filter(word => word.length > 0);
+  stream.write([title, ...csvLine]);
+  return true;
+};
+
+const writeLineForFiscalTables = (line, { title, stream }) => {
+  const hasNumericalValues = shouldHaveNumericalValues(line);
+  if (!hasNumericalValues) return false;
+  const csvLine = csvLineTowrite(line);
+  stream.write([title, ...csvLine]);
+  return true;
+};
+
 const writeLineForPafTables = (line, { title, stream }) => {
-  if (!title.includes('FY 2015/16 PAF')) return false;
+  if (!title.includes('PAF')) return false;
   const hasNumericalValues = shouldHaveNumericalValues(line);
   if (!hasNumericalValues) return false;
   const csvLine = csvLineTowrite(line);
   if (csvLine.length > 7) csvLine.shift();
-  console.log([title, ...csvLine]);
   stream.write([title, ...csvLine]);
   return true;
 };
@@ -190,6 +207,8 @@ const isNewTableTitle =
 const getWriteCsvLineFunc = () => {
   if (program.annex || program.estimates) return writeLineForAnnexTables;
   if (program.paf) return writeLineForPafTables;
+  if (program.revenue) return writeLineForRevenueTables;
+  if (program.fiscal) return writeLineForFiscalTables;
   const write = program.overview ? writeLineToOverView : writeLineToFileRegular;
   return write;
 };
