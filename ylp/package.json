@@ -8,9 +8,7 @@
     "dev": "webpack --watch",
     "lint": "eslint src --cache",
     "test": " NODE_ENV=test mocha $(find src -name '*-test.js')  --compilers js:babel-core/register",
-    "test-watch": "NODE_ENV=test mocha $(find src -name '*-test.js') --compilers js:babel-core/register --watch",
-    "commands-watch": "nodemon dist/commands",
-    "commands": "node dist/commands"
+    "test-watch": "NODE_ENV=test mocha $(find src -name '*-test.js') --compilers js:babel-core/register --watch"
   },
   "repository": "github.com/epicallan/budget-data",
   "keywords": [
