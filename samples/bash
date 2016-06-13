@@ -1,5 +1,0 @@
-#!/bin/bash
-# you can run the scrapping for the various 'votes' as bash commands
-# from the samples folder or any folder with the pdfs
-budget -f 503 -l 579 -n referals 2014-15.pdf
-budget -o -f 503 -l 579 -n referals-2 2014-15.pdf
