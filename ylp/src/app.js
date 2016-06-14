@@ -17,7 +17,8 @@ export const getWriter = () => {
 const csvLineTowrite = (line) =>
   (line.replace(/\s{2,}/g, '_') // replace all double spaces with a dash
       .replace(/,/g, '')  // replace all commas with nothing
-      .replace(/_/g, ',')); // replace dash with comma
+      .replace(/_/g, ',')); // replace dash with comma //hence csv formatted line
+
 const totalsLine = (arr) => {
   const fill = new Array(9);
   const first = arr.shift();
@@ -49,21 +50,21 @@ const writeLineToFile = (line, writer) => {
   writer.write(`${csvLine}\n`); // writing to file
   return true;
 };
-const isTableTitle = (line) =>
-  (/DISB/g.test(line));
+
+const findTableHeader = (line) => (/DISB/g.test(line));
 
 function writeCSVFile(readFileByLine, writer) {
   let startMining = false;
   let title = null;
-  let noTitleLine = true;
+  let noHeaderLine = true;
   readFileByLine.on('line', (line) => {
-    const isTitle = isTableTitle(line);
-    if (isTitle && noTitleLine) {
+    const isTableHeader = findTableHeader(line);
+    if (isTableHeader && noHeaderLine ) {
       startMining = true;
       title = line;
       console.log(`Title : ${title}`);
-      writeLineToFile(line, writer);
-      noTitleLine = false;
+      writeLineToFile(line, writer); //we will only write the table headers once
+      noHeaderLine  = false;
     }
     if (line.includes('MUNICIPALITY') || isTitle || line.includes('Page')) return false;
     if (startMining) writeLineToFile(line, writer);
